@@ -1,0 +1,60 @@
+.input-number {
+  $self: &;
+
+  position: static;
+
+  &_variant {
+    &-default {
+      display: inline-flex;
+      vertical-align: bottom;
+
+      border: 2px #dbe0e1 solid;
+      padding: 2px;
+
+      #{$self}__start,
+      #{$self}__end,
+      #{$self}__inner {
+        background-color: #e3e3e3;
+        padding: 8px;
+      }
+
+      #{$self}__start > #{$self}__button,
+      #{$self}__start > #{$self}__start-button,
+      #{$self}__end > #{$self}__end-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px;
+
+        width: 100%;
+        aspect-ratio: 1 / 1;
+      }
+
+      #{$self}__inner {
+        display: flex;
+
+        /* Hide spin buttons for WebKit browsers (Chrome, Safari, Edge) */
+        input[type='number']::-webkit-outer-spin-button,
+        input[type='number']::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0; /* Important for Safari, removes extra space */
+        }
+
+        /* Hide spin buttons for Firefox */
+        input[type='number'] {
+          -moz-appearance: textfield;
+          /* Remove default border/outline if desired for consistent look */
+          border: none;
+          outline: none;
+        }
+      }
+
+      #{$self}__inner > input {
+        width: 64px;
+        height: auto;
+
+        text-align: center;
+      }
+    }
+  }
+}

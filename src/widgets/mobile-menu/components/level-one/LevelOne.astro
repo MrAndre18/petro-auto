@@ -1,0 +1,101 @@
+---
+import mailIcon from '@shared/assets/images/svg/mail.svg'
+import Button from '@shared/ui/buttons/button/Button.astro'
+import ArrowRightIcon from '@assets/images/svg/arrow-small-right.svg'
+
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+const contacts = [
+  {
+    text: '8 800 505 08 10',
+    href: 'tel:+78005050810',
+    icon: mailIcon
+  },
+  {
+    text: '8 812 644 02 85',
+    href: 'tel:+78126440285',
+    icon: mailIcon
+  },
+  {
+    text: 'sales@master.ru.com',
+    href: 'mailto:sales@master.ru.com',
+    icon: mailIcon
+  }
+]
+
+const links = [
+  {
+    text: 'О бренде',
+    href: `${import.meta.env.BASE_URL}/about`
+  },
+  {
+    text: 'Контакты',
+    href: `${import.meta.env.BASE_URL}/contacts`
+  },
+  {
+    text: 'Где купить',
+    href: `${import.meta.env.BASE_URL}/where-buy`
+  },
+  {
+    text: 'Гарантия',
+    href: `${import.meta.env.BASE_URL}/guarantee`
+  },
+  {
+    text: 'Партнерам',
+    href: `${import.meta.env.BASE_URL}/partners`
+  },
+  {
+    text: 'FAQ',
+    href: `${import.meta.env.BASE_URL}/faq`
+  },
+  {
+    text: 'Блог',
+    href: `${import.meta.env.BASE_URL}/blog`
+  }
+]
+
+export { LevelOne }
+---
+
+<div
+  class:list={['level-one', className]}
+  {...props}
+>
+  <button
+    type="button"
+    class="level-one__catalog"
+    data-menu-next
+  >
+    <span class="level-one__catalog-content">
+      <span class="level-one__catalog-title text-title-16">Каталог</span>
+    </span>
+
+    <ArrowRightIcon class="level-one__catalog-arrow" />
+  </button>
+
+  <nav>
+    <ul class="level-one__links">
+      {
+        links.map(link => (
+          <li>
+            <Button
+              href={link.href}
+              variant="outlined"
+              class="level-one__link"
+            >
+              {link.text}
+            </Button>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</div>
+
+<style>
+  @import './level-one.scss';
+</style>

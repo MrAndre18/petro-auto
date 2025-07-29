@@ -1,0 +1,166 @@
+---
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+export { ToastsExamples }
+---
+
+<section
+  id="toasts-examples"
+  class:list={['toasts-examples', className]}
+  {...props}
+>
+  <div class="space-y-6 rounded-lg bg-gray-100 p-6">
+    <h1 class="mb-4 text-2xl font-bold">Toast API</h1>
+    <p class="mb-4 text-lg font-bold text-sky-600">Смотри консоль</p>
+
+    <!-- Шаблонные тосты -->
+    <div class="hidden">
+      <div
+        id="toast-success"
+        data-toast
+        data-toast-close
+      >
+        <div class="flex items-center justify-between rounded-md bg-green-500 px-4 py-2 text-white">
+          <span>Успешно сохранено</span>
+          <button
+            class="ml-4"
+            data-toast-close
+            >×</button
+          >
+        </div>
+      </div>
+
+      <div
+        id="toast-error"
+        data-toast
+        data-toast-close
+      >
+        <div class="flex items-center justify-between rounded-md bg-rose-500 px-4 py-2 text-white">
+          <span>Произошла ошибка</span>
+          <button
+            class="ml-4"
+            data-toast-close
+            >×</button
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-6">
+      <!-- window.frontApi.toast.init -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.toast.init()</h2>
+        <p class="text-sm text-gray-600">Создаёт новый toast по node-элементу.</p>
+        <button
+          id="btn-show-success"
+          class="mt-2 rounded bg-cyan-500 px-4 py-2 text-white"
+          >Пример вызова</button
+        >
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800"><code>{`const node = document.querySelector('#toast-success').cloneNode(true)\nwindow.frontApi.toast.init({ node, duration: 3000, position: 'right' }).show()`}</code></pre>
+      </div>
+
+      <!-- window.frontApi.toast.show -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.toast.show()</h2>
+        <p class="text-sm text-gray-600">Показывает toast по селектору или создает временный.</p>
+        <div class="mt-2 flex gap-2">
+          <button
+            id="btn-show-error"
+            class="rounded bg-rose-500 px-4 py-2 text-white"
+            >Показать ошибку</button
+          >
+          <button
+            id="btn-show-temp"
+            class="rounded bg-gray-600 px-4 py-2 text-white"
+            >Временный toast</button
+          >
+        </div>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800"><code>{`window.frontApi.toast.show('#toast-error')\nwindow.frontApi.toast.show({ text: 'Временный toast', duration: 3000 })`}</code></pre>
+      </div>
+
+      <!-- window.frontApi.toast.hide -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.toast.hide()</h2>
+        <p class="text-sm text-gray-600">Программно скрывает toast по элементу или селектору.</p>
+        <button
+          id="btn-hide-success"
+          class="mt-2 rounded bg-yellow-500 px-4 py-2 text-white"
+          >Скрыть успех</button
+        >
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800"><code>{`window.frontApi.toast.hide('#toast-success')`}</code></pre>
+      </div>
+
+      <!-- window.frontApi.toast.get -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.toast.get()</h2>
+        <p class="text-sm text-gray-600">Получить экземпляр toast по DOM-элементу или селектору.</p>
+        <button
+          id="btn-get"
+          class="mt-2 rounded bg-indigo-500 px-4 py-2 text-white"
+          >Получить toast</button
+        >
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800"><code>{`const instance = window.frontApi.toast.get('#toast-success')\nconsole.log(instance)`}</code></pre>
+      </div>
+
+      <!-- window.frontApi.toast.reinit -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.toast.reinit()</h2>
+        <p class="text-sm text-gray-600">
+          Переинициализация toast с сохранением или обновлением опций.
+        </p>
+        <button
+          id="btn-reinit"
+          class="mt-2 rounded bg-purple-600 px-4 py-2 text-white"
+          >Переинициализировать</button
+        >
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800"><code>{`window.frontApi.toast.reinit('#toast-success', {\n  duration: 4000,\n  gravity: 'bottom'\n})`}</code></pre>
+      </div>
+
+      <!-- window.frontApi.toast.initAll -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.toast.initAll()</h2>
+        <p class="text-sm text-gray-600">Инициализирует все элементы с data-toast в DOM.</p>
+        <button
+          id="btn-init-all"
+          class="mt-2 rounded bg-sky-600 px-4 py-2 text-white"
+          >Инициализировать все</button
+        >
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800"><code>{`window.frontApi.toast.initAll()`}</code></pre>
+      </div>
+
+      <!-- window.frontApi.toast.onAnyInit -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.toast.onAnyInit()</h2>
+        <p class="text-sm text-gray-600">Подписка на инициализацию любого window.frontApi.toast.</p>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800"><code>{`window.frontApi.toast.onAnyInit(t => console.log('[init]', t))`}</code></pre>
+      </div>
+
+      <!-- window.frontApi.toast.onAnyOpen -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.toast.onAnyOpen()</h2>
+        <p class="text-sm text-gray-600">Подписка на открытие любого window.frontApi.toast.</p>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800"><code>{`window.frontApi.toast.onAnyOpen(t => console.log('[open]', t))`}</code></pre>
+      </div>
+
+      <!-- window.frontApi.toast.onAnyClose -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.toast.onAnyClose()</h2>
+        <p class="text-sm text-gray-600">Подписка на закрытие любого window.frontApi.toast.</p>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800"><code>{`window.frontApi.toast.onAnyClose(t => console.log('[close]', t))`}</code></pre>
+      </div>
+    </div>
+  </div>
+</section>

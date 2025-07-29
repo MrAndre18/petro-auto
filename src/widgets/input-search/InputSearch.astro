@@ -1,0 +1,70 @@
+---
+import ButtonSquare from '@shared/ui/buttons/button-square/ButtonSquare.astro'
+import Input from '@shared/ui/input/Input.astro'
+
+interface Props {
+  validate?: string
+  placeholder?: string
+  class?: string
+  startIcon?: any
+  color?: 'dark' | 'light'
+  variant?: 'page' | 'header'
+}
+
+const { class: className, placeholder, variant = 'page', ...props } = Astro.props as Props
+const colorStyle: 'dark' | 'light' = props.color ? props.color : 'dark'
+
+export { InputSearch }
+---
+
+<form
+  novalidate
+  class:list={[
+    'input-search',
+    className,
+    `input_${colorStyle}`,
+    variant === 'header' && 'input-search_header'
+  ]}
+  id=`form-search-input`
+  data-form-id=`search-input`
+>
+  <Input
+    placeholder={placeholder || 'Поиск по сайту'}
+    required
+    data-validate=""
+    class="input-search__field input_text-black"
+  />
+  <div class="input-search__controls">
+    {
+      variant === 'page' && (
+        <ButtonSquare
+          icon={'close'}
+          color="default"
+          class="input-search__reset"
+          data-search-reset=""
+          type={'button'}
+        />
+      )
+    }
+    <ButtonSquare
+      icon={'arrow-small-right'}
+      color="accent"
+      class="input-search__btn button_p-unset"
+      type={'submit'}
+    />
+  </div>
+  {
+    variant === 'header' && (
+      <ButtonSquare
+        icon={'close'}
+        class="input-search__reset static"
+        data-search-reset=""
+        color="default"
+      />
+    )
+  }
+</form>
+
+<style>
+  @import './input-search.scss';
+</style>

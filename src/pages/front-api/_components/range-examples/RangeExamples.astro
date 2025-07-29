@@ -1,0 +1,325 @@
+---
+import Range from '@shared/ui/range/Range.astro'
+
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+export { RangeExamples }
+---
+
+<div
+  class:list={['range-examples', className]}
+  {...props}
+>
+  <div class="border border-solid border-gray-400 p-5">
+    <h2 class="mb-10 text-center text-2xl font-bold">
+      Работа с range
+      <br />
+      <span class="text-xl font-normal">window.frontApi.range</span>
+    </h2>
+    <p class="mt-10 text-2xl">Какие пропсы за что отвечают</p>
+    <ul class="mt-5 rounded bg-gray-200 p-3 text-sm text-gray-800">
+      <li>
+        <code>id</code> - идентификатор
+      </li>
+      <li><code>maxLength</code> - максимальная длина инпута в символах</li>
+      <li><code>oneSided </code> - false, если двусторонний, true - односторонний</li>
+      <li><code>data-step</code> - шаг</li>
+      <li><code>min</code> - минимальная граница</li>
+      <li><code>max</code> - максимальная граница</li>
+      <li><code>startMin</code> - стартовое минимальное значение</li>
+      <li>
+        <code>startMax</code> - стартовое максимальное значение (для одностороннего range указывать не
+        нужно)
+      </li>
+    </ul>
+    <p class="mb-5 mt-10 text-2xl">Как выглядит вызов одностороннего range</p>
+    <pre
+      class="mb-10 mt-2 rounded bg-gray-200 p-3 text-sm text-gray-800"><code>&lt;Range id="range2" maxLength={10} oneSided={true} data-step={10} min={0} max={1024} startMin={520} /&gt;</code>
+      </pre>
+    <p class="mb-5 mt-10 text-2xl">Как выглядит вызов двустороннего range</p>
+    <pre
+      class="my-2 rounded bg-gray-200 p-3 text-sm text-gray-800"><code>&lt;Range id="range1" maxLength={10} oneSided={false} data-step={100} min={0} max={1024} startMin={520} startMax={1024} /&gt;</code>
+      </pre>
+    <div class="mt-10 overflow-x-auto">
+      <table class="w-full border-collapse border-spacing-y-2 text-sm">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="border border-gray-300 p-3 text-left">Метод</th>
+            <th class="border border-gray-300 p-3 text-left">Описание</th>
+            <th class="border border-gray-300 p-3 text-left">Параметры</th>
+            <th class="border border-gray-300 p-3 text-left">Возвращает</th>
+            <th class="border border-gray-300 p-3 text-left">Пример</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono">window.frontApi.range.initAll()</td>
+            <td class="border border-gray-300 p-3"
+              >Инициализация всех range<br />Добавляет атрибут <code>data-range-init</code></td
+            >
+            <td class="border border-gray-300 p-3">-</td>
+            <td class="border border-gray-300 p-3"><code>void</code></td>
+            <td class="border border-gray-300 p-3">
+              <button
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                data-range-init=""
+                >initAll()</button
+              >
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono"
+              >window.frontApi.range.isInit(target)</td
+            >
+            <td class="border border-gray-300 p-3">Проверка инициализации</td>
+            <td class="border border-gray-300 p-3"
+              ><code>target: string | HTMLElement</code> - селектор или DOM-элемент</td
+            >
+            <td class="border border-gray-300 p-3"
+              ><code>boolean</code> - true, если инициализирован</td
+            >
+            <td class="border border-gray-300 p-3">
+              <button
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                data-range-isinit=""
+                >isInit("#range1")</button
+              >
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono"
+              >window.frontApi.range.getInitializedAttribute(target)</td
+            >
+            <td class="border border-gray-300 p-3">Получение атрибута инициализации</td>
+            <td class="border border-gray-300 p-3"
+              ><code>target: string | HTMLElement</code> - селектор или DOM-элемент</td
+            >
+            <td class="border border-gray-300 p-3"
+              ><code>string | null</code> - значение атрибута или null</td
+            >
+            <td class="border border-gray-300 p-3">
+              <button
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                data-range-initialized-attribute=""
+                >getInitializedAttribute("#range1")</button
+              >
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono"
+              >window.frontApi.range.reInit(target)</td
+            >
+            <td class="border border-gray-300 p-3">Переинициализация range</td>
+            <td class="border border-gray-300 p-3"
+              ><code>target: string | HTMLElement</code> - селектор или DOM-элемент</td
+            >
+            <td class="border border-gray-300 p-3"><code>void</code></td>
+            <td class="border border-gray-300 p-3">
+              <button
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                data-range-reinit=""
+                >reInit("#range1")</button
+              >
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono">window.frontApi.range.reInitAll()</td>
+            <td class="border border-gray-300 p-3">Переинициализация всех range</td>
+            <td class="border border-gray-300 p-3">-</td>
+            <td class="border border-gray-300 p-3"><code>void</code></td>
+            <td class="border border-gray-300 p-3">
+              <button
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                data-range-reinit-all=""
+                >reInitAll()</button
+              >
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono"
+              >window.frontApi.range.findElement(target)</td
+            >
+            <td class="border border-gray-300 p-3">Нахождение DOM-элемента range</td>
+            <td class="border border-gray-300 p-3"
+              ><code>target: string | HTMLElement</code> - селектор или DOM-элемент</td
+            >
+            <td class="border border-gray-300 p-3"
+              ><code>HTMLElement | null</code> - найденный элемент или null</td
+            >
+            <td class="border border-gray-300 p-3">
+              <button
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                data-range-find=""
+                >findElement("#range1")</button
+              >
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono"
+              >window.frontApi.range.setBorderMinRangeValue(target, value)</td
+            >
+            <td class="border border-gray-300 p-3">Установка минимальной границы</td>
+            <td class="border border-gray-300 p-3"
+              ><code>target: string | HTMLElement</code> - селектор или DOM-элемент<br /><code
+                >value: Number</code
+              > - новое числовое значение</td
+            >
+            <td class="border border-gray-300 p-3"><code>void</code></td>
+            <td class="border border-gray-300 p-3">
+              <button
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                data-range-set-border-min=""
+                >setBorderMinRangeValue("#range1", 120)</button
+              >
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono"
+              >window.frontApi.range.setCurrentMiRangeValue(target, value)</td
+            >
+            <td class="border border-gray-300 p-3">Установка текущего минимального значения</td>
+            <td class="border border-gray-300 p-3"
+              ><code>target: string | HTMLElement</code> - селектор или DOM-элемент<br /><code
+                >value: Number</code
+              > - новое числовое значение</td
+            >
+            <td class="border border-gray-300 p-3"><code>void</code></td>
+            <td class="border border-gray-300 p-3">
+              <button
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                data-range-set-current-min="1"
+                >setCurrentMinRangeValue("#range1", 3000)</button
+              >
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono"
+              >window.frontApi.range.getBorderMinRangeValue(target)</td
+            >
+            <td class="border border-gray-300 p-3">Получение минимальной границы</td>
+            <td class="border border-gray-300 p-3"
+              ><code>target: string | HTMLElement</code> - селектор или DOM-элемент</td
+            >
+            <td class="border border-gray-300 p-3"
+              ><code>number | null</code> - числовое значение или null</td
+            >
+            <td class="border border-gray-300 p-3">
+              <button
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                data-range-get-border-min=""
+                >getBorderMinRangeValue("#range1")</button
+              >
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono"
+              >window.frontApi.range.setBorderMaxRangeValue(target, value)</td
+            >
+            <td class="border border-gray-300 p-3">Установка максимальной границы</td>
+            <td class="border border-gray-300 p-3"
+              ><code>target: string | HTMLElement</code> - селектор или DOM-элемент<br /><code
+                >value: Number</code
+              > - новое числовое значение</td
+            >
+            <td class="border border-gray-300 p-3"><code>void</code></td>
+            <td class="border border-gray-300 p-3">
+              <button
+                data-range-set-border-max
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                >setBorderMaxRangeValue("#range1", 8000)</button
+              >
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono"
+              >window.frontApi.range.setCurrentMaxRangeValue(target, value)</td
+            >
+            <td class="border border-gray-300 p-3">Установка текущего максимального значения</td>
+            <td class="border border-gray-300 p-3"
+              ><code>target: string | HTMLElement</code> - селектор или DOM-элемент<br /><code
+                >value: Number</code
+              > - новое числовое значение</td
+            >
+            <td class="border border-gray-300 p-3"><code>void</code></td>
+            <td class="border border-gray-300 p-3">
+              <button
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                data-range-set-current-max=""
+                >setCurrentMaxRangeValue("#range1", 4000)</button
+              >
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono"
+              >window.frontApi.range.getBorderMaxRangeValue(target)</td
+            >
+            <td class="border border-gray-300 p-3">Получение максимальной границы</td>
+            <td class="border border-gray-300 p-3"
+              ><code>target: string | HTMLElement</code> - селектор или DOM-элемент</td
+            >
+            <td class="border border-gray-300 p-3"
+              ><code>number | null</code> - числовое значение или null</td
+            >
+            <td class="border border-gray-300 p-3">
+              <button
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                data-range-get-border-max=""
+                >getBorderMaxRangeValue("#range1")</button
+              >
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono"
+              >window.frontApi.range.setCurrentMinRangeValue(target, value) (односторонний)</td
+            >
+            <td class="border border-gray-300 p-3"
+              >Установка текущего значения для одностороннего range</td
+            >
+            <td class="border border-gray-300 p-3"
+              ><code>target: string | HTMLElement</code> - селектор или DOM-элемент<br /><code
+                >value: Number</code
+              > - новое числовое значение</td
+            >
+            <td class="border border-gray-300 p-3"><code>void</code></td>
+            <td class="border border-gray-300 p-3">
+              <button
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                data-range-set-current-min="2"
+                >setCurrentMinRangeValue("#range2", 3000)</button
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-10 grid grid-cols-2 gap-5">
+      <Range
+        id="range1"
+        maxLength={10}
+        oneSided={false}
+        data-step={100}
+        min={100}
+        max={10000}
+        startMin={2500}
+        startMax={7500}
+      />
+      <Range
+        id="range2"
+        maxLength={10}
+        oneSided={true}
+        data-step={100}
+        min={100}
+        max={10000}
+        startMin={2500}
+      />
+    </div>
+  </div>
+</div>
+
+<style>
+  @import './range-examples.scss';
+</style>

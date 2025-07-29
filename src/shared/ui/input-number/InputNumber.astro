@@ -1,0 +1,86 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+interface Props extends HTMLAttributes<'input'> {
+  class?: string
+  variant?: 'default' | (string & {})
+  isStart?: boolean
+  isEnd?: boolean
+  isPositive?: boolean
+  valueMin?: number
+  valueMax?: number
+}
+
+const {
+  class: className,
+  variant = 'default',
+  isStart = true,
+  isEnd = true,
+  isPositive = false,
+  valueMin,
+  valueMax,
+  value = 1,
+  ...props
+} = Astro.props
+
+const effectiveMin = isPositive ? (valueMin !== undefined ? Math.max(0, valueMin) : 0) : valueMin
+
+export { InputNumber }
+---
+
+<div
+  class:list={['input-number', { [`input-number_variant-${variant}`]: !!variant }, className]}
+  data-input-number-instance
+  {...props}
+>
+  {
+    isStart && (
+      <div class="input-number__start">
+        {Astro.slots.has('input-number-start') ? (
+          <slot name="input-number-start" />
+        ) : (
+          <button
+            type="button"
+            class="input-number__button input-number__start-button"
+            data-input-number-button-decrement
+          >
+            -
+          </button>
+        )}
+      </div>
+    )
+  }
+
+  <div class="input-number__inner">
+    <input
+      type="text"
+      inputmode="numeric"
+      value={value}
+      min={effectiveMin}
+      max={valueMax}
+      data-input-number-positive-only={isPositive || undefined}
+    />
+  </div>
+
+  {
+    isEnd && (
+      <div class="input-number__end">
+        {Astro.slots.has('input-number-end') ? (
+          <slot name="input-number-end" />
+        ) : (
+          <button
+            type="button"
+            class="input-number__button input-number__end-button"
+            data-input-number-button-increment
+          >
+            +
+          </button>
+        )}
+      </div>
+    )
+  }
+</div>
+
+<style lang="scss">
+  @import './input-number.scss';
+</style>

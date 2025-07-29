@@ -1,0 +1,69 @@
+.sticky-anchors {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 80px;
+
+  :global(.anchors-block) {
+    position: sticky;
+    top: 200px;
+  }
+
+  @media #{media('<',d)} {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: unset;
+  }
+}
+
+:global([data-anchors-aside]) {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  transition: transform $transition;
+
+  @media #{media('<',d)} {
+    flex-direction: row;
+    margin-bottom: rem(12px);
+    width: max-content;
+    gap: 24px;
+  }
+
+  :global(a.active) {
+    color: blue;
+    text-decoration: underline;
+  }
+
+  :global(a) {
+    width: fit-content;
+    display: block;
+
+    @media #{media('<',d)} {
+      width: max-content;
+    }
+  }
+}
+
+:global([data-anchors-scroll-content] [id]) {
+  padding-top: 40px;
+}
+
+:global([data-anchors-links]) {
+  @media #{media('<',d)} {
+    overflow-x: auto;
+    padding-top: rem(8px);
+    margin-top: rem(8px);
+    scrollbar-width: none;
+    max-width: unset;
+    position: sticky;
+    top: rem(60px);
+    z-index: 1;
+    background-color: #fff;
+    border-bottom: 1px solid white;
+    transition: border-bottom 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+
+    &.is-stack {
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    }
+  }
+}

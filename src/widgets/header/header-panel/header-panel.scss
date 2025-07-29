@@ -1,0 +1,14 @@
+.header-panel {
+  pointer-events: none;
+
+  position: absolute;
+  z-index: 5;
+
+  width: 100%;
+
+  clip-path: inset(0% 0% 100% 0%);
+
+  .slide-left {
+    clip-path: inset(0% 100% 0% 0%);
+  }
+}

@@ -1,0 +1,260 @@
+---
+import Checkbox from '@shared/ui/checkbox/Checkbox.astro'
+import Dropdown from '@shared/ui/dropdown/Dropdown.astro'
+import Input from '@shared/ui/input/Input.astro'
+import Radio from '@shared/ui/radio/Radio.astro'
+import Range from '@shared/ui/range/Range.astro'
+import Select from '@shared/ui/select/select.astro'
+import Switch from '@shared/ui/switch/Switch.astro'
+import Textarea from '@shared/ui/textarea/Textarea.astro'
+import InputSearch from '@widgets/input-search/InputSearch.astro'
+
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+export { UiInputs }
+---
+
+<div
+  class:list={['flex flex-col gap-[72px]', className]}
+  {...props}
+>
+  <div>
+    <h3
+      class="mb-10 text-4xl font-bold underline mobile:text-xl"
+      set:html="<Input />"
+    />
+    <Input placeholder={'Input'} />
+    <Input
+      placeholder={'Input'}
+      class="mt-4"
+      custom-placeholder={false}
+    />
+  </div>
+
+  <div>
+    <h3
+      class="mb-10 text-4xl font-bold underline mobile:text-xl"
+      set:html="InputMask"
+    />
+    <div class="space-y-6">
+      <!-- window.frontApi.inputmask.init -->
+      <div class="bg-white p-4">
+        <h2 class="text-lg font-semibold">window.frontApi.inputmask.init()</h2>
+
+        <input
+          type="tel"
+          data-mask-phone
+          placeholder="+7 (___) ___-__-__"
+          class="mt-2 w-full border px-3 py-2"
+        />
+
+        <input
+          id="reinit-input"
+          type="tel"
+          data-mask-phone
+          value="89123456789"
+          class="mt-2 w-full border px-3 py-2"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h3
+      class="mb-10 text-4xl font-bold underline mobile:text-xl"
+      set:html="<Textarea />"
+    />
+    <Textarea
+      class="focus:outline-none"
+      custom-placeholder={false}
+      placeholder={'Textarea'}
+    />
+    <Textarea
+      class="mt-6 focus:outline-none"
+      placeholder={'Textarea'}
+    />
+  </div>
+
+  <div>
+    <h3
+      class="mb-4 text-4xl font-bold underline mobile:text-xl"
+      set:html="<Checkbox />"
+    />
+    <Checkbox label="Checkbox" />
+    <Checkbox
+      name={'checkbox'}
+      checked={true}
+      >Checkbox с вложенной <a
+        href="#"
+        class="text-blue hover:text-red"
+        >ссылкой</a
+      ></Checkbox
+    >
+    <Checkbox
+      label="Checkbox disabled"
+      disabled
+    />
+  </div>
+
+  <div class="flex flex-col gap-4">
+    <h3
+      class="mb-4 text-4xl font-bold underline mobile:text-xl"
+      set:html="<Radio />"
+    />
+    <Radio
+      label="label"
+      name="name"
+      value="value1"
+    />
+    <Radio
+      label="label"
+      name="name"
+      value="value2"
+    />
+    <Radio
+      label="label"
+      name="name"
+      value="value2"
+    />
+  </div>
+
+  <div class="flex flex-col gap-4">
+    <h3
+      class="mb-6 text-4xl font-bold underline mobile:text-xl"
+      set:html="<Select />"
+    />
+    <Select>
+      <select
+        id="tomSelect1"
+        class="js-tomselect w-full"
+      >
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+      </select>
+    </Select>
+
+    <Select>
+      <select
+        id="tomSelect2"
+        class="js-tomselect w-full"
+        multiple
+      >
+        <option value="a">Multi A</option>
+        <option value="b">Multi B</option>
+        <option value="c">Multi C</option>
+      </select>
+    </Select>
+  </div>
+
+  <div>
+    <h3
+      class="mb-6 text-4xl font-bold underline mobile:text-xl"
+      set:html="<Dropdown />"
+    />
+    <div class="mt-5">
+      <Dropdown label="Dropdown">
+        <ul>
+          <li>
+            <label>
+              <input
+                type="checkbox"
+                name="test"
+                id="test-checkbox"
+              />
+              <span>Uno</span>
+            </label>
+          </li>
+          <li>
+            <label>
+              <input
+                type="checkbox"
+                name="test"
+                id="test-checkbox"
+              />
+              <span>Duo</span>
+            </label>
+          </li>
+          <li>
+            <label>
+              <input
+                type="checkbox"
+                name="test"
+                id="test-checkbox"
+              />
+              <span>Tres</span>
+            </label>
+          </li>
+        </ul>
+      </Dropdown>
+    </div>
+  </div>
+
+  <div>
+    <h3
+      class="mb-6 text-4xl font-bold underline mobile:text-xl"
+      set:html="<Range />"
+    />
+
+    <div class="mt-10 grid grid-cols-2 gap-5 devices:grid-cols-1">
+      <Range
+        id="range1"
+        maxLength={10}
+        oneSided={false}
+        data-step={100}
+        min={100}
+        max={10000}
+        startMin={2500}
+        startMax={7500}
+      />
+      <Range
+        id="range2"
+        maxLength={10}
+        oneSided={true}
+        data-step={100}
+        min={100}
+        max={10000}
+        startMin={2500}
+      />
+    </div>
+  </div>
+  <div class="flex flex-col gap-3 desktop:w-1/4">
+    <h3
+      class="mb-6 text-4xl font-bold underline mobile:text-xl"
+      set:html="<Switch />"
+    />
+    <Switch label="Switch | default" />
+    <Switch
+      label="Switch | checked"
+      checked
+    />
+    <Switch
+      label="Switch | disabled"
+      disabled
+    />
+    <Switch
+      label="Switch | checked disabled"
+      checked
+      disabled
+    />
+    <Switch>Switch | без label</Switch>
+  </div>
+  <div>
+    <h3
+      class="mb-6 text-4xl font-bold underline mobile:text-xl"
+      set:html="<InputSearch />"
+    />
+
+    <div class="mt-10 grid grid-cols-2 gap-5">
+      <InputSearch placeholder="Поиск" />
+    </div>
+    <br />
+  </div>
+</div>
+
+<style>
+  @import './ui-inputs.scss';
+</style>

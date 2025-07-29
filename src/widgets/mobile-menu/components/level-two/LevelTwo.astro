@@ -1,0 +1,62 @@
+---
+import Button from '@shared/ui/buttons/button/Button.astro'
+import ArrowLeftIcon from '@shared/assets/images/svg/arrow-small-left.svg'
+
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+const links = [
+  {
+    text: 'Посуда',
+    href: `${import.meta.env.BASE_URL}/catalog-details`
+  },
+  {
+    text: 'Хозяйственные товары',
+    href: `${import.meta.env.BASE_URL}/catalog-details`
+  },
+  {
+    text: 'Аксессуары для ванных комнат',
+    href: `${import.meta.env.BASE_URL}/catalog-details`
+  }
+]
+
+export { LevelTwo }
+---
+
+<div
+  class:list={['level-two', className]}
+  {...props}
+>
+  <Button
+    variant="outlined"
+    data-menu-prev
+    startIcon={ArrowLeftIcon}
+    class="level-two__back"
+    >Назад</Button
+  >
+
+  <nav>
+    <ul class="level-two__links">
+      {
+        links.map(link => (
+          <li>
+            <Button
+              href={link.href}
+              variant="outlined"
+              class="level-two__link"
+            >
+              {link.text}
+            </Button>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</div>
+
+<style>
+  @import './level-two.scss';
+</style>

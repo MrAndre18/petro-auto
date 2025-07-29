@@ -1,0 +1,39 @@
+---
+import HeaderBody from '../header-body/HeaderBody.astro'
+
+interface Props {
+  class?: string
+  hasOverlay?: boolean
+}
+
+const { class: className, hasOverlay = false, ...props } = Astro.props as Props
+
+export { HeaderContainer }
+---
+
+<header
+  class:list={['header', className]}
+  data-header="container"
+  {...props}
+>
+  {
+    hasOverlay && (
+      <div
+        class="header__overlay"
+        data-header="overlay"
+      />
+    )
+  }
+  <div class="header__content">
+    <HeaderBody
+      class="header__body"
+      data-header="body"
+    />
+
+    <slot />
+  </div>
+</header>
+
+<style>
+  @import './header-container.scss';
+</style>

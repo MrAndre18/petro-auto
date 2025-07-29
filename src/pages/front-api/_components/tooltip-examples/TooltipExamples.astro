@@ -1,0 +1,243 @@
+---
+import Tooltip from '@shared/ui/tooltip/Tooltip.astro'
+
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+export { TooltipExamples }
+---
+
+<div
+  class:list={['tooltip-examples', className]}
+  {...props}
+>
+  <div class="border-t border-solid border-gray-400 p-5">
+    <h2 class="mb-10 text-center text-2xl font-bold">
+      Работа с тултипами
+      <br />
+      <span class="text-xl font-normal">window.frontApi.tooltip</span>
+    </h2>
+    <Tooltip
+      content="Укажите количество виртуальных процессоров"
+      placement="top"
+      class="mb-5"
+    >
+      Наведи на меня</Tooltip
+    >
+    <p class="mb-5 mt-10 text-2xl">Как выглядит вызов тултипа</p>
+    <pre
+      class="mb-10 mt-2 rounded bg-gray-200 p-3 text-sm text-gray-800"><code>&lt;Tooltip content=&quot;Укажите количество виртуальных процессоров&quot; placement=&quot;top&quot;&gt;Наведи на меня&lt;/Tooltip&gt;</code></pre>
+    <p class="mt-10 text-2xl">Какие пропсы за что отвечают</p>
+    <p></p>
+    <ul class="mt-5 rounded bg-gray-200 p-3 text-sm text-gray-800">
+      <li>
+        <code>placement=[top|right|bottom|left]</code> - место расположения
+      </li>
+      <li><code>content</code> - текст тултипа</li>
+    </ul>
+    <div class="mt-10 overflow-x-auto">
+      <table class="w-full border-collapse border-spacing-y-2 text-sm">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="border border-gray-300 p-3 text-left">Метод</th>
+            <th class="border border-gray-300 p-3 text-left">Описание</th>
+            <th class="border border-gray-300 p-3 text-left">Параметры</th>
+            <th class="border border-gray-300 p-3 text-left">Возвращает</th>
+            <th class="border border-gray-300 p-3 text-left">Пример</th>
+          </tr>
+        </thead>
+        <tbody class="align-top">
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono"
+              >window.frontApi.tooltip.init(target)</td
+            >
+            <td class="border border-gray-300 p-3"
+              >Инициализирует tooltip для элемента. <br />Добавляет атрибут <code
+                >data-tooltip-init</code
+              ></td
+            >
+            <td class="border border-gray-300 p-3"
+              ><code>target: string | HTMLElement</code> - селектор тултипа или DOM-элемент</td
+            >
+            <td class="border border-gray-300 p-3"><code>void</code></td>
+            <td class="border border-gray-300 p-3"
+              ><button
+                data-tooltip-example-init
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                >init(target)</button
+              ></td
+            >
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono"
+              >window.frontApi.tooltip.reInit(target)</td
+            >
+            <td class="border border-gray-300 p-3">Переинициализирует tooltip</td>
+            <td class="border border-gray-300 p-3"
+              ><code>target: string | HTMLElement</code> - селектор тултипа или DOM-элемент</td
+            >
+            <td class="border border-gray-300 p-3"><code>void</code></td>
+            <td class="border border-gray-300 p-3"
+              ><button
+                data-tooltip-example-re-init
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                >reInit(target)</button
+              ></td
+            >
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono"
+              >window.frontApi.tooltip.destroy(target)</td
+            >
+            <td class="border border-gray-300 p-3">Удаляет tooltip</td>
+            <td class="border border-gray-300 p-3"
+              ><code>target: string | HTMLElement</code> - селектор тултипа или DOM-элемент</td
+            >
+            <td class="border border-gray-300 p-3"><code>void</code></td>
+            <td class="border border-gray-300 p-3"
+              ><button
+                data-tooltip-example-destroy
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                >destroy(target)</button
+              ></td
+            >
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono"
+              >window.frontApi.tooltip.show(target)</td
+            >
+            <td class="border border-gray-300 p-3">Отображает tooltip</td>
+            <td class="border border-gray-300 p-3"
+              ><code>target: string | HTMLElement</code> - селектор тултипа или DOM-элемент</td
+            >
+            <td class="border border-gray-300 p-3"><code>void</code></td>
+            <td class="border border-gray-300 p-3"
+              ><button
+                data-tooltip-example-show
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                >show(target)</button
+              ></td
+            >
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono"
+              >window.frontApi.tooltip.hide(target)</td
+            >
+            <td class="border border-gray-300 p-3">Скрывает tooltip</td>
+            <td class="border border-gray-300 p-3"
+              ><code>target: string | HTMLElement</code> - селектор тултипа или DOM-элемент</td
+            >
+            <td class="border border-gray-300 p-3"><code>void</code></td>
+            <td class="border border-gray-300 p-3"
+              ><button
+                data-tooltip-example-hide
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                >hide(target)</button
+              ></td
+            >
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono"
+              >window.frontApi.tooltip.isInit(target)</td
+            >
+            <td class="border border-gray-300 p-3">Проверяет, инициализирован ли tooltip</td>
+            <td class="border border-gray-300 p-3"
+              ><code>target: string | HTMLElement</code> - селектор тултипа или DOM-элемент</td
+            >
+            <td class="border border-gray-300 p-3"><code>boolean</code></td>
+            <td class="border border-gray-300 p-3"
+              ><button
+                data-tooltip-example-is-init
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                >isInit(target)</button
+              ></td
+            >
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono">window.frontApi.tooltip.initAll()</td>
+            <td class="border border-gray-300 p-3">Инициализирует tooltips для всех элементов</td>
+            <td class="border border-gray-300 p-3">-</td>
+            <td class="border border-gray-300 p-3"><code>void</code></td>
+            <td class="border border-gray-300 p-3"
+              ><button
+                data-tooltip-example-init-all
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                >initAll()</button
+              ></td
+            >
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono"
+              >window.frontApi.tooltip.destroyAll()</td
+            >
+            <td class="border border-gray-300 p-3">Удаляет все tooltips</td>
+            <td class="border border-gray-300 p-3">-</td>
+            <td class="border border-gray-300 p-3"><code>void</code></td>
+            <td class="border border-gray-300 p-3"
+              ><button
+                data-tooltip-example-destroy-all
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                >destroyAll()</button
+              ></td
+            >
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono">window.frontApi.tooltip.reInitAll()</td
+            >
+            <td class="border border-gray-300 p-3">Переинициализирует все tooltips</td>
+            <td class="border border-gray-300 p-3">-</td>
+            <td class="border border-gray-300 p-3"><code>void</code></td>
+            <td class="border border-gray-300 p-3"
+              ><button
+                data-tooltip-example-re-init-all
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                >reInitAll()</button
+              ></td
+            >
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono"
+              >window.frontApi.tooltip.getInstance(target)</td
+            >
+            <td class="border border-gray-300 p-3">Возвращает экземпляр tooltip</td>
+            <td class="border border-gray-300 p-3"
+              ><code>target: string | HTMLElement</code> - селектор тултипа или DOM-элемент</td
+            >
+            <td class="border border-gray-300 p-3"><code>TooltipInstance | null</code></td>
+            <td class="border border-gray-300 p-3"
+              ><button
+                data-tooltip-example-get-instance
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                >getInstance(target)</button
+              ></td
+            >
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono"
+              >window.frontApi.tooltip.getElement(target)</td
+            >
+            <td class="border border-gray-300 p-3">Возвращает DOM-элемент tooltip</td>
+            <td class="border border-gray-300 p-3"
+              ><code>target: string | HTMLElement</code> - селектор тултипа или DOM-элемент</td
+            >
+            <td class="border border-gray-300 p-3"><code>HTMLElement | null</code></td>
+            <td class="border border-gray-300 p-3"
+              ><button
+                data-tooltip-example-get-element
+                class="w-full rounded-xl border border-solid border-gray-300 border-gray-400 border-teal-800 p-3 text-teal-800 hover:bg-teal-50"
+                >getElement(target)</button
+              ></td
+            >
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import './tooltip-examples.scss';
+</style>

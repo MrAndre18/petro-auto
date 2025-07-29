@@ -1,0 +1,163 @@
+---
+// src/components/ModalExamples.astro
+import Drawer from '@shared/ui/drawer/Drawer.astro'
+import Modal from '@shared/ui/modal/Modal.astro'
+
+interface Props {
+  class?: string
+}
+const { class: className, ...props } = Astro.props as Props
+
+export { ModalExamples }
+---
+
+<section
+  id="modal-examples-page"
+  class={`modal-examples ${className}`}
+  {...props}
+>
+  <div class="space-y-8 rounded-lg bg-gray-50 p-6 shadow">
+    <h2 class="text-2xl font-semibold">Примеры ModalApi</h2>
+    <p class="text-sky-600">Смотрите консоль при клике на кнопки</p>
+
+    <!-- Триггеры и сами модалки -->
+    <div class="flex flex-wrap gap-4">
+      <button
+        data-modal-trigger="modal-1"
+        class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+      >
+        Открыть центральную
+      </button>
+      <Modal id="modal-1">
+        <div
+          slot="content"
+          class="p-6"
+        >
+          <h3 class="text-lg font-medium">Центральная модалка</h3>
+          <p class="mt-2">Это контент вашего модального окна.</p>
+        </div>
+        <div
+          slot="footer"
+          class="flex justify-end space-x-2 border-t p-4"
+        >
+          <button
+            data-modal-close
+            class="px-3 py-1"
+            >Закрыть</button
+          >
+        </div>
+      </Modal>
+
+      <button
+        data-modal-trigger="modal-2"
+        class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+      >
+        Открыть боковую
+      </button>
+      <Drawer
+        id="modal-2"
+        title="Боковая панель"
+      >
+        <div class="p-6">
+          <h3 class="text-lg font-medium">Фильтры</h3>
+          <p class="mt-2">Содержимое бокового меню.</p>
+        </div>
+        <div
+          slot="footer"
+          class="flex justify-end space-x-2 border-t p-4"
+        >
+          <button
+            data-modal-close
+            class="px-3 py-1"
+            >Закрыть</button
+          >
+        </div>
+      </Drawer>
+    </div>
+
+    <!-- Блоки с примерами вызова API -->
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div>
+        <h4 class="font-medium">modals.init(selector)</h4>
+        <button
+          id="btn-init"
+          class="mt-2 rounded bg-indigo-500 px-4 py-2 text-white hover:bg-indigo-600"
+        >
+          Init modal-1
+        </button>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-2 text-sm"><code>modal.init('[data-modal="modal-1"]')</code></pre>
+      </div>
+
+      <div>
+        <h4 class="font-medium">modals.initAll()</h4>
+        <button
+          id="btn-init-all"
+          class="mt-2 rounded bg-indigo-500 px-4 py-2 text-white hover:bg-indigo-600"
+        >
+          Init All
+        </button>
+        <pre class="mt-2 rounded bg-gray-100 p-2 text-sm"><code>modal.initAll()</code></pre>
+      </div>
+
+      <div>
+        <h4 class="font-medium">modals.show(selector)</h4>
+        <button
+          id="btn-show"
+          class="mt-2 rounded bg-indigo-500 px-4 py-2 text-white hover:bg-indigo-600"
+        >
+          Show modal-1
+        </button>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-2 text-sm"><code>modal.show('[data-modal="modal-1"]')</code></pre>
+      </div>
+
+      <div>
+        <h4 class="font-medium">modals.hide(selector)</h4>
+        <button
+          id="btn-hide"
+          class="mt-2 rounded bg-indigo-500 px-4 py-2 text-white hover:bg-indigo-600"
+        >
+          Hide modal-1
+        </button>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-2 text-sm"><code>modal.hide('[data-modal="modal-1"]')</code></pre>
+      </div>
+
+      <div>
+        <h4 class="font-medium">modals.destroy(selector)</h4>
+        <button
+          id="btn-destroy"
+          class="mt-2 rounded bg-rose-600 px-4 py-2 text-white hover:bg-rose-700"
+        >
+          Destroy modal-1
+        </button>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-2 text-sm"><code>modal.destroy('[data-modal="modal-1"]')</code></pre>
+      </div>
+
+      <div>
+        <h4 class="font-medium">modals.destroyAll()</h4>
+        <button
+          id="btn-destroy-all"
+          class="mt-2 rounded bg-rose-600 px-4 py-2 text-white hover:bg-rose-700"
+        >
+          Destroy All
+        </button>
+        <pre class="mt-2 rounded bg-gray-100 p-2 text-sm"><code>modal.destroyAll()</code></pre>
+      </div>
+
+      <div class="md:col-span-2">
+        <h4 class="font-medium">modals.get(selector)</h4>
+        <button
+          id="btn-get"
+          class="mt-2 rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
+        >
+          Get modal-1
+        </button>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-2 text-sm"><code>console.log(modal.get('[data-modal="modal-1"]'))</code></pre>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,36 @@
+---
+interface Props {
+  text: string
+  value?: string
+  checked?: boolean
+  selectable?: boolean
+}
+
+const { text, value = text, checked = false, selectable = false } = Astro.props
+---
+
+{
+  selectable ? (
+    <label class="badge badge_selectable">
+      <input
+        type="checkbox"
+        class="badge__input"
+        checked={checked}
+        value={value}
+      />
+      <span
+        class="badge__text"
+        set:html={text}
+      />
+    </label>
+  ) : (
+    <span
+      class="badge"
+      set:html={text}
+    />
+  )
+}
+
+<style lang="scss">
+  @import './badge.scss';
+</style>

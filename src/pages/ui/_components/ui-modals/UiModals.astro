@@ -1,0 +1,102 @@
+---
+import Drawer from '@shared/ui/drawer/Drawer.astro'
+import ModalVideo from '@shared/ui/modal-video/ModalVideo.astro'
+import Modal from '@shared/ui/modal/Modal.astro'
+
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+export { UiModals }
+---
+
+<div
+  class:list={['flex flex-col gap-10', className]}
+  {...props}
+>
+  <div>
+    <h3
+      class="mb-10 text-4xl font-bold underline mobile:text-xl"
+      set:html="<Modal />"
+    />
+
+    <div class="flex gap-4">
+      <div>
+        <button
+          data-modal-trigger="modal-1"
+          class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+        >
+          Открыть центральную
+        </button>
+        <Modal id="modal-1">
+          <div
+            slot="content"
+            class="p-6"
+          >
+            <h3 class="text-lg font-medium">Центральная модалка</h3>
+            <p class="mt-2">Это контент вашего модального окна.</p>
+          </div>
+          <div
+            slot="footer"
+            class="flex justify-end space-x-2 border-t p-4"
+          >
+            <button
+              data-modal-close
+              class="px-3 py-1"
+              >Закрыть</button
+            >
+          </div>
+        </Modal>
+      </div>
+
+      <div>
+        <button
+          data-modal-trigger="modal-2"
+          class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+        >
+          Открыть боковую
+        </button>
+        <Drawer
+          id="modal-2"
+          title="Боковая панель"
+        >
+          <div class="p-6">
+            <h3 class="text-lg font-medium">Фильтры</h3>
+            <p class="mt-2">Содержимое бокового меню.</p>
+          </div>
+          <div
+            slot="footer"
+            class="flex justify-end space-x-2 border-t p-4"
+          >
+            <button
+              data-modal-close
+              class="px-3 py-1"
+              >Закрыть</button
+            >
+          </div>
+        </Drawer>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h3
+      class="mb-10 text-4xl font-bold underline mobile:text-xl"
+      set:html="<ModalVideo />"
+    />
+    <div class="mx-10 mt-5 desktop:w-1/2">
+      <ModalVideo>
+        <span
+          class="absolute left-1/2 top-1/2 flex size-40 -translate-x-1/2 -translate-y-1/2 transform items-center justify-center bg-gray-200"
+          >Смотреть видео</span
+        >
+      </ModalVideo>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import './ui-modals.scss';
+</style>

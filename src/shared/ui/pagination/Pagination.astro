@@ -1,0 +1,77 @@
+---
+import Button from '@shared/ui/buttons/button/Button.astro'
+
+interface Props {
+  currentPage: number
+  totalPages: number
+  class?: string
+  showMoreText?: string
+  showLoadMore?: boolean
+}
+
+const {
+  currentPage = 1,
+  totalPages = 1,
+  class: className,
+  showMoreText = 'Показать еще',
+  showLoadMore = true,
+  ...props
+} = Astro.props as Props
+
+const getVisiblePages = () => {
+  const visiblePages = []
+  const maxVisible = 5
+
+  if (totalPages <= maxVisible) {
+    return Array.from({ length: totalPages }, (_, i) => i + 1)
+  }
+
+  if (currentPage <= 3) {
+    visiblePages.push(1, 2, 3, 4, '...', totalPages)
+  } else if (currentPage >= totalPages - 2) {
+    visiblePages.push(1, '...', totalPages - 3, totalPages - 2, totalPages - 1, totalPages)
+  } else {
+    visiblePages.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages)
+  }
+
+  return visiblePages
+}
+
+const visiblePages = getVisiblePages()
+---
+
+<section
+  class={`paginations mt-40 ${className || ''}`}
+  {...props}
+>
+  <div class="paginations__buttons">
+    {
+      visiblePages.map((page, index) => {
+        if (page === '...') {
+          return (
+            <Button
+              class="paginations__button"
+              disabled={true}
+            >
+              ...
+            </Button>
+          )
+        }
+        return (
+          <Button class:list={['paginations__button', { active: currentPage === page }]}>
+            {page}
+          </Button>
+        )
+      })
+    }
+  </div>
+  {
+    showLoadMore && currentPage < totalPages && (
+      <Button class="paginations__button paginations__button_more">{showMoreText}</Button>
+    )
+  }
+</section>
+
+<style>
+  @import './pagination.scss';
+</style>

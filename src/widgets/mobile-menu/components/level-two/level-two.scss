@@ -1,0 +1,34 @@
+.level-two {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+
+  &__back {
+    width: 100%;
+    height: rem(60px) !important;
+    border-bottom: 1px solid #000000;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+
+    border-bottom: 1px solid #000000;
+
+    background: #000000;
+  }
+
+  &__link {
+    height: rem(60px) !important;
+  }
+
+  &__card {
+    height: rem(440px);
+    border-bottom: 1px solid #000000;
+
+    @media #{media('<',m)} {
+      height: rem(240px);
+    }
+  }
+}

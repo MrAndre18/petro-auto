@@ -1,0 +1,95 @@
+.input {
+  cursor: text;
+
+  position: relative;
+
+  display: block;
+
+  padding-bottom: 13px;
+  border-bottom: 3px solid;
+
+  transition: border-color $transition;
+
+  border-color: #e4e4e4;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 150%;
+  letter-spacing: -0.01em;
+
+  @media #{media('>',d)} and (hover: hover) and (pointer: fine) {
+    &:hover {
+      border-color: #000000;
+    }
+  }
+
+  @media #{media('<',d)} {
+    padding-bottom: 14px;
+    border-bottom-width: 2px;
+
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 150%;
+    letter-spacing: -0.01em;
+  }
+
+  &:focus-within {
+    border-color: #000000;
+  }
+
+  &__field {
+    display: block;
+    width: 100%;
+    background: none;
+
+    &::placeholder {
+      user-select: none;
+      color: inherit;
+      transition: opacity $transition-timing-function 0.2s;
+    }
+
+    &:focus::placeholder {
+      opacity: 0;
+    }
+  }
+
+  &:has(input:not(:placeholder-shown)),
+  &:has(.input__error.visible) {
+    border-color: #000000;
+  }
+
+  &:has(input[disabled]) {
+    pointer-events: none;
+    cursor: auto;
+
+    color: #9a9a9a;
+    border-color: #e4e4e4;
+  }
+
+  &__error {
+    pointer-events: none;
+    will-change: opacity, transform;
+
+    position: absolute;
+    top: calc(100% + 4px);
+    transform: translateY(-4px);
+
+    height: fit-content;
+
+    transition:
+      opacity,
+      transform $transition;
+
+    color: #da2434;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 150%;
+    letter-spacing: 0;
+
+    &:not(:empty),
+    &.visible {
+      pointer-events: auto;
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}

@@ -1,0 +1,89 @@
+---
+import ButtonSquare from '@shared/ui/buttons/button-square/ButtonSquare.astro'
+import Button from '@shared/ui/buttons/button/Button.astro'
+import Link from '@shared/ui/link/Link.astro'
+
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+export { UiButtons }
+---
+
+<div
+  class:list={['flex flex-col gap-20', className]}
+  {...props}
+>
+  <div>
+    <h3
+      class="mb-10 text-4xl font-bold underline mobile:text-xl"
+      set:html="<Button />"
+    />
+    <div>
+      <Button
+        href="#"
+        variant="text"
+        >Button как ссылка text</Button
+      >
+      <Button variant="contained">Кнопка contained</Button>
+      <Button
+        variant="contained"
+        color="light"
+        >Кнопка contained light</Button
+      >
+      <Button variant="outlined">Кнопка outlined</Button>
+    </div>
+  </div>
+
+  <div>
+    <h3
+      class="mb-10 text-4xl font-bold underline mobile:text-xl"
+      set:html="<ButtonSquare />"
+    />
+
+    <div class="flex gap-4">
+      <ButtonSquare
+        icon={'like'}
+        color="accent"
+        size={'124'}
+      />
+      <ButtonSquare
+        color="accent"
+        icon={'like'}
+        size={'124'}
+        disabled
+      />
+    </div>
+    <div class="flex gap-4">
+      <ButtonSquare
+        icon={'arrow-small-right'}
+        color="default"
+        size={'60'}
+      />
+      <ButtonSquare
+        icon={'arrow-small-right'}
+        color="default"
+        size={'60'}
+        disabled
+      />
+    </div>
+  </div>
+
+  <div>
+    <h3
+      class="mb-10 text-4xl font-bold underline mobile:text-xl"
+      set:html="<Link />"
+    />
+    <Link
+      text="ссылка"
+      href="#"
+      variant="text"
+    />
+  </div>
+</div>
+
+<style>
+  @import './ui-buttons.scss';
+</style>

@@ -1,0 +1,13 @@
+.tooltip-examples {
+  position: static;
+
+  & code {
+    font-family: monospace;
+    text-wrap: wrap;
+
+    &::selection {
+      color: #ffffff;
+      background-color: #663399;
+    }
+  }
+}

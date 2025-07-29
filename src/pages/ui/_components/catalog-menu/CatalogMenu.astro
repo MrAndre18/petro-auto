@@ -1,0 +1,60 @@
+---
+import LayeredMenu from '@shared/ui/layered-menu/LayeredMenu.astro'
+import MenuLayer from '@shared/ui/layered-menu/menu-layer/MenuLayer.astro'
+
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+export { CatalogMenu }
+---
+
+<LayeredMenu
+  class:list={['catalog-menu', className]}
+  id="test-menu"
+  data-catalog-menu
+  {...props}
+>
+  <MenuLayer
+    id="main"
+    parent=""
+  >
+    <h2>Главное меню</h2>
+    <button data-menu-next="filters">Перейти к фильтрам →</button>
+  </MenuLayer>
+  <MenuLayer
+    id="filters"
+    parent="main"
+  >
+    <div class="flex flex-col items-start gap-4">
+      <h2>Фильтры</h2>
+      <button data-menu-prev="main">← Назад</button>
+      <button data-menu-next="filters-2">Другая страница фильтров →</button>
+      <button data-menu-next="filters-3">Другая страница фильтров 2 →</button>
+      <button data-menu-next="filters-4">Другая страница фильтров 3 →</button>
+    </div>
+  </MenuLayer>
+  <MenuLayer
+    id="filters-2"
+    parent="filters"
+  >
+    <h2>Фильтры 2</h2>
+    <button data-menu-prev="filters">← Назад</button>
+  </MenuLayer>
+  <MenuLayer
+    id="filters-3"
+    parent="filters"
+  >
+    <h2>Фильтры 3</h2>
+    <button data-menu-prev="filters">← Назад</button>
+  </MenuLayer>
+  <MenuLayer
+    id="filters-4"
+    parent="filters"
+  >
+    <h2>Фильтры 4</h2>
+    <button data-menu-prev="filters">← Назад</button>
+  </MenuLayer>
+</LayeredMenu>

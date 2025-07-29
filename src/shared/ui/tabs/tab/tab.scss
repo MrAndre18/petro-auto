@@ -1,0 +1,33 @@
+.tab {
+  transition: color $transition;
+
+  color: #9a9a9a;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+
+  @media #{media('<',d)} {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 150%;
+    letter-spacing: -0.01em;
+  }
+
+  @media #{media('>',t)} and (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: #000000;
+    }
+  }
+
+  &.active {
+    pointer-events: none;
+
+    color: #000000;
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    opacity: 0.4;
+  }
+}

@@ -1,0 +1,67 @@
+---
+import InputNumber from '@shared/ui/input-number/InputNumber.astro'
+
+import Title from '@shared/ui/title/Title.astro'
+
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+export { UiInputNumber }
+---
+
+<div
+  class:list={['ui-input-number', className]}
+  {...props}
+>
+  <Title>InputNumber.astro</Title>
+  <div class:list={['mt-4']}></div>
+  <code>import InputNumber from '@shared/ui/input-number/InputNumber.astro'</code>
+  <div class:list={['mt-4']}></div>
+  <p>Инпут для чисел с кнопками</p>
+  <div class:list={['mt-12']}></div>
+  <InputNumber
+    isPositive={true}
+    valueMax={10}
+  />
+  <InputNumber id="idtest">
+    <button
+      slot="input-number-start"
+      type="button"
+      data-input-number-button-decrement
+      class:list={['flex h-full w-full items-center justify-center']}
+      >минус</button
+    >
+  </InputNumber>
+  <InputNumber
+    id="idtest"
+    isEnd={false}
+  >
+    <div slot="input-number-start">
+      <button
+        type="button"
+        data-input-number-button-decrement
+        class:list={['flex h-full w-full items-center justify-center']}
+        >минус</button
+      >
+      <button
+        type="button"
+        data-input-number-button-increment
+        class:list={['flex h-full w-full items-center justify-center']}
+        >плюс</button
+      >
+    </div>
+  </InputNumber>
+  <button
+    type="button"
+    class:list={['bg-slate-200 p-2']}
+    data-input-number-button-increment-id="idtest"
+    >Эта кнопка увеличивает число во втором инпуте</button
+  >
+</div>
+
+<style>
+  @import './ui-input-number.scss';
+</style>

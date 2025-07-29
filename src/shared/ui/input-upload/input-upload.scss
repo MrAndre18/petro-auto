@@ -1,0 +1,91 @@
+.input-upload {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  font-family: sans-serif;
+}
+
+.input-upload__input {
+  // Visually hide the input but keep it accessible for the label
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.input-upload__label {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  background-color: #007bff;
+  color: white;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease-in-out;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+.input-upload--dragover {
+  .input-upload__label {
+    background-color: #0056b3;
+    outline: 2px dashed #007bff;
+    outline-offset: 2px;
+  }
+}
+
+.input-upload__files-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.input-upload__file-item {
+  display: flex;
+  align-items: center;
+  background-color: #f1f3f5;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9em;
+  max-width: 100%;
+}
+
+.input-upload__file-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.input-upload__remove-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-left: 0.75rem;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #dc3545;
+  font-size: 1.5em;
+  line-height: 1;
+  cursor: pointer;
+  font-weight: bold;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+}

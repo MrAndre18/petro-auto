@@ -1,0 +1,35 @@
+.slider {
+  position: relative;
+  width: 100%;
+
+  &__navigation {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+    left: rem(24px);
+    right: rem(24px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+  }
+
+  &__button {
+    pointer-events: all;
+  }
+
+  &__pagination {
+    position: absolute;
+    z-index: 2;
+    bottom: rem(40px);
+    left: rem(40px);
+    right: rem(40px);
+
+    @media #{media('<',d)} {
+      bottom: rem(24px);
+      left: rem(12px);
+      right: rem(12px);
+    }
+  }
+}

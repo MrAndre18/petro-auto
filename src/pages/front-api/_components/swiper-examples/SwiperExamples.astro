@@ -1,0 +1,153 @@
+---
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+---
+
+<div
+  id="swiper-examples"
+  class:list={['swiper-examples', className]}
+  {...props}
+>
+  <div class="border-t border-solid border-gray-400 p-5">
+    <h2 class="mb-10 text-center text-2xl font-bold">
+      Работа со слайдерами
+      <br />
+      <span class="text-xl font-normal">window.frontApi.swiper</span>
+    </h2>
+
+    <div class="mb-10">
+      <div
+        class="swiper h-80 w-full rounded-xl"
+        id="exampleSwiper"
+        data-swiper="exampleSwiper"
+      >
+        <div class="swiper-wrapper">
+          <div class="swiper-slide flex items-center justify-center bg-gray-200">Слайд 1</div>
+          <div class="swiper-slide flex items-center justify-center bg-gray-300">Слайд 2</div>
+          <div class="swiper-slide flex items-center justify-center bg-gray-400">Слайд 3</div>
+        </div>
+        <div data-swiper-pagination="exampleSwiper"></div>
+        <div data-swiper-button-prev="exampleSwiper"></div>
+        <div data-swiper-button-next="exampleSwiper"></div>
+      </div>
+    </div>
+
+    <p class="mt-10 text-2xl">Методы API</p>
+
+    <div class="mt-10 overflow-x-auto">
+      <table class="w-full border-collapse border-spacing-y-2 text-sm">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="border border-gray-300 p-3 text-left">Метод</th>
+            <th class="border border-gray-300 p-3 text-left">Описание</th>
+            <th class="border border-gray-300 p-3 text-left">Параметры</th>
+            <th class="border border-gray-300 p-3 text-left">Возвращает</th>
+            <th class="border border-gray-300 p-3 text-left">Пример</th>
+          </tr>
+        </thead>
+        <tbody class="align-top">
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono">window.frontApi.swiper.init(target)</td
+            >
+            <td class="border border-gray-300 p-3">Инициализирует слайдер</td>
+            <td class="border border-gray-300 p-3"
+              ><code>target: string</code> — селектор DOM-элемента</td
+            >
+            <td class="border border-gray-300 p-3"><code>void</code></td>
+            <td class="border border-gray-300 p-3">
+              <button
+                data-swiper-example-init
+                class="w-full rounded-xl border border-gray-400 p-3 text-teal-800 hover:bg-teal-50"
+              >
+                init('#exampleSwiper')
+              </button>
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono">window.frontApi.swiper.initAll()</td>
+            <td class="border border-gray-300 p-3">Инициализирует все слайдеры</td>
+            <td class="border border-gray-300 p-3">-</td>
+            <td class="border border-gray-300 p-3"><code>void</code></td>
+            <td class="border border-gray-300 p-3">
+              <button
+                data-swiper-example-init-all
+                class="w-full rounded-xl border border-gray-400 p-3 text-teal-800 hover:bg-teal-50"
+              >
+                initAll()
+              </button>
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono"
+              >window.frontApi.swiper.reinit(target)</td
+            >
+            <td class="border border-gray-300 p-3"
+              >Переинициализирует слайдер с сохранением параметров</td
+            >
+            <td class="border border-gray-300 p-3"><code>target: string</code></td>
+            <td class="border border-gray-300 p-3"><code>void</code></td>
+            <td class="border border-gray-300 p-3">
+              <button
+                data-swiper-example-reinit
+                class="w-full rounded-xl border border-gray-400 p-3 text-teal-800 hover:bg-teal-50"
+              >
+                reinit('#exampleSwiper')
+              </button>
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono">window.frontApi.swiper.reinitAll()</td>
+            <td class="border border-gray-300 p-3">Переинициализирует все слайдеры</td>
+            <td class="border border-gray-300 p-3">-</td>
+            <td class="border border-gray-300 p-3"><code>void</code></td>
+            <td class="border border-gray-300 p-3">
+              <button
+                data-swiper-example-reinit-all
+                class="w-full rounded-xl border border-gray-400 p-3 text-teal-800 hover:bg-teal-50"
+              >
+                reinitAll()
+              </button>
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono"
+              >window.frontApi.swiper.isInit(target)</td
+            >
+            <td class="border border-gray-300 p-3">Проверяет, инициализирован ли слайдер</td>
+            <td class="border border-gray-300 p-3"><code>target: string</code></td>
+            <td class="border border-gray-300 p-3"><code>boolean</code></td>
+            <td class="border border-gray-300 p-3">
+              <button
+                data-swiper-example-is-init
+                class="w-full rounded-xl border border-gray-400 p-3 text-teal-800 hover:bg-teal-50"
+              >
+                isInit('#exampleSwiper')
+              </button>
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 p-3 font-mono">window.frontApi.swiper.get(target)</td>
+            <td class="border border-gray-300 p-3">Возвращает экземпляр Swiper</td>
+            <td class="border border-gray-300 p-3"><code>target: string</code></td>
+            <td class="border border-gray-300 p-3"><code>Swiper | undefined</code></td>
+            <td class="border border-gray-300 p-3">
+              <button
+                data-swiper-example-get
+                class="w-full rounded-xl border border-gray-400 p-3 text-teal-800 hover:bg-teal-50"
+              >
+                get('#exampleSwiper')
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import './swiper-examples.scss';
+</style>

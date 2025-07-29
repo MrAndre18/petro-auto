@@ -1,0 +1,21 @@
+---
+interface Props {
+  class?: string
+  left?: number
+}
+
+const { left = 20, class: className, ...props } = Astro.props as Props
+
+export { CustomPlaceholder }
+---
+
+<div
+  class:list={['custom-placeholder', className]}
+  {...props}
+>
+  <span><slot /></span>
+</div>
+
+<style>
+  @import './custom-placeholder.scss';
+</style>

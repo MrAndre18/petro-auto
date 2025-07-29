@@ -1,0 +1,20 @@
+---
+interface Props {
+  class?: string
+  style?: Record<string, string>
+}
+
+const { class: className, style = {}, ...props } = Astro.props
+---
+
+<div
+  class={`skeleton ${className || ''}`}
+  style={{ ...style }}
+  {...props}
+>
+  <slot />
+</div>
+
+<style>
+  @import './skeleton.scss';
+</style>

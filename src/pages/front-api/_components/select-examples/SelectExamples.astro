@@ -1,0 +1,276 @@
+---
+import Select from '@shared/ui/select/select.astro'
+
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+export { SelectExamples }
+---
+
+<section
+  id="select-examples-page"
+  class:list={['select-examples', className]}
+  {...props}
+>
+  <div class="space-y-6 rounded-lg bg-gray-100 p-6">
+    <h1 class="mb-4 text-2xl font-bold">Select API</h1>
+    <p class="mb-4 text-lg font-bold text-teal-600">Смотри консоль</p>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <!-- init -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.select.init()</h2>
+        <p class="text-sm text-gray-600">Инициализация select по селектору.</p>
+        <button
+          id="select-init"
+          class="mt-2 rounded bg-teal-500 px-4 py-2 text-white"
+        >
+          init("#tomSelect1")
+        </button>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800">
+<code>window.frontApi.select.init('#tomSelect1')</code>
+        </pre>
+      </div>
+
+      <!-- initAll -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.select.initAll()</h2>
+        <p class="text-sm text-gray-600">Инициализация всех select на странице.</p>
+        <button
+          id="select-init-all"
+          class="mt-2 rounded bg-teal-500 px-4 py-2 text-white"
+        >
+          initAll()
+        </button>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800">
+<code>window.frontApi.select.initAll()</code>
+        </pre>
+      </div>
+
+      <!-- reInit -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.select.reInit()</h2>
+        <p class="text-sm text-gray-600">Переинициализация select с новыми опциями.</p>
+        <button
+          id="select-reinit"
+          class="mt-2 rounded bg-teal-500 px-4 py-2 text-white"
+        >
+          reInit("#tomSelect1")
+        </button>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800">
+<code>window.frontApi.select.reInit('#tomSelect1')</code>
+        </pre>
+      </div>
+
+      <!-- reInitAll -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.select.reInitAll()</h2>
+        <p class="text-sm text-gray-600">Переинициализация всех select на странице.</p>
+        <button
+          id="select-reinit-all"
+          class="mt-2 rounded bg-teal-500 px-4 py-2 text-white"
+        >
+          reInitAll()
+        </button>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800">
+<code>window.frontApi.select.reInitAll()</code>
+        </pre>
+      </div>
+
+      <!-- destroy -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.select.destroy()</h2>
+        <p class="text-sm text-gray-600">Удаление экземпляра select.</p>
+        <button
+          id="select-destroy"
+          class="mt-2 rounded bg-teal-500 px-4 py-2 text-white"
+        >
+          destroy("#tomSelect1")
+        </button>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800">
+<code>window.frontApi.select.destroy('#tomSelect1')</code>
+        </pre>
+      </div>
+
+      <!-- getCurrentOption -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.select.getCurrentOption()</h2>
+        <p class="text-sm text-gray-600">Получить выбранные опции.</p>
+        <button
+          id="select-get-current-option"
+          class="mt-2 rounded bg-teal-500 px-4 py-2 text-white"
+        >
+          getCurrentOption("#tomSelect1")
+        </button>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800">
+<code>console.log(window.frontApi.select.getCurrentOption('#tomSelect1'))</code>
+        </pre>
+      </div>
+
+      <!-- addOption -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.select.addOption()</h2>
+        <p class="text-sm text-gray-600">Добавить новую опцию.</p>
+        <button
+          id="select-add-option"
+          class="mt-2 rounded bg-teal-500 px-4 py-2 text-white"
+        >
+          addOption(&#123; value: '4', label: 'New 4' &#125;)
+        </button>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800">
+<code>window.frontApi.select.getInstance('#tomSelect1')?.addOption(&#123; value: '4', label: 'New 4' &#125;)</code>
+        </pre>
+      </div>
+
+      <!-- removeOption -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.select.removeOption()</h2>
+        <p class="text-sm text-gray-600">Удалить опцию по значению.</p>
+        <button
+          id="select-remove-option"
+          class="mt-2 rounded bg-teal-500 px-4 py-2 text-white"
+        >
+          removeOption('2')
+        </button>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800">
+<code>window.frontApi.select.getInstance('#tomSelect1')?.removeOption('2')</code>
+        </pre>
+      </div>
+
+      <!-- removeAllOptions -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.select.removeAllOptions()</h2>
+        <p class="text-sm text-gray-600">Удалить все опции.</p>
+        <button
+          id="select-remove-all-options"
+          class="mt-2 rounded bg-teal-500 px-4 py-2 text-white"
+        >
+          removeAllOptions()
+        </button>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800">
+<code>window.frontApi.select.removeAllOptions('#tomSelect2')</code>
+        </pre>
+      </div>
+
+      <!-- resetOptions -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.select.resetOptions()</h2>
+        <p class="text-sm text-gray-600">Полная замена опций.</p>
+        <button
+          id="select-reset"
+          class="mt-2 rounded bg-teal-500 px-4 py-2 text-white"
+        >
+          resetOptions()
+        </button>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800">
+<code>window.frontApi.select.resetOptions('#tomSelect1', [&#123; value: 'new1', label: 'New 1' &#125;, &#123; value: 'new2', label: 'New 2' &#125;], 'new1')</code>
+        </pre>
+      </div>
+
+      <!-- getValue -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.select.getValue()</h2>
+        <p class="text-sm text-gray-600">Получить текущее значение.</p>
+        <button
+          id="select-get-value"
+          class="mt-2 rounded bg-teal-500 px-4 py-2 text-white"
+        >
+          getValue()
+        </button>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800">
+<code>console.log(window.frontApi.select.getValue('#tomSelect1'))</code>
+        </pre>
+      </div>
+
+      <!-- setValue -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.select.setValue()</h2>
+        <p class="text-sm text-gray-600">Установить значение select.</p>
+        <button
+          id="select-set-value"
+          class="mt-2 rounded bg-teal-500 px-4 py-2 text-white"
+        >
+          setValue()
+        </button>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800">
+<code>window.frontApi.select.setValue('#tomSelect2', ['a', 'c'])</code>
+        </pre>
+      </div>
+
+      <!-- isInit -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.select.isInit()</h2>
+        <p class="text-sm text-gray-600">Проверить, инициализирован ли select.</p>
+        <button
+          id="select-is-init"
+          class="mt-2 rounded bg-teal-500 px-4 py-2 text-white"
+        >
+          isInit()
+        </button>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800">
+<code>console.log(window.frontApi.select.isInit('#tomSelect1'))</code>
+        </pre>
+      </div>
+
+      <!-- getInstance -->
+      <div class="rounded bg-white p-4 shadow">
+        <h2 class="text-lg font-semibold">window.frontApi.select.getInstance()</h2>
+        <p class="text-sm text-gray-600">Получить инстанс TomSelect.</p>
+        <button
+          id="select-get-instance"
+          class="mt-2 rounded bg-teal-500 px-4 py-2 text-white"
+        >
+          getInstance()
+        </button>
+        <pre
+          class="mt-2 rounded bg-gray-100 p-3 text-sm text-gray-800">
+<code>console.log(window.frontApi.select.getInstance('#tomSelect1'))</code>
+        </pre>
+      </div>
+    </div>
+
+    <div class="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2">
+      <Select>
+        <select
+          id="tomSelect1"
+          class="js-tomselect w-full"
+        >
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+        </select>
+      </Select>
+
+      <Select>
+        <select
+          id="tomSelect2"
+          class="js-tomselect w-full"
+          multiple
+        >
+          <option value="a">Multi A</option>
+          <option value="b">Multi B</option>
+          <option value="c">Multi C</option>
+        </select>
+      </Select>
+    </div>
+  </div>
+</section>
+
+<style>
+  @import './select-examples.scss';
+</style>

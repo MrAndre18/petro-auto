@@ -1,0 +1,255 @@
+---
+import Range from '@shared/ui/range/Range.astro'
+import Title from '@shared/ui/title/Title.astro'
+
+import Table from '@shared/ui/table/Table.astro'
+
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+export { UiTable }
+---
+
+<div
+  class:list={['ui-table', className]}
+  {...props}
+>
+  <div class:list={['mx-auto max-w-[1600px]']}>
+    <Title>Table.astro</Title>
+    <div class:list={['mt-2']}></div>
+    <code class="ui-table_copycode">import Table from '@shared/ui/universal-table/Table.astro'</code
+    >
+    <div class:list={['mt-4']}></div>
+    <p class:list={['max-w-[460px]']}>
+      Гибкая таблица, которая легко подстраивается под различные проекты, стрессоустойчива к правкам
+      и изменениям, легко используемая и быстроверстающаяся.
+    </p>
+    <div class:list={['mt-12']}></div>
+  </div>
+  <Table
+    id="table-test"
+    table={{
+      thead: [
+        [
+          {
+            content: {
+              text: 'Фича'
+            }
+          },
+          {
+            content: {
+              text: 'Описание'
+            }
+          },
+          {
+            content: {
+              text: 'Код'
+            }
+          },
+          {
+            content: {
+              text: 'Пример'
+            }
+          }
+        ]
+      ],
+      tbody: [
+        [
+          {
+            content: {
+              text: 'Моды для каждой ячейки'
+            }
+          },
+          {
+            content: {
+              text: 'Каждой ячейке можно передовать название мода, который к ней применится'
+            }
+          },
+          {
+            content: {
+              html: `<pre>
+{
+  content: {
+    html: 'Этой ячейке применен мод <code>test</code>. Поэтому у нее красная обводка'
+  },
+  mods: ['test']
+}</pre>`
+            }
+          },
+          {
+            content: {
+              html: 'Этой ячейке применен мод <code>test</code>. Поэтому у нее красная обводка'
+            },
+            mods: ['test']
+          }
+        ],
+        [
+          {
+            content: {
+              text: 'ClassList для каждой ячейки'
+            }
+          },
+          {
+            content: {
+              text: 'Каждой ячейке можно передать класс напрямую, например .active'
+            }
+          },
+          {
+            content: {
+              html: `<pre>
+{
+  content: {
+    text: 'Этой ячейке применен класс .active'
+  },
+  classList: ['active']
+}</pre>`
+            }
+          },
+          {
+            content: {
+              text: 'Этой ячейке применен класс .active'
+            },
+            classList: ['active']
+          }
+        ],
+        [
+          {
+            content: {
+              text: 'Поддержка текста и прямой вставки HTML'
+            }
+          },
+          {
+            content: {
+              html: 'Можно передать только текст или верстку'
+            }
+          },
+          {
+            content: {
+              html: `<pre>
+{
+  content: {
+    html: 'Здесь используется HTML, &lt;br&gt; поэтому &lt;br&gt; можно применять &lt;br&gt; новые строки'
+  }
+}</pre>`
+            }
+          },
+          {
+            content: {
+              html: 'Здесь используется HTML, <br> поэтому <br> можно применять <br> новые строки'
+            }
+          }
+        ],
+        [
+          {
+            content: {
+              text: 'Поддержка атрибутов таблиц и HTML элементов'
+            }
+          },
+          {
+            content: {
+              html: `<pre>
+{
+  content: {
+    html: 'Можно растянуть ячейку на 3 столбца с помощью <code>colSpan</code>'
+  },
+  colSpan: 3,
+  mods: ['highlight']
+}</pre>`
+            },
+            colSpan: 3,
+            mods: ['highlight']
+          }
+        ],
+        [
+          {
+            content: {
+              text: 'Data-атрибуты'
+            }
+          },
+          {
+            content: {
+              text: 'Можно передавать любые data-атрибуты напрямую в ячейку. Они будут применены к элементу <td> или <th>.'
+            }
+          },
+          {
+            content: {
+              html: `<pre>
+{
+  content: {
+    html: 'Эта ячейка имеет атрибут <code>data-aos="fadeup"</code>. Проверь в <code>devtools</code>'
+  },
+  'data-aos': "fadeup"
+}`
+            }
+          },
+          {
+            content: {
+              html: 'Эта ячейка имеет атрибут <code>data-aos="fadeup"</code>. Проверь в <code>devtools</code>'
+            },
+            'data-aos': 'fadeup'
+          }
+        ]
+      ],
+      tfoot: [
+        [
+          {
+            content: {
+              text: 'Футер'
+            },
+            colSpan: 4
+          }
+        ]
+      ]
+    }}
+  >
+    <tr slot="tbody-end">
+      <td>Поддержка слотов</td>
+      <td>
+        <pre
+          class="ui-table__overflow-scroll">
+  {
+    `
+<tr slot="tbody-end">
+  <td>Поддержка слотов</td>
+  <td class="ui-table__overflow-scroll">
+    Место для кода
+  </td>
+  <td colspan="2">
+    <Range
+      id="range1"
+      maxLength={10}
+      oneSided={false}
+      data-step={100}
+      min={100}
+      max={10000}
+      startMin={2500}
+      startMax={7500}
+    />
+  </td>
+</tr>
+`
+  }
+</pre>
+      </td>
+      <td colspan="2">
+        <Range
+          id="range1"
+          maxLength={10}
+          oneSided={false}
+          data-step={100}
+          min={100}
+          max={10000}
+          startMin={2500}
+          startMax={7500}
+        />
+      </td>
+    </tr>
+  </Table>
+</div>
+
+<style>
+  @import './ui-table.scss';
+</style>

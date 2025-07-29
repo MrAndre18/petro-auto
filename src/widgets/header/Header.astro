@@ -1,0 +1,47 @@
+---
+import HeaderPanel from './header-panel/HeaderPanel.astro'
+import HeaderContainer from './header-container/HeaderContainer.astro'
+import MobileMenu from '@widgets/mobile-menu/MobileMenu.astro'
+
+export { Header }
+---
+
+<HeaderContainer hasOverlay>
+  <HeaderPanel
+    data-header-panel="menu"
+    class="desktop"
+    data-panel-animation="slide-left"
+  >
+    <div class="h-96 w-full bg-amber-500"></div>
+  </HeaderPanel>
+
+  <HeaderPanel
+    data-header-panel="menu-mob"
+    class="header-panel__menu-mob devices"
+    data-panel-animation="slide-left"
+  >
+    <MobileMenu />
+  </HeaderPanel>
+
+  <HeaderPanel data-header-panel="catalog">
+    <div class="h-96 w-full bg-lime-500"></div>
+  </HeaderPanel>
+
+  <HeaderPanel data-header-panel="search">
+    <div class="h-48 w-full bg-emerald-500"></div>
+  </HeaderPanel>
+
+  <HeaderPanel
+    class="!w-fit"
+    data-header-panel="compare"
+  >
+    <div class="h-96 w-96 bg-amber-500"></div>
+  </HeaderPanel>
+
+  <HeaderPanel
+    class="!w-fit"
+    data-header-panel="favorite"
+  >
+    <div class="h-96 w-96 bg-amber-500"></div>
+  </HeaderPanel>
+</HeaderContainer>

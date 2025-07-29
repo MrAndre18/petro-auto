@@ -1,0 +1,30 @@
+.paginations {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: rem(60px);
+  margin-top: rem(60px);
+
+  @media #{media('<',d)} {
+    flex-direction: column;
+    gap: rem(24px);
+    margin-top: rem(24px);
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: rem(8px);
+  }
+
+  &__button {
+    aspect-ratio: 1/1;
+    &_more {
+      &.button_variant_contained {
+        width: fit-content;
+        text-wrap: nowrap;
+        aspect-ratio: unset;
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+---
+import CustomPlaceholder from "../custom-placeholder/CustomPlaceholder.astro";
+interface Props extends astroHTML.JSX.TextareaHTMLAttributes {
+  class?: string
+  'data-validate'?: string
+  'custom-placeholder'?: boolean
+}
+
+const {
+  class: className,
+  'custom-placeholder': customPlaceholder = true,
+  ...props
+} = Astro.props as Props
+---
+
+<div
+  data-input-parent
+  class="textarea"
+>
+  <textarea
+    class:list={['textarea__field', className]}
+    placeholder={!customPlaceholder ? props.placeholder : ''}
+    data-input
+    {...props}
+  ></textarea>
+  {
+      customPlaceholder && <CustomPlaceholder>{props.placeholder}</CustomPlaceholder>
+  }
+  <span
+    class="textarea__error text-red"
+    data-error-container
+  ></span>
+</div>
+
+<style>
+  @import './textarea.scss';
+</style>

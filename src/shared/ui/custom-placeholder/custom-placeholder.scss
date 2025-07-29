@@ -1,0 +1,79 @@
+.custom-placeholder {
+  $self: &;
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  padding-right: 20px;
+
+  span {
+    transform-origin: top left;
+
+    display: inline-block;
+
+    transition: $transition;
+
+    width: 100%;
+
+    // @apply font-sans text-16 text-primary;
+    line-height: 1;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    position: absolute;
+
+    will-change: transform, scale;
+  }
+}
+
+:global(*) {
+  // Для всех браузеров, кроме Firefox
+
+  @supports not (-moz-appearance: none) {
+    :global(*) {
+      &:focus-within > .custom-placeholder,
+      & :global(input:not(:placeholder-shown)) ~ .custom-placeholder,
+      & :global(textarea:not(:placeholder-shown)) ~ .custom-placeholder {
+        span {
+          transform: scale(0.75) translateY(-14px);
+
+          @media #{media('<',d)} {
+            transform: scale(0.75) translateY(rem(-14px));
+          }
+        }
+      }
+    }
+  }
+
+  // Только для Firefox
+  @supports (-moz-appearance: none) {
+    & :global(input) ~ .custom-placeholder,
+    & :global(textarea) ~ .custom-placeholder {
+      span {
+        transform: scale(0.75) translateY(-14px);
+      }
+    }
+
+    & :global(input:placeholder-shown) ~ .custom-placeholder,
+    & :global(textarea:placeholder-shown) ~ .custom-placeholder {
+      span {
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    & :global(input:focus) ~ .custom-placeholder,
+    & :global(textarea:focus) ~ .custom-placeholder {
+      span {
+        transform: scale(0.75) translateY(-14px);
+
+        @media #{media('<',d)} {
+          transform: scale(0.75) translateY(rem(-14px));
+        }
+      }
+    }
+  }
+}

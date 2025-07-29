@@ -1,0 +1,39 @@
+.ui-table {
+  margin-top: 140px;
+
+  position: static;
+
+  &__overflow-scroll {
+    width: 500px;
+    overflow: auto;
+  }
+
+  tr > td {
+    padding: 8px;
+    border-bottom: 1px rebeccapurple dashed;
+    border-inline: 1px rebeccapurple dashed;
+
+    &:first-child {
+      padding-inline-start: 12px;
+    }
+
+    &:not(:is(:first-child, :last-child)) {
+      border-left: 0;
+    }
+
+    &:last-child {
+      border-left: 0;
+      padding-inline-end: 12px;
+    }
+  }
+
+  &_copycode {
+    user-select: all;
+  }
+}
+
+@media #{media('<',d)} {
+  .ui-table {
+    margin-top: 92px;
+  }
+}

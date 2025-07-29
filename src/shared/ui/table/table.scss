@@ -1,0 +1,115 @@
+.table {
+  $self: &;
+
+  position: static;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  // #region Mods
+
+  &_variant {
+    &-default {
+      max-width: 1600px;
+      margin-inline: auto;
+
+      #{$self}__cell {
+        &.active {
+          background-color: #dcdcdc;
+        }
+
+        &_thead {
+          border: 1px #262626 solid;
+          padding: 8px;
+
+          &:first-child {
+            border-radius: 10px 0 0 0;
+            padding-inline-start: 12px;
+          }
+
+          &:not(:is(:first-child, :last-child)) {
+            border-left: 0;
+          }
+
+          &:last-child {
+            border-left: 0;
+            border-radius: 0 10px 0 0;
+            padding-inline-end: 12px;
+          }
+        }
+
+        &_tbody {
+          padding: 8px;
+
+          border-inline: 1px #2c2c2c solid;
+          border-bottom: 1px #2c2c2c solid;
+
+          transition: $transition;
+
+          &:first-child {
+            padding-inline-start: 12px;
+          }
+
+          &:not(:is(:first-child, :last-child)) {
+            border-left: 0;
+          }
+
+          &:last-child {
+            border-left: 0;
+            padding-inline-end: 12px;
+          }
+
+          @media #{media('>',t)} and (hover: hover) and (pointer: fine) {
+            &:hover {
+              background-color: #f4f4f4;
+            }
+          }
+        }
+
+        &_tfoot {
+          border: 1px #262626 solid;
+          padding: 8px;
+
+          &:first-child {
+            border-radius: 0 10px 0 0;
+            padding-left: 12px;
+          }
+
+          &:not(:is(:first-child, :last-child)) {
+            border-left: 0;
+          }
+
+          &:last-child {
+            border-left: 0;
+            border-radius: 0 0 0 10px;
+            padding-right: 12px;
+          }
+
+          &:only-child {
+            border: 1px #262626 solid;
+            border-radius: 0 0 10px 10px;
+            border-top: 0;
+
+            text-transform: capitalize;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
+
+  // #endregion Mods
+
+  // #region Elements
+
+  &__cell {
+    &_test {
+      border: 1px dashed red !important;
+    }
+
+    &_highlight {
+      background-color: rgb(255, 255, 157);
+    }
+  }
+
+  // #endregion Elements
+}

@@ -1,0 +1,84 @@
+---
+import SliderButton from '@shared/ui/buttons/slider-button/SliderButton.astro'
+import SliderPagination from '@shared/ui/slider-pagination/SliderPagination.astro'
+import type { SwiperOptions } from 'swiper/types'
+
+interface Props {
+  id: string
+  class?: string
+  swiperParams?: SwiperOptions
+  hasNavigation?: boolean
+  hasNavigationNext?: boolean
+  hasNavigationPrev?: boolean
+  hasPagination?: boolean
+  children: HTMLElement[]
+}
+
+const {
+  class: className,
+  id,
+  swiperParams = {
+    slidesPerView: 1
+  },
+  hasNavigation = true,
+  hasNavigationNext = true,
+  hasNavigationPrev = true,
+  hasPagination = true,
+  ...props
+} = Astro.props as Props
+
+const sliderParamsString = JSON.stringify(swiperParams)
+
+export { Slider }
+---
+
+<section
+  class:list={['slider swiper', className]}
+  data-swiper={id}
+  data-swiper-params={sliderParamsString}
+  {...props}
+>
+  <div class="slider__wrapper swiper-wrapper">
+    <slot />
+  </div>
+
+  <slot name="navigation">
+    {
+      hasNavigation && (
+        <div class="slider__navigation">
+          {hasNavigationPrev && (
+            <SliderButton
+              id={id}
+              class="slider__button slider__button_prev"
+              variant="prev"
+            />
+          )}
+
+          {hasNavigationNext && (
+            <SliderButton
+              id={id}
+              class="slider__button slider__button_next"
+              variant="next"
+            />
+          )}
+        </div>
+      )
+    }
+  </slot>
+
+  <slot name="pagination">
+    {
+      hasPagination && id && (
+        <SliderPagination
+          id={id}
+          size="large"
+          class="slider__pagination"
+        />
+      )
+    }
+  </slot>
+</section>
+
+<style>
+  @import './slider.scss';
+</style>

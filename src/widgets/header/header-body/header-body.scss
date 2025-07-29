@@ -1,0 +1,192 @@
+.header-body {
+  $animation-duration: 0.8s;
+
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: 1px;
+
+  height: rem(156px);
+  border-bottom: 1px solid;
+
+  transition: height $transition;
+
+  border-color: #000000;
+  background-color: #ffffff;
+
+  @media #{media('<',d)} {
+    display: flex;
+    height: rem(60px);
+  }
+
+  @media #{media('<',xs)} {
+    height: rem(50px);
+  }
+
+  @keyframes logoIconAnimation {
+    0% {
+      fill: #ec6239;
+    }
+
+    60% {
+      fill: #ec6239;
+    }
+
+    100% {
+      fill: #000000;
+    }
+  }
+
+  @keyframes logoIconAnimationReverse {
+    0% {
+      fill: #000000;
+    }
+
+    40% {
+      fill: #ec6239;
+    }
+
+    100% {
+      fill: #ec6239;
+    }
+  }
+
+  @keyframes logoAnimation {
+    0% {
+      width: rem(246px);
+      height: rem(64px);
+      clip-path: inset(0% 0% 0% 0%);
+    }
+
+    60% {
+      width: rem(64px);
+      height: rem(64px);
+      clip-path: inset(0% calc(100% - rem(64px)) 0% 0%);
+    }
+
+    100% {
+      width: rem(40px);
+      height: rem(40px);
+      clip-path: inset(0% calc(100% - rem(40px)) 0% 0%);
+    }
+  }
+
+  @keyframes logoAnimationMob {
+    0% {
+      width: rem(115px);
+      height: rem(30px);
+      clip-path: inset(0% 0% 0% 0%);
+    }
+
+    100% {
+      width: rem(30px);
+      height: rem(30px);
+      clip-path: inset(0% calc(100% - rem(30px)) 0% 0%);
+    }
+  }
+
+  @keyframes logoAnimationReverse {
+    0% {
+      width: rem(40px);
+      height: rem(40px);
+      clip-path: inset(0% calc(100% - rem(40px)) 0% 0%);
+    }
+
+    40% {
+      width: rem(64px);
+      height: rem(64px);
+      clip-path: inset(0% calc(100% - rem(64px)) 0% 0%);
+    }
+
+    100% {
+      width: rem(246px);
+      height: rem(64px);
+      clip-path: inset(0% 0% 0% 0%);
+    }
+  }
+
+  @keyframes logoAnimationMobReverse {
+    0% {
+      width: rem(30px);
+      height: rem(30px);
+      clip-path: inset(0% calc(100% - rem(30px)) 0% 0%);
+    }
+
+    100% {
+      width: rem(115px);
+      height: rem(30px);
+      clip-path: inset(0% 0% 0% 0%);
+    }
+  }
+
+  &.scrolled {
+    height: rem(80px);
+
+    @media #{media('<',d)} {
+      height: rem(60px);
+    }
+
+    @media #{media('<',xs)} {
+      height: rem(50px);
+    }
+
+    .header-body__logo {
+      animation: logoAnimation $animation-duration $transition-timing-function forwards;
+
+      @media #{media('<',d)} {
+        animation: logoAnimationMob $animation-duration $transition-timing-function forwards;
+      }
+
+      :global(.logo-svg__icon-bg) {
+        animation: logoIconAnimation $animation-duration $transition-timing-function forwards;
+      }
+    }
+  }
+
+  &.scrolled-reverse {
+    height: rem(156px);
+
+    @media #{media('<',d)} {
+      height: rem(60px);
+    }
+
+    @media #{media('<',xs)} {
+      height: rem(50px);
+    }
+
+    .header-body__logo {
+      animation: logoAnimationReverse $animation-duration $transition-timing-function forwards;
+
+      @media #{media('<',d)} {
+        animation: logoAnimationMobReverse $animation-duration $transition-timing-function forwards;
+      }
+
+      :global(.logo-svg__icon-bg) {
+        animation: logoIconAnimationReverse $animation-duration $transition-timing-function forwards;
+      }
+    }
+  }
+
+  &__button {
+    @include border;
+  }
+
+  &__logo {
+    :global(.logo-svg) {
+      width: auto !important;
+    }
+
+    &-wrapper {
+      display: flex;
+      grid-column: span 3;
+      align-items: center;
+      justify-content: center;
+
+      background-color: #ffffff;
+
+      @media #{media('<',d)} {
+        flex-grow: 1;
+      }
+    }
+  }
+}

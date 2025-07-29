@@ -1,0 +1,51 @@
+---
+import type { SwiperOptions } from 'swiper/types'
+
+interface Props {
+  id: string
+  class?: string
+  swiperParams?: SwiperOptions
+  enableMobileClick?: boolean
+  mobileClickSelector?: string
+  hoverTargetSelector?: string
+}
+
+const {
+  id,
+  class: className,
+  swiperParams = {
+    slidesPerView: 1,
+    effect: 'fade',
+    nested: true,
+    fadeEffect: {
+      crossFade: true
+    }
+  },
+  enableMobileClick = false,
+  mobileClickSelector,
+  hoverTargetSelector
+} = Astro.props as Props
+
+const sliderParamsString = JSON.stringify(swiperParams)
+
+export { SliderHover }
+---
+
+<div
+  class:list={['slider-hover', className]}
+  data-slider-hover
+  data-swiper={id}
+  data-swiper-hover
+  data-swiper-params={sliderParamsString}
+  data-mobile-click={enableMobileClick}
+  data-mobile-click-selector={mobileClickSelector}
+  data-hover-target-selector={hoverTargetSelector}
+>
+  <div class="slider-hover__wrapper swiper-wrapper">
+    <slot />
+  </div>
+</div>
+
+<style>
+  @import './slider-hover.scss';
+</style>

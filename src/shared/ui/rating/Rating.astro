@@ -1,0 +1,33 @@
+---
+interface Props {
+  class?: string
+  variant?: 'interactive' | 'static'
+  id?: string
+}
+
+const { class: className, variant = 'interactive', id = 'rating', ...props } = Astro.props as Props
+
+export { Rating }
+
+const Tag = variant === 'interactive' ? 'button' : 'div'
+---
+
+<div
+  class:list={['rating', className]}
+  {...props}
+  {...variant !== 'static' && { 'data-rating': id, 'data-rating-wrapper': '' }}
+>
+  {
+    Array.from({ length: 5 }).map((_, i) => (
+      <Tag
+        class="rating__star"
+        {...(variant !== 'static' && { 'data-rating-mark': 5 - i })}
+        type={Tag === 'button' ? 'button' : null}
+      />
+    ))
+  }
+</div>
+
+<style>
+  @import './rating.scss';
+</style>

@@ -1,0 +1,21 @@
+---
+interface Props {
+  class?: string
+  'data-header-panel': 'menu' | 'catalog' | 'search' | 'compare' | 'favorite' | 'menu-mob'
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+export { HeaderPanel }
+---
+
+<div
+  class:list={['header-panel', className]}
+  {...props}
+>
+  <slot />
+</div>
+
+<style>
+  @import './header-panel.scss';
+</style>

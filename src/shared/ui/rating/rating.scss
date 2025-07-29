@@ -1,0 +1,83 @@
+.rating {
+  @apply flex w-max flex-row-reverse justify-end;
+
+  &__star {
+    height: rem(56px);
+    width: rem(64px);
+
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56' fill='none'%3E%3Cpath d='M28 12.2502L33.862 22.0277L45.5 24.2822L37.485 32.5794L38.8156 43.7502L28 39.1007L17.1844 43.7502L18.515 32.5794L10.5 24.2822L22.1379 22.0277L28 12.2502Z' fill='%23F4F4F4'/%3E%3C/svg%3E");
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    mask-position: center;
+
+    transition: background-color $transition;
+
+    padding-left: rem(4px);
+    padding-right: rem(4px);
+
+    border: 1px solid transparent;
+    background: gray;
+
+    &:first-of-type {
+      width: rem(60px);
+      padding-right: 0;
+      mask-position: calc(50% + 4px) center;
+
+      @media #{media('<',d)} {
+        width: rem(42px);
+        mask-position: calc(50% + rem(2px)) center;
+      }
+    }
+
+    &:last-of-type {
+      width: rem(60px);
+      padding-left: 0;
+      mask-position: calc(50% - 4px) center;
+
+      @media #{media('<',d)} {
+        width: rem(42px);
+        mask-position: calc(50% - rem(2px)) center;
+      }
+    }
+
+    &.active {
+      background: black;
+    }
+
+    @media #{media('<',d)} {
+      width: rem(44px);
+      height: rem(40px);
+
+      padding-left: rem(2px);
+      padding-right: rem(2px);
+    }
+  }
+
+  &:not(.active) {
+    @media #{media('>',d)} and (hover: hover) and (pointer: fine) {
+      &:hover {
+        .rating__star {
+          background: gray;
+        }
+      }
+    }
+
+    &[data-rating] {
+      .rating__star {
+        @media #{media('>',d)} and (hover: hover) and (pointer: fine) {
+          &:hover {
+            background: black;
+
+            ~ .rating__star {
+              background: black;
+            }
+          }
+        }
+      }
+
+      button {
+        cursor: pointer;
+      }
+    }
+  }
+}

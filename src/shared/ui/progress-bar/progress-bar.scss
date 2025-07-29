@@ -1,0 +1,67 @@
+.progress-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: sans-serif;
+}
+
+.progress-bar__element {
+  // Reset default appearance
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  background-color: #e9ecef;
+}
+
+// Webkit (Chrome, Safari, Edge)
+.progress-bar__element::-webkit-progress-bar {
+  background-color: #e9ecef;
+  border-radius: 0.25rem;
+}
+
+.progress-bar__element::-webkit-progress-value {
+  background-color: #007bff;
+  border-radius: 0;
+  transition: width 0.3s ease-in-out;
+}
+
+// Firefox
+.progress-bar__element::-moz-progress-bar {
+  background-color: #007bff;
+  border-radius: 0.25rem;
+  transition: width 0.3s ease-in-out;
+}
+
+// Indeterminate state styling
+.progress-bar__element:indeterminate {
+  background-size: 200% 100%;
+  background-image: linear-gradient(to right, #e9ecef 30%, #adb5bd 50%, #e9ecef 70%);
+  animation: progress-indeterminate 1.5s linear infinite;
+}
+
+.progress-bar__element:indeterminate::-webkit-progress-value {
+  background-color: transparent;
+}
+
+.progress-bar__element:indeterminate::-moz-progress-bar {
+  background-color: transparent;
+}
+
+.progress-bar__label {
+  font-size: 0.9em;
+  color: #495057;
+  text-align: right;
+}
+
+@keyframes progress-indeterminate {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}

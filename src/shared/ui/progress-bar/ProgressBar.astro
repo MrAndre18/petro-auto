@@ -1,0 +1,35 @@
+---
+interface Props {
+  class?: string
+  value?: number
+  max?: number
+  id?: string
+  isLabel?: boolean
+}
+
+const { class: className, value, max = 100, id, isLabel = false, ...props } = Astro.props
+---
+
+<div
+  class:list={['progress-bar', className]}
+  data-progress-bar-instance
+  id={id}
+  {...props}
+>
+  <progress
+    class="progress-bar__element"
+    value={value}
+    max={max}
+  ></progress>
+  {
+    isLabel && (
+      <span class="progress-bar__label">
+        <slot name="label" />
+      </span>
+    )
+  }
+</div>
+
+<style>
+  @import './progress-bar.scss';
+</style>

@@ -1,0 +1,37 @@
+---
+import Title from '@shared/ui/title/Title.astro'
+import ProgressBar from '@shared/ui/progress-bar/ProgressBar.astro'
+
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+export { UiProgressBar }
+---
+
+<div
+  class:list={['ui-progress-bar', className]}
+  {...props}
+>
+  <Title>ProgressBar.astro</Title>
+  <div class:list={['mt-4']}></div>
+  <code>import ProgressBar from '@shared/ui/progress-bar/ProgressBar.astro'</code>
+  <div class:list={['mt-12']}></div>
+  <ProgressBar />
+  <ProgressBar
+    value={80}
+    max={100}
+    id="test-progress-bar"
+  />
+  <ProgressBar
+    value={50}
+    isLabel
+  />
+  <ProgressBar isLabel />
+</div>
+
+<style>
+  @import './ui-progress-bar.scss';
+</style>

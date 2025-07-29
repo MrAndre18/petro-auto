@@ -1,0 +1,39 @@
+---
+interface Props {
+  class?: string
+  name: string
+  accept: string
+  multiple?: boolean
+  maxFiles?: number
+}
+
+const { class: className, name, accept, multiple = false, maxFiles = 5, ...props } = Astro.props
+
+const inputId = `input-upload-${Math.random().toString(36).slice(2)}`
+---
+
+<div
+  class:list={['input-upload', className]}
+  data-input-upload-instance
+  data-max-files={maxFiles}
+  {...props}
+>
+  <input
+    id={inputId}
+    type="file"
+    name={name}
+    accept={accept}
+    {multiple}
+    class="input-upload__input"
+  />
+  <label
+    for={inputId}
+    class="input-upload__label"
+    >Choose files</label
+  >
+  <ul class="input-upload__files-list"></ul>
+</div>
+
+<style>
+  @import './input-upload.scss';
+</style>

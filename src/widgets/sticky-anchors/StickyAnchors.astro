@@ -1,0 +1,43 @@
+---
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+export { StickyAnchors }
+---
+
+<div
+  class:list={['sticky-anchors', className]}
+  {...props}
+  data-scroll-content=""
+>
+  <div
+    class="sticky-anchors__content"
+    data-anchors-scroll-content=""
+  >
+    <h2 class="mb-[20px] text-2xl font-bold underline desktop">
+      Здесь потребуется заголовок или отступ сверху для корректной активизации ссылки для первого
+      блока, либо подбирать подходящие отступы через падингтоп-маржинтоп на якорях в контенте на
+      десктопе
+    </h2>
+    <p class="mb-[10px] text-xl font-bold">
+      <span class="underline"> Важно! </span>
+      Не рекомендуется менять font weight ссылок активных-неактивных на адаптиве, т.к. горизонтальный
+      скролл будет рассчитываться некорректно из-за изменения ширины ссылки за счет жирности шрифта
+    </p>
+    <slot name="content-block" />
+  </div>
+
+  <div
+    class="sticky-anchors__anchors"
+    data-anchors-links=""
+  >
+    <slot name="anchors-block" />
+  </div>
+</div>
+
+<style>
+  @import './sticky-anchors.scss';
+</style>

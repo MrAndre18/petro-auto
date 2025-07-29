@@ -1,0 +1,37 @@
+---
+import CustomPlaceholder from "../custom-placeholder/CustomPlaceholder.astro";
+interface Props extends astroHTML.JSX.InputHTMLAttributes {
+  class?: string
+  'data-validate'?: string
+  'custom-placeholder'?: boolean;
+}
+
+const {
+  class: className,
+  'custom-placeholder': customPlaceholder = true,
+  ...props
+} = Astro.props as Props
+---
+
+<label
+  class:list={['input', className]}
+  data-input-parent
+>
+  <input
+    class="input__field"
+    data-input
+    placeholder={!customPlaceholder ? props.placeholder : ''}
+    {...props}
+  />
+  {
+      customPlaceholder && <CustomPlaceholder>{props.placeholder}</CustomPlaceholder>
+  }
+  <span
+    class="input__error"
+    data-error-container
+  ></span>
+</label>
+
+<style>
+  @import './input.scss';
+</style>

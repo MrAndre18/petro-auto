@@ -1,0 +1,173 @@
+.input-search {
+  position: relative;
+  transition: $transition;
+  display: flex;
+  align-items: center;
+  height: rem(78px);
+  flex-grow: 1;
+
+  @media #{media('<', d)} {
+    gap: rem(20px);
+    font-size: rem(14px);
+    height: rem(55px);
+  }
+
+  @media #{media('<',m)} {
+    gap: rem(10px);
+    border-radius: rem(12px);
+  }
+
+  :global(.input) {
+    position: absolute;
+    border-radius: rem(12px);
+
+    @media #{media('<',d)} {
+      height: 100%;
+      border-radius: rem(12px);
+    }
+  }
+
+  .input-search__controls {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+
+    display: flex;
+    gap: rem(24px);
+    align-items: center;
+
+    padding-right: rem(12px);
+
+    @media #{media('<',d)} {
+      gap: rem(16px);
+      padding-right: rem(6px);
+    }
+  }
+
+  &__btn.button {
+    width: rem(60px);
+    height: rem(60px);
+
+    @media #{media('<',d)} {
+      width: rem(45px);
+      height: rem(45px);
+      padding: 0;
+    }
+
+    @media #{media('<',m)} {
+      width: rem(45px);
+      height: rem(45px);
+    }
+  }
+
+  &__reset.button {
+    width: rem(24px);
+    height: rem(24px);
+    padding: 0;
+
+    color: gray;
+
+    background-color: inherit;
+
+    @media #{media('<',d)} {
+      width: rem(20px);
+      height: rem(20px);
+    }
+
+    @media #{media('<',m)} {
+      width: rem(20px);
+      height: rem(20px);
+    }
+  }
+
+  :global(.input-search__field) {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+
+  &_header.input-search {
+    display: flex;
+    gap: rem(40px);
+    align-items: center;
+
+    :global(.input-search__controls) {
+      right: rem(108px);
+    }
+
+    :global(.input-search__reset) {
+      position: static;
+
+      flex-shrink: 0;
+
+      width: rem(60px);
+      height: rem(60px);
+      border: 1px solid;
+
+      color: #3267d3;
+
+      border-color: #374151;
+      background-color: #fff;
+
+      @media #{media('>',t)} and (hover: hover) and (pointer: fine) {
+        &:hover {
+          border-color: #3267d3;
+          background-color: #3267d3;
+          color: #ffffff;
+        }
+      }
+
+      :global(.button__icon) {
+        width: rem(24px);
+        height: rem(24px);
+      }
+    }
+
+    :global(.input.input_text-black) {
+      position: static;
+      margin-bottom: unset;
+
+      .input__field {
+        color: #1d1a3e;
+
+        @media #{media('>',t)} and (hover: hover) and (pointer: fine) {
+          &:hover {
+            border-color: #3267d3;
+            background: transparent;
+          }
+        }
+
+        &:focus-within {
+          border-color: #3267d3;
+          background: transparent;
+        }
+      }
+    }
+  }
+
+  &_text-black {
+    :global(.input .input__field) {
+      color: #1d1a3e;
+
+      @media #{media('>',t)} and (hover: hover) and (pointer: fine) {
+        &:hover {
+          border-color: #3267d3;
+          background: transparent;
+        }
+      }
+
+      &:focus-within {
+        border-color: #3267d3;
+        background: transparent;
+      }
+    }
+  }
+
+  &_p-unset {
+    :global(.button) {
+      padding: unset;
+    }
+  }
+}

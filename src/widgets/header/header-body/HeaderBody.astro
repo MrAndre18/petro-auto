@@ -1,0 +1,62 @@
+---
+import ButtonHeader from '@shared/ui/buttons/button-header/ButtonHeader.astro'
+import Logo from '@shared/ui/logo/Logo.astro'
+
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+export { HeaderBody }
+---
+
+<div
+  class:list={['header-body', className]}
+  {...props}
+>
+  <ButtonHeader
+    variant="menu"
+    class="header-body__button desktop"
+    data-target="menu"
+  />
+  <ButtonHeader
+    variant="menu"
+    class="header-body__button devices"
+    data-target="menu-mob"
+  />
+  <ButtonHeader
+    variant="catalog"
+    class="header-body__button desktop"
+    data-target="catalog"
+  />
+  <ButtonHeader
+    variant="search"
+    class="header-body__button"
+    data-target="search"
+  />
+  <div class="header-body__logo-wrapper">
+    <Logo
+      class="header-body__logo"
+      size="small"
+    />
+  </div>
+  <ButtonHeader
+    variant="compare"
+    class="header-body__button"
+    data-target="compare"
+  />
+  <ButtonHeader
+    variant="favorite"
+    class="header-body__button"
+    data-target="favorite"
+  />
+  <ButtonHeader
+    variant="tel"
+    class="header-body__button desktop"
+  />
+</div>
+
+<style>
+  @import './header-body.scss';
+</style>

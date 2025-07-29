@@ -1,0 +1,31 @@
+---
+import LayeredMenu from '@shared/ui/layered-menu/LayeredMenu.astro'
+import MenuLayer from '@shared/ui/layered-menu/menu-layer/MenuLayer.astro'
+import LevelOne from './components/level-one/LevelOne.astro'
+import LevelTwo from './components/level-two/LevelTwo.astro'
+
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+export { MobileMenu }
+---
+
+<LayeredMenu
+  class:list={['mobile-menu', className]}
+  {...props}
+  data-mobile-menu
+>
+  <MenuLayer>
+    <LevelOne />
+  </MenuLayer>
+  <MenuLayer>
+    <LevelTwo />
+  </MenuLayer>
+</LayeredMenu>
+
+<style>
+  @import './mobile-menu.scss';
+</style>

@@ -1,0 +1,22 @@
+---
+import InputUpload from '@shared/ui/input-upload/InputUpload.astro'
+
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+export { UiInputUpload }
+---
+
+<div
+  class:list={['ui-input-upload', className]}
+  {...props}
+>
+  <InputUpload />
+</div>
+
+<style>
+  @import './ui-input-upload.scss';
+</style>

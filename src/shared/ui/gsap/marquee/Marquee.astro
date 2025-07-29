@@ -1,0 +1,86 @@
+---
+const list = [
+  {
+    src: './images/image.jpg',
+    alt: ''
+  },
+  {
+    src: './images/image.jpg',
+    alt: ''
+  },
+  {
+    src: './images/image.jpg',
+    alt: ''
+  },
+  {
+    src: './images/image.jpg',
+    alt: ''
+  },
+  {
+    src: './images/image.jpg',
+    alt: ''
+  },
+  {
+    src: './images/image.jpg',
+    alt: ''
+  },
+  {
+    src: './images/image.jpg',
+    alt: ''
+  },
+  {
+    src: './images/image.jpg',
+    alt: ''
+  },
+  {
+    src: './images/image.jpg',
+    alt: ''
+  },
+  {
+    src: './images/image.jpg',
+    alt: ''
+  },
+  {
+    src: './images/image.jpg',
+    alt: ''
+  },
+  {
+    src: './images/image.jpg',
+    alt: ''
+  },
+  {
+    src: './images/image.jpg',
+    alt: ''
+  },
+  {
+    src: './images/image.jpg',
+    alt: ''
+  }
+]
+---
+
+<!-- //в зависимости от размера картинок имеет смысл их дублировать, чтобы не было пробелов   -->
+<section class='Marquee'>
+  <div
+    class='container-marquee'
+    data-marquee='container'
+  >
+    {
+      list.map(item => (
+        <div
+          class='card'
+          data-marquee='card'
+        >
+          <img
+            src={item.src}
+            alt={item.alt}
+          />
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  @import './Marquee.scss';
+</style>

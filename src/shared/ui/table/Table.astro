@@ -1,0 +1,130 @@
+---
+import './table.scss'
+import type { Table } from './table.d'
+
+// END:
+
+type Theme = 'default' | (string & {})
+type Variant = 'default' | (string & {})
+type Spacing = 'default' | (string & {})
+
+interface Props extends astroHTML.JSX.TableHTMLAttributes {
+  class?: string
+  table?: Table
+  id?: string
+  variant?: Variant
+  theme?: Theme
+  spacing?: Spacing
+}
+
+const {
+  class: className,
+  table,
+  id,
+  theme = 'default',
+  variant = 'default',
+  spacing = 'default',
+  ...props
+} = Astro.props
+
+const hasTheadSlots = Astro.slots.has('thead-start') || Astro.slots.has('thead-end')
+const hasTbodySlots = Astro.slots.has('tbody-start') || Astro.slots.has('tbody-end')
+const hasTfootSlots = Astro.slots.has('tfoot-start') || Astro.slots.has('tfoot-end')
+
+const toRenderHead = table?.thead?.length || hasTheadSlots
+const toRenderBody = table?.tbody?.length || hasTbodySlots
+const toRenderFoot = table?.tfoot?.length || hasTfootSlots
+---
+
+<table
+  class:list={[
+    'table',
+    className,
+    `table_variant-${variant}`,
+    `table_theme-${theme}`,
+    `table_spacing-${spacing}`
+  ]}
+  {...props}
+  {...id ? { [`data-table-${id}`]: true } : {}}
+>
+  {
+    toRenderHead && (
+      <thead class="table__thead">
+        <slot name="thead-start" />
+        {table?.thead?.map((row, rowIndex) => (
+          <tr class="table__row">
+            {row.map(({ content, classList, mods, ...rest }, colIndex) => (
+              <th
+                class:list={[
+                  'table__cell',
+                  'table__cell_thead',
+                  classList,
+                  mods?.map(mod => `table__cell_${mod}`)
+                ]}
+                {...rest}
+                {...(id ? { [`data-table-${id}-cell-r${rowIndex}-c${colIndex}`]: true } : {})}
+              >
+                {'html' in content ? <Fragment set:html={content.html} /> : content.text}
+              </th>
+            ))}
+          </tr>
+        ))}
+        <slot name="thead-end" />
+      </thead>
+    )
+  }
+
+  {
+    toRenderBody && (
+      <tbody class="table__tbody">
+        <slot name="tbody-start" />
+        {table?.tbody?.map((row, rowIndex) => (
+          <tr class="table__row">
+            {row.map(({ content, classList, mods, ...rest }, colIndex) => (
+              <td
+                class:list={[
+                  'table__cell',
+                  'table__cell_tbody',
+                  classList,
+                  mods?.map(mod => `table__cell_${mod}`)
+                ]}
+                {...rest}
+                {...(id ? { [`data-table-${id}-cell-r${rowIndex}-c${colIndex}`]: true } : {})}
+              >
+                {'html' in content ? <Fragment set:html={content.html} /> : content.text}
+              </td>
+            ))}
+          </tr>
+        ))}
+        <slot name="tbody-end" />
+      </tbody>
+    )
+  }
+
+  {
+    toRenderFoot && (
+      <tfoot class="table__tfoot">
+        <slot name="tfoot-start" />
+        {table?.tfoot?.map((row, rowIndex) => (
+          <tr class="table__row">
+            {row.map(({ content, classList, mods, ...rest }, colIndex) => (
+              <td
+                class:list={[
+                  'table__cell',
+                  'table__cell_tfoot',
+                  classList,
+                  mods?.map(mod => `table__cell_${mod}`)
+                ]}
+                {...rest}
+                {...(id ? { [`data-table-${id}-cell-r${rowIndex}-c${colIndex}`]: true } : {})}
+              >
+                {'html' in content ? <Fragment set:html={content.html} /> : content.text}
+              </td>
+            ))}
+          </tr>
+        ))}
+        <slot name="tfoot-end" />
+      </tfoot>
+    )
+  }
+</table>
