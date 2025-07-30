@@ -1,0 +1,81 @@
+---
+import Picture from '@shared/ui/picture/Picture.astro'
+
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+---
+
+<section
+  class:list={['hero', className]}
+  {...props}
+>
+  <div class="hero__container">
+    <Picture
+      src="hero"
+      alt="hero"
+      class="hero__image"
+    />
+
+    <header class="hero__header header container">
+      <a
+        href="#"
+        class="header__logo text-title-24 font-title"
+        >PETRO AUTO</a
+      >
+
+      <nav>
+        <ul class="flex gap-6">
+          <li>
+            <a
+              href="#about"
+              class="text-18"
+              >О нас</a
+            >
+          </li>
+          <li>
+            <a
+              href="#process"
+              class="text-18"
+              >Процесс</a
+            >
+          </li>
+          <li>
+            <a
+              href="#completed"
+              class="text-18"
+              >Выполненные заказы</a
+            >
+          </li>
+          <li>
+            <a
+              href="#advantages"
+              class="text-18"
+              >Преимущества</a
+            >
+          </li>
+          <li>
+            <a
+              href="#reviews"
+              class="text-18"
+              >Отзывы</a
+            >
+          </li>
+          <li>
+            <a
+              href="#contacts"
+              class="text-18"
+              >Контакты</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+  </div>
+</section>
+
+<style>
+  @import './hero.scss';
+</style>

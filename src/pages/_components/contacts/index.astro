@@ -1,0 +1,13 @@
+---
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+---
+
+<section
+  class:list={['contacts', className]}
+  {...props}
+>
+</section>

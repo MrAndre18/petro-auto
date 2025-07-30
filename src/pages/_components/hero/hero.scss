@@ -1,0 +1,29 @@
+.hero {
+  width: 100%;
+  height: 100dvh;
+  min-height: rem(700px);
+  padding: rem(24px);
+
+  &__container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: rem(20px);
+    overflow: hidden;
+  }
+
+  &__image {
+    position: absolute;
+    inset: 0;
+  }
+
+  .header {
+    position: relative;
+    color: #fff;
+    width: 100%;
+    padding-top: rem(40px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

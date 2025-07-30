@@ -1,40 +1,26 @@
 ---
-import Button from '@shared/ui/buttons/button/Button.astro'
 import Layout from '@widgets/layout/Layout.astro'
-
-const pages = [
-  {
-    title: 'UI',
-    href: 'ui'
-  },
-  {
-    title: 'Главная',
-    href: 'main'
-  },
-  {
-    title: 'FrontAPI',
-    href: 'front-api'
-  },
-  {
-    title: 'sticky-scroll-anchors',
-    href: 'sticky-scroll-anchors'
-  }
-]
+import About from './_components/about/index.astro'
+import Advantages from './_components/advantages/index.astro'
+import Banner from './_components/banner/index.astro'
+import Checking from './_components/checking/index.astro'
+import Completed from './_components/completed/index.astro'
+import Contacts from './_components/contacts/index.astro'
+import Faq from './_components/faq/index.astro'
+import Hero from './_components/hero/index.astro'
+import Process from './_components/process/index.astro'
+import Reviews from './_components/reviews/index.astro'
 ---
 
 <Layout pageName="index">
-  <h1 class="text-title-100 devices:text-title-40 px-4 text-primary">Ссылки на страницы проекта</h1>
-
-  <div class="mt-6 flex flex-col gap-4">
-    {
-      pages.map(page => (
-        <Button
-          href={`${page.href}`}
-          class="w-fit"
-        >
-          {page.title}
-        </Button>
-      ))
-    }
-  </div>
+  <Hero />
+  <About />
+  <Process />
+  <Banner />
+  <Completed />
+  <Checking />
+  <Advantages />
+  <Reviews />
+  <Faq />
+  <Contacts />
 </Layout>
