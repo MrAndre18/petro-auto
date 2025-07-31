@@ -22,7 +22,7 @@ const { class: className, ...props } = Astro.props as Props
     <header class="hero__header header container">
       <a
         href="#"
-        class="header__logo text-title-24 font-title"
+        class="header__logo font-title text-title-24"
         >PETRO AUTO</a
       >
 
@@ -31,48 +31,57 @@ const { class: className, ...props } = Astro.props as Props
           <li>
             <a
               href="#about"
-              class="text-18"
+              class="header__link text-18"
               >О нас</a
             >
           </li>
           <li>
             <a
               href="#process"
-              class="text-18"
+              class="header__link text-18"
               >Процесс</a
             >
           </li>
           <li>
             <a
               href="#completed"
-              class="text-18"
+              class="header__link text-18"
               >Выполненные заказы</a
             >
           </li>
           <li>
             <a
               href="#advantages"
-              class="text-18"
+              class="header__link text-18"
               >Преимущества</a
             >
           </li>
           <li>
             <a
               href="#reviews"
-              class="text-18"
+              class="header__link text-18"
               >Отзывы</a
             >
           </li>
           <li>
             <a
               href="#contacts"
-              class="text-18"
+              class="header__link text-18"
               >Контакты</a
             >
           </li>
         </ul>
       </nav>
     </header>
+
+    <h1 class="hero__title relative font-title text-title-94 text-white">
+      Автомобили со всего мира под ключ
+    </h1>
+
+    <!-- <p class="hero__description text-18">
+      Мы предлагаем широкий выбор автомобилей из разных стран мира. Наши специалисты помогут вам
+      выбрать и купить автомобиль, который соответствует вашим требованиям и бюджету.
+    </p> -->
   </div>
 </section>
 
