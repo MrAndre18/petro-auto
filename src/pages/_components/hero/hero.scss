@@ -1,13 +1,15 @@
 .hero {
+  display: flex;
   width: 100%;
   height: 100dvh;
-  min-height: rem(700px);
+  min-height: rem(800px);
   padding: rem(24px);
 
   &__container {
     position: relative;
-    width: 100%;
-    height: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
     border-radius: rem(20px);
     overflow: hidden;
   }
@@ -25,6 +27,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    max-width: rem(1680px);
+    width: 100%;
+    margin-inline: auto;
 
     &__link {
       position: relative;
@@ -51,5 +56,18 @@
         transition: transform $transition;
       }
     }
+  }
+
+  &__content {
+    position: relative;
+    max-width: rem(1680px);
+    width: 100%;
+    margin-inline: auto;
+    margin-top: rem(80px);
+    padding-bottom: rem(80px);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 }

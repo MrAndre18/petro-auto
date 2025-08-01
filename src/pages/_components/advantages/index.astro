@@ -1,13 +1,121 @@
 ---
+import { type IconKey } from '@shared/ui/icon/Icon.astro'
+import Icon from '@shared/ui/icon/Icon.astro'
+
 interface Props {
   class?: string
 }
 
 const { class: className, ...props } = Astro.props as Props
+
+const advantages: {
+  title: string
+  description: string
+  icon: IconKey
+  color: 'green' | 'gray' | 'yellow'
+}[] = [
+  {
+    title: 'Авто под ключ',
+    description: 'Берём на себя весь процесс: от подбора и проверки до доставки и растаможки',
+    icon: 'advantage-key',
+    color: 'green'
+  },
+  {
+    title: 'Прозрачная схема работы',
+    description:
+      'Никаких скрытых платежей, «сюрпризов» или серых схем — фиксированная стоимость и договор.',
+    icon: 'advantage-transparent',
+    color: 'gray'
+  },
+  {
+    title: 'Прямые поставки',
+    description:
+      'Работаем напрямую с&nbsp;проверенными поставщиками по&nbsp;всему миру&nbsp;&mdash; без посредников.',
+    icon: 'advantage-delivery',
+    color: 'yellow'
+  },
+  {
+    title: 'Юридическая чистота',
+    description: 'Все авто проходят проверку на ограничения, залоги и юридическую чистоту.',
+    icon: 'advantage-law',
+    color: 'gray'
+  },
+  {
+    title: 'Персональный менеджер',
+    description:
+      'Каждому клиенту — личный куратор, который ведёт вас от заявки до получения машины.',
+    icon: 'advantage-manager',
+    color: 'yellow'
+  },
+  {
+    title: 'Экономия до 40%',
+    description:
+      'Автомобили из-за рубежа обходятся дешевле аналогов на&nbsp;российском рынке&nbsp;&mdash; без потери в&nbsp;качестве.',
+    icon: 'advantage-economy',
+    color: 'green'
+  },
+  {
+    title: 'Поддержка на всех этапах',
+    description: 'Оперативно отвечаем на вопросы, консультируем и сопровождаем каждый шаг.',
+    icon: 'advantage-support',
+    color: 'yellow'
+  },
+  {
+    title: 'Фото- и видеоотчёты',
+    description:
+      'Прозрачность — наш стандарт: получаете отчёты по состоянию машины на всех этапах.',
+    icon: 'advantage-photo',
+    color: 'green'
+  },
+  {
+    title: 'Гарантии и договор',
+    description:
+      'Заключаем официальный договор с прописанными сроками, обязательствами и условиями.',
+    icon: 'advantage-guarantee',
+    color: 'gray'
+  }
+]
 ---
 
 <section
-  class:list={['advantages', className]}
+  class:list={['advantages container mt-40', className]}
   {...props}
 >
+  <header class="flex items-end gap-10">
+    <h2 class="shrink-0 font-title text-title-76">Почему выбирают нас</h2>
+    <div class="mb-4 flex grow items-center gap-10">
+      <span class="h-[1px] w-full bg-gray"></span>
+      <span class="font-title text-title-32">Преимущества</span>
+    </div>
+  </header>
+
+  <div class="mt-20 grid grid-cols-3 gap-6">
+    {
+      advantages.map(({ title, description, icon, color }) => (
+        <article
+          class:list={[
+            'flex flex-col items-center gap-12 rounded-[2.5rem] p-[3.75rem]',
+            color === 'green' && 'bg-pastel-green',
+            color === 'gray' && 'bg-pastel-gray',
+            color === 'yellow' && 'bg-pastel-yellow'
+          ]}
+        >
+          <div class="flex size-20 shrink-0 items-center justify-center rounded-full bg-white">
+            <Icon
+              name={icon}
+              class="size-8 shrink-0"
+              initial
+            />
+          </div>
+          <div class="flex flex-col items-center gap-8">
+            <h3 class="text-center font-title text-title-32">{title}</h3>
+            <p
+              class="max-w-[22rem] text-center text-18"
+              set:html={description}
+            />
+          </div>
+        </article>
+      ))
+    }
+  </div>
 </section>

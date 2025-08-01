@@ -19,7 +19,7 @@ const { class: className, ...props } = Astro.props as Props
       class="hero__image"
     />
 
-    <header class="hero__header header container">
+    <header class="hero__header header">
       <a
         href="#"
         class="header__logo font-title text-title-24"
@@ -74,14 +74,35 @@ const { class: className, ...props } = Astro.props as Props
       </nav>
     </header>
 
-    <h1 class="hero__title relative font-title text-title-94 text-white">
-      Автомобили со всего мира под ключ
-    </h1>
+    <div class="hero__content relative">
+      <div class="flex flex-col gap-12">
+        <h1 class="hero__title relative max-w-5xl font-title text-title-94 leading-none text-white">
+          Автомобили под ключ со&nbsp;всего мира
+        </h1>
 
-    <!-- <p class="hero__description text-18">
-      Мы предлагаем широкий выбор автомобилей из разных стран мира. Наши специалисты помогут вам
-      выбрать и купить автомобиль, который соответствует вашим требованиям и бюджету.
-    </p> -->
+        <div class="flex max-w-3xl gap-6">
+          <span class="min-h-full w-2 shrink-0 bg-accent"></span>
+
+          <div class="flex flex-col gap-6">
+            <p class="text-28 text-white">Сэкономьте <b>до 40%</b> на покупке автомобиля</p>
+            <p class="text-28 text-white">
+              Подберём <b>лучший вариант</b>, организуем доставку в Воронеж и <b
+                >полное оформление</b
+              >
+              под ключ
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative flex h-full w-full items-end">
+        <button
+          class="sticky bottom-6 mt-28 flex items-center gap-5 rounded-2xl bg-accent px-10 py-6 transition-colors hover:bg-accent-dark"
+        >
+          <span class="text-28 text-white">Подобрать автомобиль</span>
+        </button>
+      </div>
+    </div>
   </div>
 </section>
 

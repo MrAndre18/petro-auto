@@ -1,4 +1,8 @@
 ---
+import Parallax from '@shared/ui/parallax/Parallax.astro'
+import ParallaxTarget from '@shared/ui/parallax/parallax-target/ParallaxTarget.astro'
+import Picture from '@shared/ui/picture/Picture.astro'
+
 interface Props {
   class?: string
 }
@@ -7,7 +11,44 @@ const { class: className, ...props } = Astro.props as Props
 ---
 
 <section
-  class:list={['banner', className]}
+  class:list={['banner container mt-40', 'grid grid-cols-12 gap-6', className]}
   {...props}
 >
+  <div class="banner__body col-span-8 col-start-3">
+    <Parallax class="banner__image">
+      <div>
+        <ParallaxTarget>
+          <Picture
+            src="banner"
+            alt="banner"
+            class="banner__image-img"
+          />
+        </ParallaxTarget>
+      </div>
+    </Parallax>
+
+    <div class="banner__content">
+      <div class="flex flex-col gap-10">
+        <h2 class="banner__title text-title-60 font-title">
+          Рассчитаем<br />таможенный<br />платеж
+        </h2>
+
+        <p class="w-2/3 text-18">
+          Растаможка — одна из ключевых статей расходов при ввозе машины. Мы поможем заранее понять,
+          сколько это будет стоить, и где реально можно сэкономить.
+          <br />
+          <br />
+          Вы получите детальный расчёт пошлины без маркетинговых уловок и с пояснением каждого пункта.
+        </p>
+      </div>
+
+      <button class="w-fit rounded-2xl bg-accent px-8 py-4 transition-colors hover:bg-accent-dark">
+        <span class="text-18">Рассчитать платеж</span>
+      </button>
+    </div>
+  </div>
+
+  <style>
+    @import './banner.scss';
+  </style>
 </section>

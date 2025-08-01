@@ -1,0 +1,28 @@
+.banner {
+  height: rem(600px);
+
+  &__body {
+    background-color: #0d1b2a;
+    padding: rem(12px);
+    display: flex;
+    gap: rem(40px);
+    border-radius: rem(20px);
+  }
+
+  &__image {
+    height: 100%;
+    width: rem(434px);
+    border-radius: rem(8px);
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding-block: rem(32px);
+    color: #fff;
+  }
+}

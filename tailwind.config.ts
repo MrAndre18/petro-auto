@@ -13,7 +13,6 @@ export default {
       transitionDuration: {
         DEFAULT: '0.4s'
       },
-      colors: colors,
       boxShadow: {
         custom: '0px 0px 15px 0px #e1e1e1'
       },
@@ -28,6 +27,7 @@ export default {
         mobile: { max: '767px' }
       }
     },
+    colors: colors,
     fontFamily: {
       sans: ['Inter', 'sans-serif'],
       title: ['Oswald', 'sans-serif']
@@ -46,6 +46,14 @@ export default {
         {
           fontWeight: 600,
           lineHeight: '130%',
+          letterSpacing: '-0.02em'
+        }
+      ],
+      'title-60': [
+        rem(60),
+        {
+          fontWeight: 600,
+          lineHeight: '100%',
           letterSpacing: '-0.02em'
         }
       ],
