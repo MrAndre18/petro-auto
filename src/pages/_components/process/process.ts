@@ -12,8 +12,10 @@ export function initProcessAnimation(): (() => void) | void {
   // Функция для расчета адаптивной длины анимации
   function getAdaptiveEndValue() {
     const viewportHeight = window.innerHeight
-    const baseLength = processItems.length * 200 // Базовая длина
-    const adaptiveLength = Math.max(viewportHeight * 1.5, baseLength)
+    // Оптимальная базовая длина для плавной анимации
+    const baseLength = processItems.length * 300 // Оптимизированная длина
+    // Делаем анимацию достаточно длинной для плавного прогресса
+    const adaptiveLength = Math.max(viewportHeight * 2.5, baseLength) // Сбалансированная длина
     return `+=${adaptiveLength}`
   }
 
@@ -80,11 +82,14 @@ export function initProcessAnimation(): (() => void) | void {
   // Функция для определения какой элемент должен быть активен на текущем уровне скролла
   function calculateCurrentState(globalProgress: number) {
     const totalSteps = processItems.length
+
+    // Убираем задержку, но немного сглаживаем начало
+    const adjustedProgress = Math.max(0, globalProgress)
     const stepSize = 1 / totalSteps
 
     // Определяем текущий шаг
-    const currentIndex = Math.floor(globalProgress / stepSize)
-    const localProgress = (globalProgress % stepSize) / stepSize
+    const currentIndex = Math.floor(adjustedProgress / stepSize)
+    const localProgress = (adjustedProgress % stepSize) / stepSize
 
     return {
       currentIndex: Math.min(currentIndex, totalSteps - 1),
@@ -95,7 +100,7 @@ export function initProcessAnimation(): (() => void) | void {
   // Создаем один общий ScrollTrigger для всей секции
   let scrollTrigger = ScrollTrigger.create({
     trigger: processItems[0],
-    start: 'top 80%',
+    start: 'top 70%', // Начинаем раньше для более плавной анимации
     end: getAdaptiveEndValue,
     scrub: 1,
     onUpdate: (self) => {
@@ -109,10 +114,10 @@ export function initProcessAnimation(): (() => void) | void {
       // Показываем/скрываем элементы (одинаково для обоих направлений)
       processItems.forEach((_, index) => {
         if (index < currentIndex) {
-          // Предыдущие элементы - показываем и делаем активными с полным прогрессом
+          // Предыдущие элементы - показываем с полным прогрессом и оставляем активными
           showElement(index)
           updateProgress(index, 1)
-          activateElement(index)
+          activateElement(index) // Оставляем активными завершенные элементы
         } else if (index === currentIndex) {
           // Текущий элемент - показываем
           showElement(index)
@@ -120,19 +125,19 @@ export function initProcessAnimation(): (() => void) | void {
 
           // Активируем текущий элемент
           if (index === 0) {
-            // Первый элемент - активируем через время после появления
-            if (localProgress > 0.3 && !state.firstActivated) {
-              setTimeout(() => {
-                activateElement(0)
-                state.firstActivated = true
-              }, 500)
+            // Первый элемент - активируем когда есть небольшой прогресс
+            if (localProgress > 0.2 && !state.firstActivated) {
+              activateElement(0)
+              state.firstActivated = true
             }
           } else {
-            // Остальные элементы - активируем сразу (предыдущий уже завершен)
-            activateElement(index)
+            // Остальные элементы - активируем когда у них есть прогресс > 15%
+            if (localProgress > 0.15) {
+              activateElement(index)
+            }
           }
-        } else if (index === currentIndex + 1 && localProgress >= 0.7) {
-          // Следующий элемент - показываем когда текущий прогресс >= 70%
+        } else if (index === currentIndex + 1 && localProgress >= 0.6) {
+          // Следующий элемент - показываем когда текущий прогресс >= 60%
           showElement(index)
           updateProgress(index, 0)
           deactivateElement(index)
@@ -145,7 +150,7 @@ export function initProcessAnimation(): (() => void) | void {
       })
 
       // Особая логика для последнего элемента при завершении секции
-      if (currentIndex === processItems.length - 1 && localProgress >= 0.99) {
+      if (currentIndex === processItems.length - 1 && localProgress >= 0.6) {
         activateElement(currentIndex)
       }
     },

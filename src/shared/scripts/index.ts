@@ -38,7 +38,7 @@ import 'aos/dist/aos.css';
 export const commonFunction = (): void => {
   Aos.init({
     duration: 1200,
-    once: true,
+    once: true
   })
 
   Marquee()

@@ -4,6 +4,7 @@
   &__item {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    will-change: opacity, transform;
 
     @media #{media('<',d)} {
       display: block;
@@ -51,6 +52,7 @@
         border-color: #EF233C;
         color: #fff;
         box-shadow: 0 0 80px 0 #EF233C;
+        transition: color $transition, border-color $transition, background-color $transition, box-shadow $transition;
       }
     }
 
@@ -88,7 +90,8 @@
       border-radius: 50%;
       background-color: transparent;
       border: 1px solid #0d1b2a;
-      transition: color $transition, border-color $transition, background-color $transition;
+      transition: color $transition, border-color $transition, background-color $transition, box-shadow $transition;
+      will-change: background-color, border-color, color, box-shadow;
 
       @apply text-primary;
 
