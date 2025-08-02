@@ -4,10 +4,18 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 // Инициализация анимации процесса
-export function initProcessAnimation(): void {
+export function initProcessAnimation(): (() => void) | void {
   const processItems = document.querySelectorAll('[data-process-item]')
 
   if (!processItems.length) return
+
+  // Функция для расчета адаптивной длины анимации
+  function getAdaptiveEndValue() {
+    const viewportHeight = window.innerHeight
+    const baseLength = processItems.length * 200 // Базовая длина
+    const adaptiveLength = Math.max(viewportHeight * 1.5, baseLength)
+    return `+=${adaptiveLength}`
+  }
 
   // Устанавливаем начальное состояние
   gsap.set(processItems, { opacity: 0, y: 50 })
@@ -85,10 +93,10 @@ export function initProcessAnimation(): void {
   }
 
   // Создаем один общий ScrollTrigger для всей секции
-  ScrollTrigger.create({
+  let scrollTrigger = ScrollTrigger.create({
     trigger: processItems[0],
     start: 'top 80%',
-    end: () => `+=${processItems.length * 300}`, // 300px на каждый элемент
+    end: getAdaptiveEndValue,
     scrub: 1,
     onUpdate: (self) => {
       const { currentIndex, localProgress } = calculateCurrentState(self.progress)
@@ -159,4 +167,21 @@ export function initProcessAnimation(): void {
       state.sectionCompleted = false
     }
   })
+
+  // Обработчик изменения размера окна для пересчета длины анимации
+  const handleResize = () => {
+    if (scrollTrigger) {
+      scrollTrigger.refresh()
+    }
+  }
+
+  window.addEventListener('resize', handleResize)
+
+  // Возвращаем функцию очистки
+  return () => {
+    if (scrollTrigger) {
+      scrollTrigger.kill()
+    }
+    window.removeEventListener('resize', handleResize)
+  }
 }
