@@ -118,7 +118,7 @@ const updateBuildScripts = () => ({
 // https://astro.build/config
 export default defineConfig({
   site: 'https://mrandre18.github.io/petro-auto/',
-  base: '/petro-auto/',
+  base: import.meta.env.DEV ? '/' : '/petro-auto/',
 
   devToolbar: {
     enabled: false
