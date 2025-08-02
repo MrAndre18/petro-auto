@@ -27,8 +27,31 @@ export { Layout }
     />
     <link
       rel="icon"
+      type="image/png"
+      href="/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link
+      rel="icon"
       type="image/svg+xml"
-      href="/favicon.svg"
+      href="/favicon/favicon.svg"
+    />
+    <link
+      rel="shortcut icon"
+      href="/favicon/favicon.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <meta
+      name="apple-mobile-web-app-title"
+      content="Petro Auto"
+    />
+    <link
+      rel="manifest"
+      href="/favicon/site.webmanifest"
     />
     <meta
       name="generator"
@@ -38,26 +61,26 @@ export { Layout }
     <slot name="description">
       <meta
         name="description"
-        content="Описание страницы"
+        content="Petro Auto - это компания, которая занимается импортом автомобилей из США, Европы, Азии. Мы предлагаем широкий выбор автомобилей, которые соответствуют всем стандартам качества и безопасности."
       />
     </slot>
 
     <slot name="opengraph">
       <meta
         property="og:title"
-        content="Название страницы"
+        content="Petro Auto - импорт автомобилей со всего мира"
       />
       <meta
         property="og:description"
-        content="Описание страницы"
+        content="Petro Auto - это компания, которая занимается импортом автомобилей из США, Европы, Азии. Мы предлагаем широкий выбор автомобилей, которые соответствуют всем стандартам качества и безопасности."
       />
       <meta
         property="og:image"
-        content="https://example.com/image.jpg"
+        content="/favicon/opengraph.png"
       />
       <meta
         property="og:url"
-        content="https://example.com"
+        content="https://petroauto.ru"
       />
       <meta
         property="og:type"
@@ -72,7 +95,7 @@ export { Layout }
     data-overlayscrollbars-initialize
   >
     <div class="wrapper">
-      <!-- <Cookies /> -->
+      <Cookies />
       <MobileMenu />
       <Header />
       <main
