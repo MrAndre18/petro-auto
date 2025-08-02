@@ -21,6 +21,7 @@
     "@astrojs/tailwind": "6.0.2",
     "@fancyapps/ui": "^5.0.36",
     "accordion-js": "^3.4.0",
+    "aos": "^3.0.0-beta.6",
     "astro": "5.7.2",
     "gsap": "^3.12.7",
     "infinite-marquee": "^1.0.7",

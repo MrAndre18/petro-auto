@@ -29,9 +29,18 @@ import { initHorizontalScroll } from './utils/horizontal-scroll'
 import { initOverlayScrollbars } from './utils/overlayScrollbars'
 import { cookies } from '@widgets/cookies/cookies'
 
-  ; (window as any).process = { env: {} } // Фикс для совместимости с TomSelect
+// @ts-ignore
+import Aos from 'aos';
+import 'aos/dist/aos.css';
+
+; (window as any).process = { env: {} } // Фикс для совместимости с TomSelect
 
 export const commonFunction = (): void => {
+  Aos.init({
+    duration: 1200,
+    once: true,
+  })
+
   Marquee()
 
   initOverlayScrollbars()
