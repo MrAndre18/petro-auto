@@ -6,7 +6,7 @@ import path, { resolve } from 'node:path'
 import url from 'node:url'
 
 const isDevBuild = process.env.CI_ENV === 'dev'
-const basePath = process.env.NODE_ENV === 'production' ? '/petro-auto/' : '/'
+const basePath = '/'
 
 const timestamp = Date.now()
 
