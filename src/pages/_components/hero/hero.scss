@@ -5,6 +5,11 @@
   min-height: rem(800px);
   padding: rem(24px);
 
+  @media #{media('<',d)} {
+    padding: 0;
+    min-height: rem(460px);
+  }
+
   &__container {
     position: relative;
     flex-grow: 1;
@@ -12,48 +17,20 @@
     flex-direction: column;
     border-radius: rem(20px);
     overflow: hidden;
+
+    @media #{media('<',d)} {
+      border-radius: 0;
+      padding-inline: rem(16px);
+    }
   }
 
   &__image {
     position: absolute;
     inset: 0;
-  }
 
-  .header {
-    position: relative;
-    color: #fff;
-    width: 100%;
-    padding-top: rem(40px);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: rem(1680px);
-    width: 100%;
-    margin-inline: auto;
-
-    &__link {
-      position: relative;
-
-      @media #{media('>',d)} and (hover: hover) and (pointer: fine) {
-        &:hover {
-          &::before {
-            transform-origin: left;
-            transform: scaleX(1);
-          }
-        }
-      }
-
-      &::before {
-        content: '';
-        position: absolute;
-        bottom: rem(-4px);
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background-color: currentColor;
-        transform: scaleX(0);
-        transform-origin: right;
-        transition: transform $transition;
+    @media #{media('<',d)} {
+      :global(.picture__img) {
+        object-position: right;
       }
     }
   }
@@ -63,11 +40,17 @@
     max-width: rem(1680px);
     width: 100%;
     margin-inline: auto;
-    margin-top: rem(80px);
+    margin-top: rem(150px);
     padding-bottom: rem(80px);
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    @media #{media('<',d)} {
+      margin-top: rem(80px);
+      padding-bottom: rem(40px);
+      max-width: unset;
+    }
   }
 }

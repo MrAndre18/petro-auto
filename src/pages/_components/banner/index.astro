@@ -11,7 +11,11 @@ const { class: className, ...props } = Astro.props as Props
 ---
 
 <section
-  class:list={['banner container mt-40', 'grid grid-cols-12 gap-6', className]}
+  class:list={[
+    'banner container mt-40 devices:mt-16',
+    'grid grid-cols-12 gap-6 devices:block',
+    className
+  ]}
   {...props}
 >
   <div class="banner__body col-span-8 col-start-3">
@@ -28,12 +32,12 @@ const { class: className, ...props } = Astro.props as Props
     </Parallax>
 
     <div class="banner__content">
-      <div class="flex flex-col gap-10">
-        <h2 class="banner__title text-title-60 font-title">
-          Рассчитаем<br />таможенный<br />платеж
+      <div class="flex flex-col gap-10 devices:gap-6">
+        <h2 class="banner__title font-title text-title-60 devices:text-title-32">
+          Рассчитаем<br class="desktop" /> таможенный<br class="desktop" /> платеж
         </h2>
 
-        <p class="w-2/3 text-18">
+        <p class="w-2/3 text-18 devices:w-full devices:text-16">
           Растаможка — одна из ключевых статей расходов при ввозе машины. Мы поможем заранее понять,
           сколько это будет стоить, и где реально можно сэкономить.
           <br />
@@ -42,8 +46,11 @@ const { class: className, ...props } = Astro.props as Props
         </p>
       </div>
 
-      <button class="w-fit rounded-2xl bg-accent px-8 py-4 transition-colors hover:bg-accent-dark">
-        <span class="text-18">Рассчитать платеж</span>
+      <button
+        class="w-fit rounded-2xl bg-accent px-8 py-4 transition-colors hover:bg-accent-dark devices:w-full devices:rounded-lg devices:px-6 devices:py-3 mobile:mt-10"
+        data-modal-trigger="feedback-modal"
+      >
+        <span class="text-18 devices:text-16">Рассчитать платеж</span>
       </button>
     </div>
   </div>

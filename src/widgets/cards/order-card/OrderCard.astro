@@ -1,0 +1,86 @@
+---
+import Icon, { type IconKey } from '@shared/ui/icon/Icon.astro'
+import Picture from '@shared/ui/picture/Picture.astro'
+
+interface Props {
+  class?: string
+  image: string
+  title: string
+  country: 'Korea' | 'Japan' | 'USA' | 'China'
+  description: string
+  economy: string
+  duration: string
+}
+
+const {
+  class: className,
+  image,
+  title,
+  country,
+  description,
+  economy,
+  duration,
+  ...props
+} = Astro.props as Props
+
+const countryIcon = {
+  Korea: 'korea',
+  Japan: 'japan',
+  USA: 'usa',
+  China: 'china'
+}
+
+const countryText = {
+  Korea: 'Из Кореи',
+  Japan: 'Из Японии',
+  USA: 'Из США',
+  China: 'Из Китая'
+}
+
+export { OrderCard }
+---
+
+<article
+  class:list={['order-card', className]}
+  {...props}
+>
+  <Picture
+    src={image}
+    alt={title}
+    class="order-card__image"
+  />
+
+  <div class="order-card__content">
+    <div class="flex flex-col gap-4 devices:gap-2">
+      <div class="flex flex-col gap-2">
+        <h3 class="line-clamp-1 font-title text-title-32 devices:text-title-24">{title}</h3>
+        <div class="flex items-center gap-3">
+          <Icon
+            name={countryIcon[country] as IconKey}
+            initial
+            class="size-5 devices:size-4"
+          />
+          <span class="devices:text-14 text-16 text-gray-dark">{countryText[country]}</span>
+        </div>
+      </div>
+
+      <p class="line-clamp-4 grow text-18 devices:text-16">{description}</p>
+    </div>
+
+    <div class="grid grid-cols-2">
+      <div class="flex flex-col items-center border-r border-accent text-center">
+        <span class="font-title text-title-24 devices:text-title-16">{economy}</span>
+        <span class="devices:text-14 text-16 text-gray-dark">Экономия</span>
+      </div>
+
+      <div class="flex flex-col items-center text-center">
+        <span class="font-title text-title-24 devices:text-title-16">{duration}</span>
+        <span class="devices:text-14 text-16 text-gray-dark">Под ключ</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<style>
+  @import './order-card.scss';
+</style>

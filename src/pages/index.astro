@@ -10,9 +10,11 @@ import Faq from './_components/faq/index.astro'
 import Hero from './_components/hero/index.astro'
 import Process from './_components/process/index.astro'
 import Reviews from './_components/reviews/index.astro'
+import FeedbackModal from '@widgets/feedback-modal/FeedbackModal.astro'
 ---
 
 <Layout pageName="index">
+  <FeedbackModal />
   <Hero />
   <About />
   <Process />

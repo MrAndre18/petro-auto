@@ -1,9 +1,190 @@
 ---
+import Author from '@shared/ui/author/Author.astro'
+import Icon from '@shared/ui/icon/Icon.astro'
+
 export { Footer }
 ---
 
-<footer class="footer">
-  <p>Footer</p>
+<footer class="footer mt-40 devices:mt-16">
+  <div class="container flex flex-col gap-40 devices:gap-16">
+    <div
+      class="footer__content grid grid-cols-12 gap-6 devices:flex devices:flex-col devices:gap-10"
+    >
+      <div class="col-span-3 flex flex-col gap-14 devices:gap-8">
+        <div class="flex flex-col gap-4 devices:gap-3">
+          <a
+            href="#hero"
+            class="text-48 font-bold devices:text-28"
+            >PETRO AUTO</a
+          >
+          <p class="devices:text-14 text-16 text-gray">
+            Каждый привезённый автомобиль — как личная победа. Это не просто машина, а билет в жизнь
+            без компромиссов и скуки.
+          </p>
+        </div>
+
+        <button
+          class="footer__button"
+          data-modal-trigger="feedback-modal"
+        >
+          <span class="footer__button-text text-18">Оставить заявку</span>
+          <Icon
+            name="arrow-right"
+            class="footer__button-icon"
+          />
+        </button>
+      </div>
+
+      <div class="col-span-3 col-start-7 flex flex-col justify-between gap-8 devices:gap-5">
+        <div class="flex flex-col gap-3">
+          <span class="text-18 text-gray-dark">Адрес</span>
+          <p class="text-18">площадь Ленина 7, Ленинский район, городской округ Воронеж, 394018</p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <span class="text-18 text-gray-dark">Контакты</span>
+          <div class="flex flex-col gap-2">
+            <a
+              href="tel:+78005553535"
+              class="footer__link w-fit text-18"
+              >+7 (800) 555-35-35</a
+            >
+            <a
+              href="mailto:example@mail.ru"
+              class="footer__link w-fit text-18"
+              >example@mail.ru</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="col-span-3 -col-end-1 flex flex-col justify-between gap-8">
+        <a
+          href="#hero"
+          class="group ml-auto flex items-center gap-8 desktop"
+        >
+          <span class="text-18">Наверх</span>
+          <span
+            class="flex size-16 shrink-0 items-center justify-center rounded-full border border-white transition-colors group-hover:bg-white group-hover:text-primary"
+          >
+            <Icon
+              name="arrow-top"
+              class="transition-transform group-hover:-translate-y-1"
+            />
+          </span>
+        </a>
+
+        <div class="flex flex-wrap items-center justify-end gap-6">
+          <a
+            href="#"
+            target="_blank"
+            class="flex size-12 shrink-0 items-center justify-center rounded-full border border-white transition-colors hover:bg-white hover:text-primary"
+          >
+            <Icon
+              name="telegram"
+              class="size-5"
+            />
+          </a>
+          <a
+            href="#"
+            target="_blank"
+            class="flex size-12 shrink-0 items-center justify-center rounded-full border border-white transition-colors hover:bg-white hover:text-primary"
+          >
+            <Icon
+              name="vk"
+              class="size-5"
+            />
+          </a>
+          <a
+            href="#"
+            target="_blank"
+            class="flex size-12 shrink-0 items-center justify-center rounded-full border border-white transition-colors hover:bg-white hover:text-primary"
+          >
+            <Icon
+              name="youtube"
+              class="size-5"
+            />
+          </a>
+          <a
+            href="#"
+            target="_blank"
+            class="flex size-12 shrink-0 items-center justify-center rounded-full border border-white transition-colors hover:bg-white hover:text-primary"
+          >
+            <Icon
+              name="inst"
+              class="size-5"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom flex flex-col gap-6 devices:gap-4">
+      <nav>
+        <ul
+          class="flex items-center justify-between gap-6 devices:grid devices:grid-cols-2 devices:items-start devices:gap-4 mobile:flex mobile:flex-col"
+        >
+          <li>
+            <a
+              href="#about"
+              class="footer__link text-18"
+              >О нас</a
+            >
+          </li>
+          <li>
+            <a
+              href="#process"
+              class="footer__link text-18"
+              >Процесс</a
+            >
+          </li>
+          <li>
+            <a
+              href="#completed"
+              class="footer__link text-18"
+              >Выполненные заказы</a
+            >
+          </li>
+          <li>
+            <a
+              href="#advantages"
+              class="footer__link text-18"
+              >Преимущества</a
+            >
+          </li>
+          <li>
+            <a
+              href="#reviews"
+              class="footer__link text-18"
+              >Отзывы</a
+            >
+          </li>
+          <li>
+            <a
+              href="#contacts"
+              class="footer__link text-18"
+              >Контакты</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <div
+        class="relative flex items-end justify-between border-t border-gray-light pt-6 devices:flex-col devices:items-start devices:gap-4 devices:pt-4"
+      >
+        <a
+          href="/policy"
+          target="_blank"
+          class="footer__link text-18"
+          >Политика конфиденциальности</a
+        >
+        <span
+          class="absolute left-1/2 -translate-x-1/2 translate-x-0 text-16 text-gray-dark devices:static"
+          >© 2025 “PETRO AUTO”. Все права защищены</span
+        >
+        <Author class="devices:ml-auto" />
+      </div>
+    </div>
+  </div>
 </footer>
 
 <style>

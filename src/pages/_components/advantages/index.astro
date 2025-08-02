@@ -78,39 +78,42 @@ const advantages: {
 ---
 
 <section
-  class:list={['advantages container mt-40', className]}
+  class:list={['advantages container mt-40 devices:mt-16', className]}
+  id="advantages"
   {...props}
 >
-  <header class="flex items-end gap-10">
-    <h2 class="shrink-0 font-title text-title-76">Почему выбирают нас</h2>
-    <div class="mb-4 flex grow items-center gap-10">
-      <span class="h-[1px] w-full bg-gray"></span>
-      <span class="font-title text-title-32">Преимущества</span>
+  <header class="flex items-end gap-10 devices:gap-6">
+    <h2 class="shrink-0 font-title text-title-76 devices:text-title-32">Почему выбирают нас</h2>
+    <div class="mb-4 flex grow items-center gap-10 desktop">
+      <span class="h-[1px] w-full bg-gray desktop"></span>
+      <span class="font-title text-title-32 devices:text-title-16">Преимущества</span>
     </div>
   </header>
 
-  <div class="mt-20 grid grid-cols-3 gap-6">
+  <div
+    class="mt-20 grid grid-cols-3 gap-6 devices:mt-10 devices:grid-cols-2 devices:gap-4 mobile:flex mobile:flex-col"
+  >
     {
       advantages.map(({ title, description, icon, color }) => (
         <article
           class:list={[
-            'flex flex-col items-center gap-12 rounded-[2.5rem] p-[3.75rem]',
+            'flex flex-col items-center gap-12 rounded-[2.5rem] p-[3.75rem] devices:gap-8 devices:rounded-2xl devices:p-10 mobile:p-6',
             color === 'green' && 'bg-pastel-green',
             color === 'gray' && 'bg-pastel-gray',
             color === 'yellow' && 'bg-pastel-yellow'
           ]}
         >
-          <div class="flex size-20 shrink-0 items-center justify-center rounded-full bg-white">
+          <div class="flex size-20 shrink-0 items-center justify-center rounded-full bg-white devices:size-16">
             <Icon
               name={icon}
-              class="size-8 shrink-0"
+              class="size-8 shrink-0 devices:size-6"
               initial
             />
           </div>
-          <div class="flex flex-col items-center gap-8">
-            <h3 class="text-center font-title text-title-32">{title}</h3>
+          <div class="flex flex-col items-center gap-8 devices:gap-6">
+            <h3 class="text-center font-title text-title-32 devices:text-title-24">{title}</h3>
             <p
-              class="max-w-[22rem] text-center text-18"
+              class="max-w-[22rem] text-center text-18 devices:max-w-full devices:text-16"
               set:html={description}
             />
           </div>

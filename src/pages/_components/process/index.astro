@@ -36,21 +36,22 @@ const items = [
 ---
 
 <section
-  class:list={['process', 'container mt-40', className]}
+  class:list={['process', 'container mt-40 devices:mt-16', className]}
+  id="process"
   {...props}
 >
-  <h2 class="font-title text-title-48">Процесс сотрудничества</h2>
-  <ul class="process__list mt-20 flex flex-col">
+  <h2 class="font-title text-title-48 devices:text-title-32">Процесс сотрудничества</h2>
+  <ul class="process__list mt-20 flex flex-col devices:mt-10">
     {
       items.map(({ title, description }, index) => (
         <li
-          class={`process__item ${index === 0 ? 'active' : ''}`}
+          class="process__item"
           data-process-item={index + 1}
         >
           <div class="process__item-content">
             <div class="process__item-text">
-              <h3 class="font-title text-title-32">{title}</h3>
-              <p class="text-18 text-primary/70">{description}</p>
+              <h3 class="font-title text-title-32 devices:text-title-18">{title}</h3>
+              <p class="text-18 text-primary/70 devices:text-16">{description}</p>
             </div>
             <div class="flex flex-col items-center">
               <span

@@ -1,47 +1,116 @@
 ---
-import HeaderPanel from './header-panel/HeaderPanel.astro'
-import HeaderContainer from './header-container/HeaderContainer.astro'
-import MobileMenu from '@widgets/mobile-menu/MobileMenu.astro'
+import Icon from '@shared/ui/icon/Icon.astro'
 
 export { Header }
 ---
 
-<HeaderContainer hasOverlay>
-  <HeaderPanel
-    data-header-panel="menu"
-    class="desktop"
-    data-panel-animation="slide-left"
+<header class="header container">
+  <span class="header__logo text-24 font-bold devices:text-18">PETRO AUTO</span>
+
+  <button
+    class="size-8 devices"
+    data-modal-trigger="mobile-menu"
   >
-    <div class="h-96 w-full bg-amber-500"></div>
-  </HeaderPanel>
+    <Icon
+      name="burger"
+      class="size-full"
+    />
+  </button>
 
-  <HeaderPanel
-    data-header-panel="menu-mob"
-    class="header-panel__menu-mob devices"
-    data-panel-animation="slide-left"
-  >
-    <MobileMenu />
-  </HeaderPanel>
+  <nav class="desktop">
+    <ul class="flex gap-6 devices:gap-4">
+      <li>
+        <a
+          href="#about"
+          class="header__link text-18 devices:text-16"
+          >О нас</a
+        >
+      </li>
+      <li>
+        <a
+          href="#process"
+          class="header__link text-18 devices:text-16"
+          >Процесс</a
+        >
+      </li>
+      <li>
+        <a
+          href="#completed"
+          class="header__link text-18 devices:text-16"
+          >Выполненные заказы</a
+        >
+      </li>
+      <li>
+        <a
+          href="#advantages"
+          class="header__link text-18 devices:text-16"
+          >Преимущества</a
+        >
+      </li>
+      <li>
+        <a
+          href="#reviews"
+          class="header__link text-18 devices:text-16"
+          >Отзывы</a
+        >
+      </li>
+      <li>
+        <a
+          href="#contacts"
+          class="header__link text-18 devices:text-16"
+          >Контакты</a
+        >
+      </li>
+    </ul>
+  </nav>
+</header>
 
-  <HeaderPanel data-header-panel="catalog">
-    <div class="h-96 w-full bg-lime-500"></div>
-  </HeaderPanel>
+<style lang="scss">
+  .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    color: #fff;
+    width: 100%;
+    padding-top: rem(64px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-  <HeaderPanel data-header-panel="search">
-    <div class="h-48 w-full bg-emerald-500"></div>
-  </HeaderPanel>
+    @media #{media('<',d)} {
+      padding-top: rem(24px);
+      align-items: flex-end;
+    }
 
-  <HeaderPanel
-    class="!w-fit"
-    data-header-panel="compare"
-  >
-    <div class="h-96 w-96 bg-amber-500"></div>
-  </HeaderPanel>
+    &__link {
+      position: relative;
 
-  <HeaderPanel
-    class="!w-fit"
-    data-header-panel="favorite"
-  >
-    <div class="h-96 w-96 bg-amber-500"></div>
-  </HeaderPanel>
-</HeaderContainer>
+      @media #{media('>',d)} and (hover: hover) and (pointer: fine) {
+        &:hover {
+          &::before {
+            transform-origin: left;
+            transform: scaleX(1);
+          }
+        }
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: rem(-4px);
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: currentColor;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform $transition;
+
+        @media #{media('<',d)} {
+          bottom: rem(-3px);
+        }
+      }
+    }
+  }
+</style>

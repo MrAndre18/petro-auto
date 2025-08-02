@@ -1,0 +1,14 @@
+.review-card {
+  background-color: #F0EFEB;
+  padding: rem(40px);
+  border-radius: rem(40px);
+  display: flex;
+  flex-direction: column;
+  gap: rem(52px);
+
+  @media #{media('<',d)} {
+    padding: rem(24px);
+    border-radius: rem(24px);
+    gap: rem(24px);
+  }
+}

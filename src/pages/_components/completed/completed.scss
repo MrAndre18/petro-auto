@@ -1,0 +1,19 @@
+.completed {
+  &__slider {
+    margin-inline: rem(-120px);
+    padding-inline: rem(120px);
+
+    @media #{media('<',d)} {
+      margin-inline: rem(-16px);
+      padding-inline: rem(16px);
+    }
+  }
+
+  &__slide {
+    height: auto !important;
+
+    @media #{media('<',d)} {
+      width: rem(320px);
+    }
+  }
+}

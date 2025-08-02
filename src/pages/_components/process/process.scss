@@ -5,10 +5,19 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 
+    @media #{media('<',d)} {
+      display: block;
+    }
+
     &:nth-child(odd) {
       .process__item-content {
         margin-left: auto;
         transform: translateX(rem(40px));
+
+        @media #{media('<',d)} {
+          transform: none;
+          margin-left: 0;
+        }
       }
     }
 
@@ -18,6 +27,11 @@
         margin-right: auto;
         transform: translateX(rem(-40px));
         flex-direction: row-reverse;
+
+        @media #{media('<',d)} {
+          transform: none;
+          margin-right: 0;
+        }
       }
 
       .process__item-text {
@@ -43,6 +57,12 @@
     &-content {
       display: flex;
       gap: rem(48px);
+
+      @media #{media('<',d)} {
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        gap: rem(24px);
+      }
     }
 
     &-text {
@@ -51,6 +71,12 @@
       gap: rem(12px);
       width: rem(580px);
       text-align: right;
+
+      @media #{media('<',d)} {
+        width: auto;
+        gap: rem(8px);
+        text-align: left;
+      }
     }
 
     &-number {
@@ -64,16 +90,27 @@
       border: 1px solid #0d1b2a;
       transition: color $transition, border-color $transition, background-color $transition;
 
-      @apply font-title text-title-32 text-primary;
+      @apply text-primary;
+
+      @media #{media('<',d)} {
+        width: rem(52px);
+        height: rem(52px);
+      }
     }
 
     &-line {
       position: relative;
-      width: rem(1px);
-      height: rem(90px);
+      width: rem(2px);
+      height: rem(180px);
       background-color: #ADB5BD;
       margin-block: rem(8px);
       transition: background-color $transition;
+
+      @media #{media('<',d)} {
+        width: 1px;
+        height: rem(100px);
+        min-block: rem(4px);
+      }
 
       &-progress {
         position: absolute;

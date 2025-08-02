@@ -1,0 +1,24 @@
+.cookies {
+  position: fixed;
+  bottom: rem(40px);
+  right: rem(40px);
+  z-index: 100;
+  padding: rem(32px);
+  border-radius: rem(16px);
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: rem(24px);
+  width: rem(540px);
+  background-color: #fff;
+
+  @media #{media('<', d)} {
+    bottom: rem(16px);
+    right: rem(16px);
+    left: rem(16px);
+    width: auto;
+    padding: rem(24px);
+    border-radius: rem(12px);
+    gap: rem(16px);
+  }
+}

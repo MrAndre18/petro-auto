@@ -22,7 +22,7 @@ export class InputValidator {
     this.options = options
     this.el = input
     this.value = input.value
-    this.type = this.#getType()
+    this.type = this.getType()
     if (this.type === 'select') {
       this.el.addEventListener('change', () => {
         this.value = this.el.value
@@ -38,7 +38,7 @@ export class InputValidator {
     this.isValid = true
     this.afterSubmit = false
     this.wrapper = input.closest('[data-input-parent]') as HTMLElement
-    this.errorContainer = this.#getErrorContainer()
+    this.errorContainer = this.getErrorContainer()
   }
 
   validate() {
@@ -56,7 +56,7 @@ export class InputValidator {
       }
     }
     const valid = this.checkValid()
-    this.#switchError(this.errorMessage)
+    this.switchError(this.errorMessage)
 
     return valid
   }
@@ -89,16 +89,16 @@ export class InputValidator {
     }
 
     if (this.value !== '') {
-      if (this.#checkMinLength()) {
+      if (this.checkMinLength()) {
         this.errorMessage =
           this.el.getAttribute('data-error-message') || getErrorMessages()[this.type]
-        this.#checkValidCases()
+        this.checkValidCases()
       }
     } else if (this.required) {
       this.isValid = false
       this.errorMessage = getErrorMessages().required
     }
-    
+
     return this.isValid
   }
 
@@ -130,7 +130,7 @@ export class InputValidator {
     })
   }
 
-  #checkValidCases() {
+  checkValidCases() {
     const textValue = this.value.replace(/['\s_\-]/g, '')
     const phoneValue = this.value.replace(/\D/g, '')
     const positiveNumberPattern = /^(?:[1-9]\d*|0)?(?:\.\d+)?$/
@@ -179,7 +179,7 @@ export class InputValidator {
     }
   }
 
-  #checkMinLength() {
+  checkMinLength() {
     if (this.minlength && this.value.length < parseInt(this.minlength)) {
       this.isValid = false
       this.errorMessage = getErrorMessage('minlength', { minlength: this.minlength })
@@ -188,18 +188,18 @@ export class InputValidator {
     return true
   }
 
-  #switchError(message: string) {
+  switchError(message: string) {
     if (!this.isValid) this.visibleError(message)
     else this.removeError()
   }
 
-  #getType(): string {
+  getType(): string {
     if (this.el.getAttribute('data-validate') !== 'data-validate')
       return this.el.getAttribute('data-validate') as string
     else return (this.type = this.el.getAttribute('type') as string)
   }
 
-  #getErrorContainer(): HTMLElement {
+  getErrorContainer(): HTMLElement {
     if (this.el.dataset.errorContainer) {
       let errorContainer = document.querySelector(
         `[data-error-container="${this.el.dataset.errorContainer}"]:not(input)`

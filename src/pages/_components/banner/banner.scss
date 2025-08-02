@@ -1,12 +1,33 @@
 .banner {
   height: rem(600px);
 
+  @media #{media('<',d)} {
+    height: rem(400px);
+  }
+
+  @media #{media('<',m)} {
+    height: auto;
+  }
+
   &__body {
     background-color: #0d1b2a;
     padding: rem(12px);
     display: flex;
     gap: rem(40px);
+    height: 100%;
     border-radius: rem(20px);
+
+    @media #{media('<',d)} {
+      padding: rem(12px);
+      border-radius: rem(16px);
+      gap: rem(24px);
+    }
+
+    @media #{media('<',m)} {
+      flex-direction: column;
+      border-radius: 0;
+      margin-inline: rem(-16px);
+    }
   }
 
   &__image {
@@ -15,6 +36,16 @@
     border-radius: rem(8px);
     flex-shrink: 0;
     overflow: hidden;
+
+    @media #{media('<',d)} {
+      width: rem(220px);
+      border-radius: rem(4px);
+    }
+
+    @media #{media('<',m)} {
+      width: 100%;
+      height: rem(200px);
+    }
   }
 
   &__content {
@@ -24,5 +55,9 @@
     height: 100%;
     padding-block: rem(32px);
     color: #fff;
+
+    @media #{media('<',d)} {
+      padding-block: 0;
+    }
   }
 }

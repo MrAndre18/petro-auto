@@ -1,0 +1,94 @@
+---
+import Checkbox from '@shared/ui/checkbox/Checkbox.astro'
+import Modal from '@shared/ui/modal/Modal.astro'
+import Textarea from '@shared/ui/textarea/Textarea.astro'
+import Input from '@shared/ui/input/Input.astro'
+
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+export { FeedbackModal }
+---
+
+<Modal
+  id="feedback-modal"
+  class:list={['feedback-modal', className]}
+  data-lenis-prevent
+  {...props}
+>
+  <form
+    slot="content"
+    novalidate
+    action=""
+    class="contacts__form devices:rounded-24 col-span-5 -col-end-2 rounded-3xl p-10 devices:p-4 devices:pb-6 devices:pt-10"
+  >
+    <header class="flex flex-col items-center gap-3 text-center">
+      <h3 class="font-title text-title-32 devices:text-title-20">
+        Станьте на шаг ближе к своей мечте!
+      </h3>
+      <p class="w-4/5 text-18 devices:w-full devices:text-16">
+        Оставьте заявку и наши менеджеры подберут для вас лучшие варианты
+      </p>
+    </header>
+
+    <fieldset class="mt-10 flex flex-col gap-5 devices:mt-6 devices:gap-4">
+      <Input
+        name="name"
+        placeholder="Как вас зовут?"
+        data-validate="text-only"
+        inputmode="text"
+        required
+        inputClass="!bg-pastel-green"
+      />
+      <Input
+        name="email"
+        placeholder="Email"
+        data-validate="email"
+        inputmode="email"
+        required
+        inputClass="!bg-pastel-green"
+      />
+      <Input
+        name="tel"
+        placeholder="Телефон"
+        data-validate="tel"
+        data-mask-phone
+        inputmode="tel"
+        required
+        inputClass="!bg-pastel-green"
+      />
+      <Textarea
+        name="message"
+        placeholder="Марка авто, модель, год выпуска и другие пожелания"
+        required
+        class="!bg-pastel-green"
+      />
+    </fieldset>
+
+    <div class="mt-5 flex flex-col gap-4 devices:mt-6 devices:gap-3">
+      <button
+        type="submit"
+        class="flex items-center justify-center gap-5 rounded-2xl bg-accent px-10 py-6 transition-colors hover:bg-accent-dark devices:rounded-xl devices:px-8 devices:py-4"
+      >
+        <span class="text-18 text-white devices:text-16">Подобрать автомобиль</span>
+      </button>
+      <Checkbox
+        name="policy"
+        required
+        data-validate="checkbox"
+        >Согласен на обработку данных в соответствии с <a
+          href="/policy"
+          class="inline text-gray-dark transition-colors hover:text-accent"
+          >Политикой конфиденциальности</a
+        ></Checkbox
+      >
+    </div>
+  </form>
+</Modal>
+
+<style>
+  @import './feedback-modal.scss';
+</style>

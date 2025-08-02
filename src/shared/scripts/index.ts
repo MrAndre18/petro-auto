@@ -16,6 +16,7 @@ import tooltipApi from '@shared/ui/tooltip/tooltip'
 // import { initHeader } from '@widgets/header/header'
 import inputSearchInit from '@widgets/input-search/input-search'
 import { initSliderHover } from '@widgets/sliders/slider-hover/slider-hover'
+import { initProcessAnimation } from '@pages/_components/process/process'
 
 import { ModalApi } from './components/modals'
 import config from './config'
@@ -26,6 +27,7 @@ import { scrollManager } from './libs/lenis/lenis'
 import { swiperApi } from './libs/swiper/swiper-manager'
 import { initHorizontalScroll } from './utils/horizontal-scroll'
 import { initOverlayScrollbars } from './utils/overlayScrollbars'
+import { cookies } from '@widgets/cookies/cookies'
 
   ; (window as any).process = { env: {} } // Фикс для совместимости с TomSelect
 
@@ -65,7 +67,12 @@ export const commonFunction = (): void => {
 
   initSliderHover()
 
+  // Инициализация анимации процесса
+  initProcessAnimation()
+
   // StickyManager.init()
+
+  cookies()
 
   inputSearchInit()
 

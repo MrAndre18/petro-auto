@@ -1,65 +1,48 @@
 .textarea {
   cursor: text;
   position: relative;
-  height: rem(110px);
+  height: rem(140px);
 
   @media #{media('<',d)} {
     height: rem(100px);
   }
 
-  &:has(.textarea__error.visible) .textarea__field {
-    border-color: #000000;
-  }
-
   &__field {
     resize: none;
 
-    display: block;
-
     width: 100%;
     height: 100%;
-    padding-bottom: 13px;
-    border-bottom: 3px solid;
 
-    background: none;
+    display: flex;
+    align-items: center;
 
-    transition: border-color $transition;
+    padding-inline: rem(32px);
+    padding-block: rem(24px);
+    border-radius: rem(16px);
+    background-color: #fff;
 
-    border-color: #e4e4e4;
-
-    font-size: 20px;
-    font-weight: 300;
-    line-height: 150%;
-    letter-spacing: -0.01em;
+    @media #{media('<',d)} {
+      padding-inline: rem(24px);
+      padding-block: rem(16px);
+      border-radius: rem(12px);
+    }
 
     @media #{media('>',d)} and (hover: hover) and (pointer: fine) {
       &:hover {
-        border-color: #000000;
+        &::placeholder {
+          color: #0D1B2A;
+        }
       }
-    }
-
-    @media #{media('<',d)} {
-      padding-bottom: 14px;
-      border-bottom-width: 2px;
-
-      font-size: 14px;
-      font-weight: 300;
-      line-height: 150%;
-      letter-spacing: -0.01em;
     }
 
     &::placeholder {
       user-select: none;
-      color: inherit;
-      transition: opacity $transition-timing-function 0.2s;
+      color: #8D99AE;
+      transition: opacity $transition-timing-function 0.2s, color $transition;
     }
 
-    &:focus {
-      border-color: #000000;
-
-      &::placeholder {
-        opacity: 0;
-      }
+    &:focus-within::placeholder {
+      opacity: 0;
     }
 
     &[disabled] {
@@ -76,7 +59,7 @@
     will-change: opacity, transform;
 
     position: absolute;
-    top: calc(100% + 4px);
+    top: 100%;
     transform: translateY(-4px);
 
     height: fit-content;
@@ -93,7 +76,6 @@
     letter-spacing: 0;
 
     @media #{media('<',d)} {
-      top: calc(100% + 2px);
       transform: translateY(-2px);
     }
 

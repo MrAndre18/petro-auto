@@ -14,52 +14,48 @@
 
   @media #{media('>',d)} and (hover: hover) and (pointer: fine) {
     &:hover {
-      input:not(:checked) ~ .checkbox__box {
-        border-color: #000000;
-        background: #ffffff;
+      input:not(:checked)~.checkbox__box {
+        border-color: #0D1B2A;
       }
     }
   }
 
   &__box {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
 
-    width: 32px;
-    height: 32px;
-    border: 1px solid #e4e4e4;
+    width: rem(32px);
+    height: rem(32px);
+    border-radius: rem(4px);
+    border: 1px solid #8D99AE;
 
-    background: #f6f6f6;
+    background: transparent;
 
-    transition: $transition;
+    transition: background-color $transition, border-color $transition;
 
     @media #{media('<',d)} {
-      width: 24px;
-      height: 24px;
+      width: rem(24px);
+      height: rem(24px);
     }
 
     svg {
       opacity: 0;
-      transition: $transition;
-
+      transition: opacity $transition;
       color: #ffffff;
+      width: rem(24px);
+      height: rem(24px);
 
-      path {
-        stroke-dasharray: 25;
-        stroke-dashoffset: 25;
-        transition: $transition;
+      @media #{media('<',d)} {
+        width: rem(16px);
+        height: rem(16px);
       }
     }
   }
 
   &__text {
-    margin-top: 1px;
-    transition: color $transition;
     @include cropText(4);
-
-    @media #{media('<',d)} {
-      margin-top: 1.5px;
-    }
   }
 
   input {
@@ -76,18 +72,13 @@
     opacity: 0;
   }
 
-  input:checked ~ &__box {
-    border-color: #000000;
+  input:checked~&__box {
+    border-color: #0D1B2A;
 
-    background-color: #000000;
+    background-color: #0D1B2A;
 
     svg {
       opacity: 1;
-
-      path {
-        stroke-dasharray: 25;
-        stroke-dashoffset: 0;
-      }
     }
   }
 
@@ -103,6 +94,34 @@
 
     .checkbox__text {
       color: #7a7a7a;
+    }
+  }
+
+  &__error {
+    pointer-events: none;
+    will-change: opacity, transform;
+
+    position: absolute;
+    top: 100%;
+    transform: translateY(-4px);
+
+    height: fit-content;
+
+    transition:
+      opacity,
+      transform $transition;
+
+    color: #da2434;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 120%;
+    letter-spacing: 0;
+
+    &:not(:empty),
+    &.visible {
+      pointer-events: auto;
+      transform: translateY(0);
+      opacity: 1;
     }
   }
 }

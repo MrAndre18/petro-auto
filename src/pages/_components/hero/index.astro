@@ -10,6 +10,7 @@ const { class: className, ...props } = Astro.props as Props
 
 <section
   class:list={['hero', className]}
+  id="hero"
   {...props}
 >
   <div class="hero__container">
@@ -19,73 +20,22 @@ const { class: className, ...props } = Astro.props as Props
       class="hero__image"
     />
 
-    <header class="hero__header header">
-      <a
-        href="#"
-        class="header__logo font-title text-title-24"
-        >PETRO AUTO</a
-      >
-
-      <nav>
-        <ul class="flex gap-6">
-          <li>
-            <a
-              href="#about"
-              class="header__link text-18"
-              >О нас</a
-            >
-          </li>
-          <li>
-            <a
-              href="#process"
-              class="header__link text-18"
-              >Процесс</a
-            >
-          </li>
-          <li>
-            <a
-              href="#completed"
-              class="header__link text-18"
-              >Выполненные заказы</a
-            >
-          </li>
-          <li>
-            <a
-              href="#advantages"
-              class="header__link text-18"
-              >Преимущества</a
-            >
-          </li>
-          <li>
-            <a
-              href="#reviews"
-              class="header__link text-18"
-              >Отзывы</a
-            >
-          </li>
-          <li>
-            <a
-              href="#contacts"
-              class="header__link text-18"
-              >Контакты</a
-            >
-          </li>
-        </ul>
-      </nav>
-    </header>
-
     <div class="hero__content relative">
       <div class="flex flex-col gap-12">
-        <h1 class="hero__title relative max-w-5xl font-title text-title-94 leading-none text-white">
+        <h1
+          class="hero__title relative max-w-5xl font-title text-title-94 leading-none text-white devices:max-w-full devices:text-center devices:text-title-32"
+        >
           Автомобили под ключ со&nbsp;всего мира
         </h1>
 
-        <div class="flex max-w-3xl gap-6">
-          <span class="min-h-full w-2 shrink-0 bg-accent"></span>
+        <div class="flex max-w-3xl gap-6 devices:max-w-full devices:gap-4">
+          <span class="min-h-full w-2 shrink-0 bg-accent devices:w-1"></span>
 
-          <div class="flex flex-col gap-6">
-            <p class="text-28 text-white">Сэкономьте <b>до 40%</b> на покупке автомобиля</p>
-            <p class="text-28 text-white">
+          <div class="flex flex-col gap-6 devices:gap-4">
+            <p class="text-28 text-white devices:text-18">
+              Сэкономьте <b>до 40%</b> на покупке автомобиля
+            </p>
+            <p class="text-28 text-white devices:text-18">
               Подберём <b>лучший вариант</b>, организуем доставку в Воронеж и <b
                 >полное оформление</b
               >
@@ -97,9 +47,10 @@ const { class: className, ...props } = Astro.props as Props
 
       <div class="relative flex h-full w-full items-end">
         <button
-          class="sticky bottom-6 mt-28 flex items-center gap-5 rounded-2xl bg-accent px-10 py-6 transition-colors hover:bg-accent-dark"
+          data-modal-trigger="feedback-modal"
+          class="sticky bottom-6 mt-28 flex items-center justify-center gap-5 rounded-2xl bg-accent px-10 py-6 transition-colors hover:bg-accent-dark devices:mt-16 devices:px-8 devices:py-4 mobile:w-full"
         >
-          <span class="text-28 text-white">Подобрать автомобиль</span>
+          <span class="text-28 text-white devices:text-18">Подобрать автомобиль</span>
         </button>
       </div>
     </div>

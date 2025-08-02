@@ -1,13 +1,122 @@
 ---
+import Icon from '@shared/ui/icon/Icon.astro'
+import OrderCard from '@widgets/cards/order-card/OrderCard.astro'
+import type { SwiperOptions } from 'swiper/types'
+
 interface Props {
   class?: string
 }
 
 const { class: className, ...props } = Astro.props as Props
+
+const sliderOptions = {
+  slidesPerView: 'auto',
+  spaceBetween: 24,
+  loop: true,
+  breakpoints: {
+    1201: {
+      slidesPerView: 4
+    }
+  }
+} as SwiperOptions
 ---
 
 <section
-  class:list={['completed', className]}
+  class:list={['completed container mt-40 devices:mt-16', className]}
+  id="completed"
   {...props}
 >
+  <header class="flex items-end gap-10 devices:gap-6">
+    <h2 class="shrink-0 font-title text-title-76 devices:text-title-32">Выполненные заказы</h2>
+    <div class="flex grow items-center gap-10 desktop">
+      <span class="h-[1px] w-full bg-gray"></span>
+      <div class="flex shrink-0 items-center gap-6">
+        <button
+          data-swiper-button-prev="completed"
+          class="flex size-[4.5rem] items-center justify-center rounded-xl bg-accent text-white transition-colors hover:bg-accent-dark"
+        >
+          <Icon
+            name="arrow-right"
+            class="size-8 rotate-180 devices:size-6"
+          />
+        </button>
+        <button
+          data-swiper-button-next="completed"
+          class="flex size-[4.5rem] items-center justify-center rounded-xl bg-accent text-white transition-colors hover:bg-accent-dark"
+        >
+          <Icon
+            name="arrow-right"
+            class="size-8 devices:size-6"
+          />
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div
+    class="completed__slider swiper mt-20 devices:mt-10"
+    data-swiper="completed"
+    data-swiper-params={JSON.stringify(sliderOptions)}
+  >
+    <div class="swiper-wrapper">
+      <OrderCard
+        image="completed-1"
+        title="Toyota Harrier 2020"
+        country="Japan"
+        description="Клиент искал гибридный кроссовер в идеальном состоянии. Привезли с аукциона, полный гибрид, пробег 42 000 км."
+        economy="450 000 ₽"
+        duration="37 дней"
+        class="swiper-slide completed__slide"
+      />
+      <OrderCard
+        image="completed-2"
+        title="Chery Tiggo 8 Pro Max 2023"
+        country="China"
+        description="Подбирали автомобиль до 2,5 млн ₽. Нашли почти новый с минимальным пробегом, официальная растаможка и дилерская гарантия."
+        economy="390 000 ₽"
+        duration="29 дней"
+        class="swiper-slide completed__slide"
+      />
+      <OrderCard
+        image="completed-3"
+        title="Hyundai Grandeur 2021"
+        country="Korea"
+        description="Искали максимально укомплектованный бизнес-седан. Полный фарш, отличное состояние, быстрая доставка и проверка."
+        economy="520 000 ₽"
+        duration="33 дня"
+        class="swiper-slide completed__slide"
+      />
+      <OrderCard
+        image="completed-4"
+        title="Honda Stepwgn 2019"
+        country="Japan"
+        description="Минивэн для семьи с детьми. Оценивали удобство, надёжность и пробег — всё подтвердилось. Машина как на фото."
+        economy="270 000 ₽"
+        duration="42 дня"
+        class="swiper-slide completed__slide"
+      />
+      <OrderCard
+        image="completed-5"
+        title="Tesla Model Y 2022"
+        country="USA"
+        description="Заказ под клиента: Long Range, белый салон, сборка BYD. Всё согласовано заранее, получили авто в точной комплектации."
+        economy="810 000 ₽"
+        duration="46 дней"
+        class="swiper-slide completed__slide"
+      />
+      <OrderCard
+        image="completed-6"
+        title="Lexus RX 500h 2023"
+        country="Korea"
+        description="Клиент хотел премиальный гибрид с подтверждённой историей. Полный комплект, оригинальные документы, без подводных камней."
+        economy="680 000 ₽"
+        duration="35 дней"
+        class="swiper-slide completed__slide"
+      />
+    </div>
+  </div>
 </section>
+
+<style>
+  @import './completed.scss';
+</style>

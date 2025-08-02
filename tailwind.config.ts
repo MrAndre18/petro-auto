@@ -105,6 +105,14 @@ export default {
           letterSpacing: '-0.02em'
         }
       ],
+      48: [
+        rem(48),
+        {
+          fontWeight: 600,
+          lineHeight: 'auto',
+          letterSpacing: '0'
+        }
+      ],
       42: [
         rem(42),
         {
@@ -147,6 +155,14 @@ export default {
       ],
       16: [
         rem(16),
+        {
+          fontWeight: 400,
+          lineHeight: '120%',
+          letterSpacing: '0'
+        }
+      ],
+      14: [
+        rem(14),
         {
           fontWeight: 400,
           lineHeight: '120%',

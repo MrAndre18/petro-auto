@@ -1,0 +1,42 @@
+---
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+export { Cookies }
+---
+
+<div
+  class:list={['cookies', className]}
+  data-cookies
+  {...props}
+>
+  <div class="flex flex-col gap-4 devices:gap-3">
+    <p class="font-title text-title-24 devices:text-title-18">
+      Сайт PETRO AUTO использует cookie-файлы и сервис Яндекс.Метрика для анализа посещаемости
+      и улучшения работы сайта
+    </p>
+    <p class="text-18 devices:text-16">
+      Обработка данных осуществляется в соответствии с Федеральным законом № 152-ФЗ и нашей
+      <a
+        href="/policy"
+        class="inline underline underline-offset-4 transition-colors hover:text-accent"
+        >Политикой конфиденциальности</a
+      >. Нажимая «Принять», вы соглашаетесь с использованием cookies и обработкой обезличенных
+      данных.
+    </p>
+  </div>
+
+  <button
+    class="devices:rounded-12 flex items-center justify-center rounded-2xl bg-primary px-10 py-6 text-white transition-colors hover:bg-accent-dark devices:px-8 devices:py-4"
+    data-cookies-accept
+  >
+    <span class="text-18 devices:text-16">Принять</span>
+  </button>
+</div>
+
+<style>
+  @import './cookies.scss';
+</style>

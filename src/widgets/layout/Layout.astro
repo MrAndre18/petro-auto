@@ -1,6 +1,8 @@
 ---
+import Cookies from '@widgets/cookies/Cookies.astro'
 import Footer from '@widgets/footer/Footer.astro'
 import Header from '@widgets/header/Header.astro'
+import MobileMenu from '@widgets/mobile-menu/MobileMenu.astro'
 
 interface Props {
   pageName?: string
@@ -70,7 +72,9 @@ export { Layout }
     data-overlayscrollbars-initialize
   >
     <div class="wrapper">
-      <!-- <Header /> -->
+      <!-- <Cookies /> -->
+      <MobileMenu />
+      <Header />
       <main
         class="page-container"
         {...props}

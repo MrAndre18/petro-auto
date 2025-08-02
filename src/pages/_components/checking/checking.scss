@@ -1,0 +1,99 @@
+.checking {
+
+  &__body {
+    position: relative;
+    height: rem(930px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media #{media('<',d)} {
+      height: rem(600px);
+      margin-inline: rem(-16px);
+    }
+
+    @media #{media('<',m)} {
+      height: rem(960px);
+    }
+  }
+
+  &__image {
+    width: rem(1250px);
+    height: rem(805px);
+
+    @media #{media('<',d)} {
+      width: 100%;
+      height: auto;
+    }
+
+    @media #{media('<',m)} {
+      height: 100%;
+    }
+  }
+
+  &__cards {
+    position: absolute;
+    left: rem(36px);
+    right: rem(36px);
+    top: 50%;
+    transform: translateY(-50%);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: rem(70px);
+
+    @media #{media('<',d)} {
+      left: rem(16px);
+      right: rem(16px);
+      gap: rem(32px);
+    }
+
+    @media #{media('<',m)} {
+      display: flex;
+      flex-direction: column;
+      gap: rem(16px);
+    }
+
+    &-item {
+
+      &:nth-child(1),
+      &:nth-child(7) {
+        transform: translateX(rem(156px));
+
+        @media #{media('<',d)} {
+          transform: translateX(0);
+        }
+      }
+
+      &:nth-child(2),
+      &:nth-child(8) {
+        transform: translateX(rem(-156px));
+
+        @media #{media('<',d)} {
+          transform: translateX(0);
+        }
+      }
+
+      &:nth-child(even) {
+        margin-left: auto;
+      }
+    }
+  }
+
+  &__card {
+    width: rem(360px);
+    display: flex;
+    flex-direction: column;
+    gap: rem(12px);
+    padding: rem(24px);
+    border-radius: rem(12px);
+    text-align: center;
+    backdrop-filter: blur(rem(6px));
+
+    @media #{media('<',d)} {
+      width: rem(220px);
+      padding: rem(16px);
+      border-radius: rem(8px);
+      gap: rem(8px);
+    }
+  }
+}

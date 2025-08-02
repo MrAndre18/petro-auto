@@ -1,13 +1,100 @@
 ---
+import Picture from '@shared/ui/picture/Picture.astro'
+
 interface Props {
   class?: string
 }
 
 const { class: className, ...props } = Astro.props as Props
+
+const cards: {
+  title: string
+  description: string
+  color: 'green' | 'gray' | 'yellow'
+}[] = [
+  {
+    title: 'Кузов и геометрию',
+    description: 'Ищем следы ДТП, шпаклёвки, перекрасов, замен деталей.',
+    color: 'green'
+  },
+  {
+    title: 'Двигатель',
+    description: 'Отсутствие шумов, течей, ошибок по диагностике.',
+    color: 'gray'
+  },
+  {
+    title: 'Тормозную систему',
+    description: 'Состояние колодок, дисков и тормозных линий.',
+    color: 'yellow'
+  },
+  {
+    title: 'КПП и трансмиссию',
+    description: 'Плавность переключений, работа без рывков и задержек.',
+    color: 'green'
+  },
+  {
+    title: 'Юридическую чистоту',
+    description: 'Нет ли запретов, ограничений, залогов, криминального прошлого.',
+    color: 'gray'
+  },
+  {
+    title: 'Пробег',
+    description: 'Сверяем с реальным состоянием авто и базами по стране происхождения.',
+    color: 'yellow'
+  },
+  {
+    title: 'Салон',
+    description: 'Износ сидений, обивки, руля и потолка — сверяем с заявленным пробегом.',
+    color: 'green'
+  },
+  {
+    title: 'Подвеску и рулевую',
+    description: 'Стук, люфт, износ — сразу видно при тест-драйве и визуальном осмотре.',
+    color: 'gray'
+  }
+]
 ---
 
 <section
-  class:list={['checking', className]}
+  class:list={['checking container mt-40 devices:mt-16', className]}
+  id="checking"
   {...props}
 >
+  <header class="flex items-end gap-10 devices:flex-col devices:items-start devices:gap-2">
+    <h2 class="shrink-0 font-title text-title-76 devices:text-title-32">Мы проверяем</h2>
+    <div class="mb-4 flex grow items-center gap-10 devices:gap-6">
+      <span class="h-[1px] w-full bg-gray desktop"></span>
+      <span class="shrink-0 font-title text-title-32 devices:text-title-16">100+ параметров</span>
+    </div>
+  </header>
+
+  <div class="checking__body mt-20 devices:mt-10">
+    <Picture
+      src="checking"
+      alt="checking"
+      class="checking__image"
+    />
+
+    <div class="checking__cards">
+      {
+        cards.map(({ title, description, color }) => (
+          <div
+            class="checking__cards-item checking__card"
+            class:list={[
+              color === 'green' && 'bg-pastel-green/80',
+              color === 'gray' && 'bg-pastel-gray/80',
+              color === 'yellow' && 'bg-pastel-yellow/80'
+            ]}
+          >
+            <div class="font-title text-title-32 devices:text-title-16">{title}</div>
+            <div class="devices:text-14 text-18">{description}</div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
 </section>
+
+<style>
+  @import './checking.scss';
+</style>

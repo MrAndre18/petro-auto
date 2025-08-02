@@ -1,5 +1,5 @@
 ---
-import CustomPlaceholder from "../custom-placeholder/CustomPlaceholder.astro";
+import CustomPlaceholder from '../custom-placeholder/CustomPlaceholder.astro'
 interface Props extends astroHTML.JSX.TextareaHTMLAttributes {
   class?: string
   'data-validate'?: string
@@ -8,7 +8,7 @@ interface Props extends astroHTML.JSX.TextareaHTMLAttributes {
 
 const {
   class: className,
-  'custom-placeholder': customPlaceholder = true,
+  'custom-placeholder': customPlaceholder = false,
   ...props
 } = Astro.props as Props
 ---
@@ -18,14 +18,12 @@ const {
   class="textarea"
 >
   <textarea
-    class:list={['textarea__field', className]}
+    class:list={['textarea__field devices:text-14 text-20', className]}
     placeholder={!customPlaceholder ? props.placeholder : ''}
     data-input
     {...props}
   ></textarea>
-  {
-      customPlaceholder && <CustomPlaceholder>{props.placeholder}</CustomPlaceholder>
-  }
+  {customPlaceholder && <CustomPlaceholder>{props.placeholder}</CustomPlaceholder>}
   <span
     class="textarea__error text-red"
     data-error-container

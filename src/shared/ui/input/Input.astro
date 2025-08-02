@@ -1,14 +1,16 @@
 ---
-import CustomPlaceholder from "../custom-placeholder/CustomPlaceholder.astro";
+import CustomPlaceholder from '../custom-placeholder/CustomPlaceholder.astro'
 interface Props extends astroHTML.JSX.InputHTMLAttributes {
   class?: string
   'data-validate'?: string
-  'custom-placeholder'?: boolean;
+  'custom-placeholder'?: boolean
+  inputClass?: string
 }
 
 const {
   class: className,
-  'custom-placeholder': customPlaceholder = true,
+  'custom-placeholder': customPlaceholder = false,
+  inputClass,
   ...props
 } = Astro.props as Props
 ---
@@ -18,14 +20,12 @@ const {
   data-input-parent
 >
   <input
-    class="input__field"
+    class:list={['input__field devices:text-14 text-20', inputClass]}
     data-input
     placeholder={!customPlaceholder ? props.placeholder : ''}
     {...props}
   />
-  {
-      customPlaceholder && <CustomPlaceholder>{props.placeholder}</CustomPlaceholder>
-  }
+  {customPlaceholder && <CustomPlaceholder>{props.placeholder}</CustomPlaceholder>}
   <span
     class="input__error"
     data-error-container

@@ -1,4 +1,9 @@
 ---
+import Checkbox from '@shared/ui/checkbox/Checkbox.astro'
+import Icon from '@shared/ui/icon/Icon.astro'
+import Input from '@shared/ui/input/Input.astro'
+import Textarea from '@shared/ui/textarea/Textarea.astro'
+
 interface Props {
   class?: string
 }
@@ -7,7 +12,145 @@ const { class: className, ...props } = Astro.props as Props
 ---
 
 <section
-  class:list={['contacts', className]}
+  class:list={[
+    'contacts container mt-40 grid grid-cols-12 gap-6 devices:mt-16 devices:flex devices:flex-col devices:gap-10',
+    className
+  ]}
+  id="contacts"
   {...props}
 >
+  <div class="contacts__content col-span-5 col-start-2">
+    <h2 class="font-title text-title-76 devices:text-title-32">Мы всегда на связи</h2>
+
+    <div class="mt-20 flex w-3/5 flex-col gap-10 devices:mt-10 devices:w-full devices:gap-6">
+      <div class="flex flex-col gap-3">
+        <span class="text-18 text-gray-dark devices:text-16">Адрес</span>
+        <p class="text-24 devices:text-18">
+          площадь Ленина 7, Ленинский район, городской округ Воронеж, 394018
+        </p>
+      </div>
+      <div class="flex flex-col gap-3">
+        <span class="text-18 text-gray-dark devices:text-16">Контакты</span>
+        <div class="flex flex-col gap-2">
+          <a
+            href="tel:+78005553535"
+            class="w-fit text-24 transition-colors hover:text-accent devices:text-18"
+            >+7 (800) 555-35-35</a
+          >
+          <a
+            href="mailto:example@mail.ru"
+            class="w-fit text-24 transition-colors hover:text-accent devices:text-18"
+            >example@mail.ru</a
+          >
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-6">
+        <a
+          href="#"
+          target="_blank"
+          class="flex size-12 shrink-0 items-center justify-center rounded-full border border-gray-light transition-colors hover:border-primary hover:bg-primary hover:text-white"
+        >
+          <Icon
+            name="telegram"
+            class="size-5"
+          />
+        </a>
+        <a
+          href="#"
+          target="_blank"
+          class="flex size-12 shrink-0 items-center justify-center rounded-full border border-gray-light transition-colors hover:border-primary hover:bg-primary hover:text-white"
+        >
+          <Icon
+            name="vk"
+            class="size-5"
+          />
+        </a>
+        <a
+          href="#"
+          target="_blank"
+          class="flex size-12 shrink-0 items-center justify-center rounded-full border border-gray-light transition-colors hover:border-primary hover:bg-primary hover:text-white"
+        >
+          <Icon
+            name="youtube"
+            class="size-5"
+          />
+        </a>
+        <a
+          href="#"
+          target="_blank"
+          class="flex size-12 shrink-0 items-center justify-center rounded-full border border-gray-light transition-colors hover:border-primary hover:bg-primary hover:text-white"
+        >
+          <Icon
+            name="inst"
+            class="size-5"
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <form
+    novalidate
+    action=""
+    class="contacts__form devices:rounded-24 col-span-5 -col-end-2 rounded-3xl bg-pastel-green p-10 devices:-mx-4 devices:p-4 devices:py-8"
+  >
+    <header class="flex flex-col items-center gap-3 text-center">
+      <h3 class="font-title text-title-32 devices:text-title-20">
+        Станьте на шаг ближе к своей мечте!
+      </h3>
+      <p class="w-4/5 text-18 devices:w-full devices:text-16">
+        Оставьте заявку и наши менеджеры подберут для вас лучшие варианты
+      </p>
+    </header>
+
+    <fieldset class="mt-10 flex flex-col gap-5 devices:gap-4">
+      <Input
+        name="name"
+        placeholder="Как вас зовут?"
+        data-validate="text-only"
+        inputmode="text"
+        required
+      />
+      <Input
+        name="email"
+        placeholder="Email"
+        data-validate="email"
+        inputmode="email"
+        required
+      />
+      <Input
+        name="tel"
+        placeholder="Телефон"
+        data-validate="tel"
+        data-mask-phone
+        inputmode="tel"
+        required
+      />
+      <Textarea
+        name="message"
+        placeholder="Марка авто, модель, год выпуска и другие пожелания"
+        required
+      />
+    </fieldset>
+
+    <div class="mt-5 flex flex-col gap-4 devices:gap-3">
+      <button
+        type="submit"
+        class="devices:rounded-16 flex items-center justify-center gap-5 rounded-2xl bg-accent px-10 py-6 transition-colors hover:bg-accent-dark devices:rounded-xl devices:px-8 devices:py-4"
+      >
+        <span class="text-18 text-white devices:text-16">Подобрать автомобиль</span>
+      </button>
+      <Checkbox
+        name="policy"
+        required
+        data-validate="checkbox"
+        >Согласен на обработку данных в соответствии с <a
+          href="/policy"
+          class="inline text-gray-dark transition-colors hover:text-accent"
+          >Политикой конфиденциальности</a
+        ></Checkbox
+      >
+    </div>
+  </form>
 </section>

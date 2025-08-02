@@ -1,0 +1,55 @@
+---
+import Icon from '@shared/ui/icon/Icon.astro'
+
+interface Props {
+  class?: string
+  name: string
+  car: string
+}
+
+const { class: className, name, car, ...props } = Astro.props as Props
+
+export { ReviewCard }
+---
+
+<article
+  class:list={['review-card', className]}
+  {...props}
+>
+  <header class="flex items-start justify-between gap-6 devices:flex-col devices:gap-4">
+    <div class="flex flex-col gap-1">
+      <h3 class="font-title text-title-32 devices:text-title-24">{name}</h3>
+      <span class="text-18 devices:text-16">{car}</span>
+    </div>
+    <div class="flex gap-1 text-[#FFD60A]">
+      <Icon
+        name="star"
+        class="size-8 devices:size-6"
+      />
+      <Icon
+        name="star"
+        class="size-8 devices:size-6"
+      />
+      <Icon
+        name="star"
+        class="size-8 devices:size-6"
+      />
+      <Icon
+        name="star"
+        class="size-8 devices:size-6"
+      />
+      <Icon
+        name="star"
+        class="size-8 devices:size-6"
+      />
+    </div>
+  </header>
+
+  <p class="text-18 devices:text-16">
+    <slot />
+  </p>
+</article>
+
+<style>
+  @import './review-card.scss';
+</style>

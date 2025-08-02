@@ -1,0 +1,10 @@
+.feedback-modal {
+
+  :global(.modal__container) {
+    border-radius: rem(20px);
+  }
+
+  :global(.modal__content) {
+    padding: 0 !important;
+  }
+}

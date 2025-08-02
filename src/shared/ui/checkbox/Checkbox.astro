@@ -25,15 +25,23 @@ const { class: className, label, ...props } = Astro.props as Props
 export { Checkbox }
 ---
 
-<label class:list={['checkbox', className]}>
+<label
+  class:list={['checkbox', className]}
+  data-input-parent
+>
   <input
     type="checkbox"
+    data-input
     {...props}
   />
   <span class="checkbox__box">
     <CheckIcon />
   </span>
-  <span class="checkbox__text text-20 devices:text-14"><slot>{label}</slot></span>
+  <span class="checkbox__text devices:text-14 text-16"><slot>{label}</slot></span>
+  <span
+    class="checkbox__error"
+    data-error-container
+  ></span>
 </label>
 
 <style>

@@ -1,13 +1,209 @@
 ---
+import Icon from '@shared/ui/icon/Icon.astro'
+import ReviewCard from '@widgets/cards/review-card/ReviewCard.astro'
+import type { SwiperOptions } from 'swiper/types'
+
 interface Props {
   class?: string
 }
 
 const { class: className, ...props } = Astro.props as Props
+
+const sliderOptions = {
+  slidesPerView: 'auto',
+  spaceBetween: 16,
+  loop: true,
+  breakpoints: {
+    1201: {
+      spaceBetween: 24
+    }
+  }
+} as SwiperOptions
 ---
 
 <section
-  class:list={['reviews', className]}
+  class:list={['reviews container mt-40 devices:mt-16', className]}
+  id="reviews"
   {...props}
 >
+  <header class="flex items-end gap-10 devices:gap-6">
+    <h2 class="shrink-0 font-title text-title-76 devices:text-title-32">Мнение о нас</h2>
+    <div class="flex grow items-center gap-10 desktop">
+      <span class="h-[1px] w-full bg-gray"></span>
+      <div class="flex shrink-0 items-center gap-6 desktop">
+        <button
+          data-swiper-button-prev="reviews"
+          class="flex size-[4.5rem] items-center justify-center rounded-xl bg-accent text-white transition-colors hover:bg-accent-dark"
+        >
+          <Icon
+            name="arrow-right"
+            class="size-8 rotate-180 devices:size-6"
+          />
+        </button>
+        <button
+          data-swiper-button-next="reviews"
+          class="flex size-[4.5rem] items-center justify-center rounded-xl bg-accent text-white transition-colors hover:bg-accent-dark"
+        >
+          <Icon
+            name="arrow-right"
+            class="size-8 devices:size-6"
+          />
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div
+    class="swiper reviews__slider mt-20 devices:mt-10"
+    data-swiper="reviews"
+    data-swiper-params={JSON.stringify(sliderOptions)}
+  >
+    <div class="swiper-wrapper">
+      <ReviewCard
+        name="Павел"
+        car="Toyota Harrier 2020"
+        class="swiper-slide reviews__slide"
+      >
+        Я давно присматривался к Harrier, но покупать на местном рынке — дорого и с кучей вопросов.
+        Решил попробовать привезти напрямую из Японии. Связался с ребятами, обсудили бюджет
+        и комплектацию, всё расписали по шагам. Через пару дней уже получил отчёты и фото
+        с аукциона. Машину выкупили, оформляли всё официально, никаких «переводов на карту» и прочей
+        мутной истории.
+        <br />
+        <br />
+        По итогу авто приехало именно в том состоянии, как и на фото: чистый салон, ровный кузов, гибрид
+        работает отлично. Все документы в порядке, договор, растаможка — всё как надо. Экономия вышла
+        около 450 тысяч по сравнению с предложениями в Воронеже. Очень рад, что решился. Уверен — следующую
+        машину тоже буду заказывать так.
+      </ReviewCard>
+      <ReviewCard
+        name="Роман"
+        car="Toyota Land Cruiser Prado"
+        class="swiper-slide reviews__slide"
+      >
+        Привезли Prado под ключ. Комплектация редкая, в РФ таких не найти. Оформили быстро,
+        все документы в порядке. Отдельное спасибо за сопровождение — чувствовал, что мне реально
+        помогают.
+      </ReviewCard>
+      <ReviewCard
+        name="Александр"
+        car="Lexus RX 500h 2023"
+        class="swiper-slide reviews__slide"
+      >
+        Хотел новый Lexus, но покупать здесь — это либо 7 млн у официального дилера,
+        либо кот в мешке у серых. Решил попробовать через привоз под ключ. Всё было расписано чётко:
+        как выбирается, как выкупается, где хранят, кто оформляет.
+        <br />
+        <br />
+        Машина приехала за 35 дней. Все документы — в наличии. Комплектация максималка, ничего не вырезали.
+        Двигатель гибрид, работает мягко, расход минимальный.
+        <br />
+        <br />
+        Особенно понравилось, что не пришлось «догонять менеджеров». Все сами писали, напоминали, информировали.
+        Сервис — на уровне. В следующий раз снова к ним.
+      </ReviewCard>
+      <ReviewCard
+        name="Ирина"
+        car="Honda Fit Hybrid 2021"
+        class="swiper-slide reviews__slide"
+      >
+        Искала экономичную городскую машину, чтобы не платить втридорога у перекупов. Ребята всё
+        организовали быстро и по-честному. Получила фото с аукциона, была на связи с менеджером
+        на каждом этапе. Машина пришла без сюрпризов, пробег честный, состояние отличное. Спасибо!
+      </ReviewCard>
+
+      <ReviewCard
+        name="Владимир"
+        car="Mitsubishi Delica D:5 2019"
+        class="swiper-slide reviews__slide"
+      >
+        Нужно было просторное авто для семьи и поездок на природу. В России такие — редкость или
+        убитые. Нашли нужную комплектацию в Японии, оформили всё под ключ. Машина приехала через 6
+        недель, всё целое, рама не гнилая, 4WD работает чётко. Очень доволен!
+      </ReviewCard>
+
+      <ReviewCard
+        name="Мария"
+        car="Mazda CX-5 2022"
+        class="swiper-slide reviews__slide"
+      >
+        Хочу отметить вежливость и профессионализм команды. Всё объяснили, ничего не навязывали.
+        Mazda пришла в цвете и комплектации, которую я хотела, даже коврики положили. Цена
+        получилась ниже рынка на 300+ тысяч. Рекомендую!
+      </ReviewCard>
+
+      <ReviewCard
+        name="Артем"
+        car="Subaru Forester 2020"
+        class="swiper-slide reviews__slide"
+      >
+        Боялся, что будет долго и сложно. Но всё оказалось проще, чем ожидал. Менеджер всегда
+        на связи, отчёты, видео, всё прозрачно. Авто прибыло в отличном состоянии. Документы
+        оформили быстро, всё по закону.
+      </ReviewCard>
+
+      <ReviewCard
+        name="Наталья"
+        car="Suzuki Hustler 2021"
+        class="swiper-slide reviews__slide"
+      >
+        Компактный кей-кар для города, но в России таких нет. Ребята нашли мне почти новый Hustler,
+        доставили за месяц. Все расходы расписали заранее, никаких сюрпризов. Очень довольна
+        покупкой.
+      </ReviewCard>
+
+      <ReviewCard
+        name="Денис"
+        car="BMW X3 2021"
+        class="swiper-slide reviews__slide"
+      >
+        Хотел «немца», но без переплат в Москве. Привезли через аукцион в США, полный контроль
+        на всех этапах. Машина без ДТП, пробег подтверждён. Отдельный плюс — помощь с ПТС
+        и сертификацией.
+      </ReviewCard>
+
+      <ReviewCard
+        name="Сергей"
+        car="Toyota Crown 2018"
+        class="swiper-slide reviews__slide"
+      >
+        Мечтал о Crown, но боялся вляпаться. Сервис реально порадовал: всё чётко, пошагово, в срок.
+        Машина в реальности даже лучше, чем на фото. Работают прозрачно, рекомендую друзьям.
+      </ReviewCard>
+
+      <ReviewCard
+        name="Юлия"
+        car="Nissan Serena e-POWER 2022"
+        class="swiper-slide reviews__slide"
+      >
+        Нужен был минивэн с экономичным расходом. Нашли классную Serena с небольшим пробегом,
+        привезли быстро, без задержек. Все документы оформили заранее, вопросов по растаможке
+        не было.
+      </ReviewCard>
+
+      <ReviewCard
+        name="Максим"
+        car="Kia Sorento 2021"
+        class="swiper-slide reviews__slide"
+      >
+        Привезли авто из Кореи. Долго сравнивал, но всё же выбрал этих ребят — и не пожалел. Машину
+        доставили в обещанные сроки, без посредников и схем. Отчёт по технике, видео, документы —
+        всё по высшему разряду.
+      </ReviewCard>
+
+      <ReviewCard
+        name="Анна"
+        car="Volkswagen Golf 2020"
+        class="swiper-slide reviews__slide"
+      >
+        Спасибо команде за честность и вовлечённость. Хотела европейский хэтч, помогли найти
+        идеальный вариант в Германии, всё оформили, доставили. На дороге машина чувствует себя
+        отлично. Без подводных камней.
+      </ReviewCard>
+    </div>
+  </div>
 </section>
+
+<style>
+  @import './reviews.scss';
+</style>

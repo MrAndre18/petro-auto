@@ -1,4 +1,7 @@
 ---
+import AccordionContainer from '@shared/ui/accordion/accordion-container/AccordionContainer.astro'
+import Accordion from '@shared/ui/accordion/Accordion.astro'
+
 interface Props {
   class?: string
 }
@@ -7,7 +10,40 @@ const { class: className, ...props } = Astro.props as Props
 ---
 
 <section
-  class:list={['faq', className]}
+  class:list={['faq container mt-40 devices:mt-16', className]}
   {...props}
 >
+  <h2 class="font-title text-title-76 devices:text-title-32">Остались вопросы?</h2>
+
+  <div class="mt-20 grid grid-cols-12 gap-6 devices:mt-10 devices:block">
+    <AccordionContainer class="col-span-10 col-start-2 devices:w-full">
+      <Accordion title="Сколько времени занимает весь процесс?"
+        >Обычно от&nbsp;30&nbsp;до&nbsp;60&nbsp;дней&nbsp;&mdash; в&nbsp;зависимости от&nbsp;страны,
+        выбранного авто и&nbsp;логистики. <br />Мы&nbsp;сообщаем примерные сроки сразу и&nbsp;держим
+        вас в&nbsp;курсе на&nbsp;каждом этапе.</Accordion
+      >
+      <Accordion title="Какие документы я получу на автомобиль?"
+        >Вы&nbsp;получаете полный комплект документов для постановки на&nbsp;учёт: договор, ПТС,
+        таможенную декларацию, сертификат безопасности и&nbsp;перевод всех нужных бумаг.</Accordion
+      >
+      <Accordion title="Нужно ли платить таможенные пошлины отдельно?"
+        >Нет, всё включено в&nbsp;стоимость. Мы&nbsp;занимаемся оформлением и&nbsp;оплатой пошлин,
+        вы&nbsp;не&nbsp;бегаете по&nbsp;инстанциям.</Accordion
+      >
+      <Accordion title="Могу ли я сам выбрать автомобиль или вы подбираете?"
+        >Можно и&nbsp;так, и&nbsp;так. Вы&nbsp;можете прислать понравившийся вариант&nbsp;&mdash;
+        мы&nbsp;проверим и&nbsp;организуем выкуп. Или доверить подбор нам&nbsp;&mdash; подберём под
+        ваш бюджет и&nbsp;задачи.</Accordion
+      >
+      <Accordion title="Как вы проверяете автомобили перед покупкой?"
+        >Проверяем по&nbsp;базам, диагностируем техническое состояние, делаем фото-
+        и&nbsp;видеоотчёт. Без вашего согласия выкуп не&nbsp;происходит.</Accordion
+      >
+      <Accordion title="Есть ли гарантия на автомобиль?"
+        >Если авто новое&nbsp;&mdash; действует заводская гарантия. На&nbsp;подержанные машины даём
+        гарантию на&nbsp;юридическую чистоту и&nbsp;техническое соответствие описанию. Всё
+        подтверждается договором.</Accordion
+      >
+    </AccordionContainer>
+  </div>
 </section>
