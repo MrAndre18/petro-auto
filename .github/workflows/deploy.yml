@@ -35,14 +35,19 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Install dependencies
-        run: npm install --force
+        run: npm ci
 
-      - name: Build with Astro
+            - name: Build with Astro
         run: |
           npm run build
         env:
           NODE_ENV: production
-
+      
+      - name: Create .nojekyll file
+        run: |
+          touch dist/.nojekyll
+          cp .nojekyll dist/.nojekyll 2>/dev/null || true
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

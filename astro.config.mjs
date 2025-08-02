@@ -125,6 +125,10 @@ export default defineConfig({
 
   compressHTML: false,
 
+  build: {
+    assets: 'assets'
+  },
+
   integrations: [tailwind(), updateBuildScripts()],
 
   vite: {
