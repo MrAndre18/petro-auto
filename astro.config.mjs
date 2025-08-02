@@ -11,7 +11,7 @@ const basePath = '/'
 const timestamp = Date.now()
 
 const outDir = resolve(path.dirname(url.fileURLToPath(import.meta.url)), 'dist')
-const pagesDir = resolve(outDir, 'pages')
+const pagesDir = resolve(outDir, '/')
 
 fs.mkdir(pagesDir, { recursive: true }).catch(err => {
   console.error('Ошибка при создании папки pages:', err)
@@ -117,17 +117,14 @@ const updateBuildScripts = () => ({
 
 // https://astro.build/config
 export default defineConfig({
-  base: basePath,
+  site: 'https://mrandre18.github.io/petro-auto/',
+  base: '/petro-auto/',
 
   devToolbar: {
     enabled: false
   },
 
   compressHTML: false,
-
-  build: {
-    assets: 'assets'
-  },
 
   integrations: [tailwind(), updateBuildScripts()],
 
