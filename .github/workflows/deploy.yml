@@ -70,10 +70,15 @@ jobs:
             --site "${{ steps.pages.outputs.origin }}" \
             --base "${{ steps.pages.outputs.base_path }}"
         working-directory: ${{ env.BUILD_PATH }}
+      - name: Clean old artifacts
+        run: |
+          # Clean up any existing artifacts to prevent conflicts
+          rm -rf ${{ env.BUILD_PATH }}/dist/.git
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ${{ env.BUILD_PATH }}/dist
+          name: github-pages-${{ github.run_id }}
 
   deploy:
     environment:
@@ -86,3 +91,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages-${{ github.run_id }}
