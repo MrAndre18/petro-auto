@@ -1,5 +1,6 @@
 ---
 import Icon from '@shared/ui/icon/Icon.astro'
+import CarCard from '@widgets/cards/car-card/CarCard.astro'
 import OrderCard from '@widgets/cards/order-card/OrderCard.astro'
 import type { SwiperOptions } from 'swiper/types'
 
@@ -60,6 +61,50 @@ const sliderOptions = {
     data-swiper-params={JSON.stringify(sliderOptions)}
   >
     <div class="swiper-wrapper">
+      <CarCard
+        images={[
+          'propositions-1-3',
+          'propositions-1-1',
+          'propositions-1-2',
+          'propositions-1-4',
+          'propositions-1-5'
+        ]}
+        title="BMW X5 40d"
+        price="6 500 000 ₽"
+        country="Korea"
+        specifications={[
+          {
+            name: 'Год',
+            value: '2020'
+          },
+          {
+            name: 'Пробег',
+            value: '71 000 км'
+          }
+        ]}
+        economy="470 000 ₽"
+        duration="45 дней"
+        class="swiper-slide completed__slide"
+      />
+      <CarCard
+        images={['propositions-2-3', 'propositions-2-1', 'propositions-2-2', 'propositions-2-4']}
+        title="BMW X5 40d"
+        price="6 700 000 ₽"
+        country="Korea"
+        specifications={[
+          {
+            name: 'Год',
+            value: '2021'
+          },
+          {
+            name: 'Пробег',
+            value: '69 000 км'
+          }
+        ]}
+        economy="490 000 ₽"
+        duration="39 дней"
+        class="swiper-slide completed__slide"
+      />
       <OrderCard
         image="completed-1"
         title="Toyota Harrier 2020"

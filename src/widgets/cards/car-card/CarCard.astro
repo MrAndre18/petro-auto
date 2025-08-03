@@ -1,4 +1,5 @@
 ---
+import Icon, { type IconKey } from '@shared/ui/icon/Icon.astro'
 import Picture from '@shared/ui/picture/Picture.astro'
 import type { SwiperOptions } from 'swiper/types'
 
@@ -7,16 +8,43 @@ interface Props {
   images: string[]
   title: string
   price: string
+  country: 'Korea' | 'Japan' | 'USA' | 'China'
   specifications: {
     name: string
     value: string
   }[]
+  economy: string
+  duration: string
 }
 
-const { class: className, images, title, price, specifications, ...props } = Astro.props as Props
+const {
+  class: className,
+  images,
+  title,
+  price,
+  country,
+  specifications,
+  economy,
+  duration,
+  ...props
+} = Astro.props as Props
 
 // Генерируем уникальный ID для свайпера
 const swiperId = `car-card-${Math.random().toString(36).substr(2, 9)}`
+
+const countryIcon = {
+  Korea: 'korea',
+  Japan: 'japan',
+  USA: 'usa',
+  China: 'china'
+}
+
+const countryText = {
+  Korea: 'Из Кореи',
+  Japan: 'Из Японии',
+  USA: 'Из США',
+  China: 'Из Китая'
+}
 
 // Настройки свайпера с эффектом fade
 const sliderOptions = {
@@ -59,6 +87,14 @@ export { CarCard }
     <div class="flex flex-col gap-6 devices:gap-4">
       <div class="flex flex-col gap-2">
         <h3 class="line-clamp-1 font-title text-title-32 devices:text-title-24">{title}</h3>
+        <div class="flex items-center gap-3">
+          <Icon
+            name={countryIcon[country] as IconKey}
+            initial
+            class="size-5 devices:size-4"
+          />
+          <span class="text-16 text-gray-dark devices:text-14">{countryText[country]}</span>
+        </div>
         <span class="font-title text-title-24 text-primary/60 devices:text-title-16">{price}</span>
       </div>
 
@@ -72,13 +108,18 @@ export { CarCard }
           ))
         }
       </ul>
+    </div>
 
-      <button
-        data-modal-trigger="feedback-modal"
-        class="w-full rounded-2xl bg-accent px-8 py-5 transition-colors hover:bg-accent-dark devices:px-8 devices:py-4"
-      >
-        <span class="text-18 text-white devices:text-18">Заказать</span>
-      </button>
+    <div class="grid grid-cols-2">
+      <div class="flex flex-col items-center border-r border-accent text-center">
+        <span class="font-title text-title-24 devices:text-title-16">{economy}</span>
+        <span class="text-16 text-gray-dark devices:text-14">Экономия</span>
+      </div>
+
+      <div class="flex flex-col items-center text-center">
+        <span class="font-title text-title-24 devices:text-title-16">{duration}</span>
+        <span class="text-16 text-gray-dark devices:text-14">Под ключ</span>
+      </div>
     </div>
   </div>
 

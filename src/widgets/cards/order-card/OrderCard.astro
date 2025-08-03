@@ -51,7 +51,7 @@ export { OrderCard }
   />
 
   <div class="order-card__content">
-    <div class="flex flex-col gap-4 devices:gap-2">
+    <div class="flex flex-col gap-6 devices:gap-4">
       <div class="flex flex-col gap-2">
         <h3 class="line-clamp-1 font-title text-title-32 devices:text-title-24">{title}</h3>
         <div class="flex items-center gap-3">
@@ -60,7 +60,7 @@ export { OrderCard }
             initial
             class="size-5 devices:size-4"
           />
-          <span class="devices:text-14 text-16 text-gray-dark">{countryText[country]}</span>
+          <span class="text-16 text-gray-dark devices:text-14">{countryText[country]}</span>
         </div>
       </div>
 
@@ -70,12 +70,12 @@ export { OrderCard }
     <div class="grid grid-cols-2">
       <div class="flex flex-col items-center border-r border-accent text-center">
         <span class="font-title text-title-24 devices:text-title-16">{economy}</span>
-        <span class="devices:text-14 text-16 text-gray-dark">Экономия</span>
+        <span class="text-16 text-gray-dark devices:text-14">Экономия</span>
       </div>
 
       <div class="flex flex-col items-center text-center">
         <span class="font-title text-title-24 devices:text-title-16">{duration}</span>
-        <span class="devices:text-14 text-16 text-gray-dark">Под ключ</span>
+        <span class="text-16 text-gray-dark devices:text-14">Под ключ</span>
       </div>
     </div>
   </div>
