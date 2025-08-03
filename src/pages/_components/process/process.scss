@@ -103,16 +103,15 @@
 
     &-line {
       position: relative;
-      width: rem(2px);
+      width: 2px;
       height: rem(180px);
       background-color: #ADB5BD;
       margin-block: rem(8px);
       transition: background-color $transition;
 
       @media #{media('<',d)} {
-        width: 1px;
         height: rem(100px);
-        min-block: rem(4px);
+        margin-block: rem(4px);
       }
 
       &-progress {
