@@ -1,0 +1,39 @@
+.car-card {
+  display: flex;
+  flex-direction: column;
+  gap: rem(16px);
+  padding: rem(16px);
+  padding-bottom: rem(24px);
+  border-radius: rem(20px);
+  border: 1px solid #DBE7E4;
+
+  @media #{media('<',d)} {
+    padding: rem(12px);
+    padding-bottom: rem(16px);
+    border-radius: rem(16px);
+  }
+
+  &__swiper {
+    height: rem(282px);
+    width: 100%;
+    border-radius: rem(12px);
+    overflow: hidden;
+
+    @media #{media('<',d)} {
+      height: rem(200px);
+      border-radius: rem(4px);
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: rem(40px);
+    justify-content: space-between;
+    flex-grow: 1;
+
+    @media #{media('<',d)} {
+      gap: rem(24px);
+    }
+  }
+}

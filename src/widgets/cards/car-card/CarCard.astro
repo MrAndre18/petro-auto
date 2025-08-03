@@ -1,0 +1,88 @@
+---
+import Picture from '@shared/ui/picture/Picture.astro'
+import type { SwiperOptions } from 'swiper/types'
+
+interface Props {
+  class?: string
+  images: string[]
+  title: string
+  price: string
+  specifications: {
+    name: string
+    value: string
+  }[]
+}
+
+const { class: className, images, title, price, specifications, ...props } = Astro.props as Props
+
+// Генерируем уникальный ID для свайпера
+const swiperId = `car-card-${Math.random().toString(36).substr(2, 9)}`
+
+// Настройки свайпера с эффектом fade
+const sliderOptions = {
+  effect: 'fade',
+  fadeEffect: {
+    crossFade: true
+  },
+  allowTouchMove: true,
+  nested: true
+} as SwiperOptions
+
+export { CarCard }
+---
+
+<article
+  class:list={['car-card', className]}
+  {...props}
+>
+  <div
+    class="swiper car-card__swiper"
+    data-swiper={swiperId}
+    data-swiper-params={JSON.stringify(sliderOptions)}
+  >
+    <div class="swiper-wrapper">
+      {
+        images.map((image, index) => (
+          <div class="swiper-slide">
+            <Picture
+              src={image}
+              alt={`${title} - фото ${index + 1}`}
+              class="car-card__image"
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="car-card__content">
+    <div class="flex flex-col gap-6 devices:gap-4">
+      <div class="flex flex-col gap-2">
+        <h3 class="line-clamp-1 font-title text-title-32 devices:text-title-24">{title}</h3>
+        <span class="font-title text-title-24 text-primary/60 devices:text-title-16">{price}</span>
+      </div>
+
+      <ul class="flex flex-col gap-3">
+        {
+          specifications.map(({ name, value }) => (
+            <li class="flex items-end justify-between gap-2 border-b border-gray-light pb-3 last:border-b-0 last:pb-0">
+              <span class="text-16 text-gray-dark devices:text-14">{name}</span>
+              <span class="text-18 devices:text-16">{value}</span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <button
+        data-modal-trigger="feedback-modal"
+        class="w-full rounded-2xl bg-accent px-8 py-5 transition-colors hover:bg-accent-dark devices:px-8 devices:py-4"
+      >
+        <span class="text-18 text-white devices:text-18">Заказать</span>
+      </button>
+    </div>
+  </div>
+
+  <style>
+    @import './car-card.scss';
+  </style>
+</article>

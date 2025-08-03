@@ -17,6 +17,7 @@ import tooltipApi from '@shared/ui/tooltip/tooltip'
 import inputSearchInit from '@widgets/input-search/input-search'
 import { initSliderHover } from '@widgets/sliders/slider-hover/slider-hover'
 import { initProcessAnimation } from '@pages/_components/process/process'
+import { CarCardManager } from '@widgets/cards/car-card/car-card'
 
 import { ModalApi } from './components/modals'
 import config from './config'
@@ -78,6 +79,10 @@ export const commonFunction = (): void => {
 
   // Инициализация анимации процесса
   initProcessAnimation()
+
+  // Инициализация карточек машин
+  const carCardManager = new CarCardManager()
+  carCardManager.init()
 
   // StickyManager.init()
 

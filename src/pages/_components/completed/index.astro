@@ -11,10 +11,11 @@ const { class: className, ...props } = Astro.props as Props
 
 const sliderOptions = {
   slidesPerView: 'auto',
-  spaceBetween: 24,
+  spaceBetween: 16,
   loop: true,
   breakpoints: {
     1201: {
+      spaceBetween: 24,
       slidesPerView: 4
     }
   }

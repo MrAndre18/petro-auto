@@ -1,0 +1,114 @@
+---
+import Icon from '@shared/ui/icon/Icon.astro'
+import CarCard from '@widgets/cards/car-card/CarCard.astro'
+import type { SwiperOptions } from 'swiper/types'
+
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+const sliderOptions = {
+  slidesPerView: 'auto',
+  spaceBetween: 16,
+  breakpoints: {
+    1201: {
+      spaceBetween: 24,
+      slidesPerView: 4
+    }
+  }
+} as SwiperOptions
+---
+
+<section
+  class:list={['propositions container mt-40 devices:mt-16', className]}
+  id="propositions"
+  {...props}
+>
+  <header class="flex items-center gap-10 devices:gap-6">
+    <h2 class="shrink-0 font-title text-title-76 devices:text-title-32">Актуальные предложения</h2>
+    <div class="flex grow items-center gap-10 desktop">
+      <span class="h-[1px] w-full bg-gray"></span>
+      <div class="flex shrink-0 items-center gap-6">
+        <button
+          data-swiper-button-prev="propositions"
+          class="flex size-[4.5rem] items-center justify-center rounded-xl bg-accent text-white transition-colors hover:bg-accent-dark"
+        >
+          <Icon
+            name="arrow-right"
+            class="size-8 rotate-180 devices:size-6"
+          />
+        </button>
+        <button
+          data-swiper-button-next="propositions"
+          class="flex size-[4.5rem] items-center justify-center rounded-xl bg-accent text-white transition-colors hover:bg-accent-dark"
+        >
+          <Icon
+            name="arrow-right"
+            class="size-8 devices:size-6"
+          />
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div
+    class="propositions__slider swiper mt-20 devices:mt-10"
+    data-swiper="propositions"
+    data-swiper-params={JSON.stringify(sliderOptions)}
+  >
+    <div class="swiper-wrapper">
+      <CarCard
+        images={[
+          'propositions-1-3',
+          'propositions-1-1',
+          'propositions-1-2',
+          'propositions-1-4',
+          'propositions-1-5'
+        ]}
+        title="BMW X5 40d"
+        price="6 500 000 ₽"
+        specifications={[
+          {
+            name: 'Страна',
+            value: 'Корея'
+          },
+          {
+            name: 'Год',
+            value: '2020'
+          },
+          {
+            name: 'Пробег',
+            value: '71 000 км'
+          }
+        ]}
+        class="swiper-slide propositions__slide"
+      />
+      <CarCard
+        images={['propositions-2-3', 'propositions-2-1', 'propositions-2-2', 'propositions-2-4']}
+        title="BMW X5 40d"
+        price="6 700 000 ₽"
+        specifications={[
+          {
+            name: 'Страна',
+            value: 'Корея'
+          },
+          {
+            name: 'Год',
+            value: '2021'
+          },
+          {
+            name: 'Пробег',
+            value: '69 000 км'
+          }
+        ]}
+        class="swiper-slide propositions__slide"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  @import './propositions.scss';
+</style>
