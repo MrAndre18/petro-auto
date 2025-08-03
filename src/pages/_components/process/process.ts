@@ -29,7 +29,7 @@ export function initProcessAnimation(): (() => void) | void {
 
   const scrollTriggers: ScrollTrigger[] = []
 
-  // Создаем триггер для показа/скрытия элементов
+  // Создаем триггер для показа элементов (без скрытия)
   const visibilityTrigger = ScrollTrigger.create({
     trigger: processItems[0].parentElement || processItems[0], // используем родительский контейнер
     start: 'top 100%',
@@ -37,7 +37,7 @@ export function initProcessAnimation(): (() => void) | void {
     onUpdate: () => {
       processItems.forEach((item) => {
         const rect = item.getBoundingClientRect()
-        const shouldShow = rect.top < window.innerHeight * 0.8 && rect.bottom > window.innerHeight * 0.2
+        const shouldShow = rect.top < window.innerHeight * 0.8
         const isCurrentlyVisible = (item as HTMLElement).dataset.visible === 'true'
 
         if (shouldShow && !isCurrentlyVisible) {
@@ -48,18 +48,21 @@ export function initProcessAnimation(): (() => void) | void {
             ease: 'power2.out'
           })
             ; (item as HTMLElement).dataset.visible = 'true'
-        } else if (!shouldShow && isCurrentlyVisible) {
-          gsap.to(item, {
-            opacity: 0,
-            y: 50,
-            duration: 0.6,
-            ease: 'power2.in'
-          })
-            ; (item as HTMLElement).dataset.visible = 'false'
         }
       })
     }
   })
+
+  // Принудительно показываем элементы, которые уже должны быть видимыми
+  setTimeout(() => {
+    processItems.forEach((item) => {
+      const rect = item.getBoundingClientRect()
+      if (rect.top < window.innerHeight * 0.8) {
+        gsap.set(item, { opacity: 1, y: 0 })
+          ; (item as HTMLElement).dataset.visible = 'true'
+      }
+    })
+  }, 100)
 
   scrollTriggers.push(visibilityTrigger)
 
@@ -99,7 +102,7 @@ export function initProcessAnimation(): (() => void) | void {
         }
       },
       onLeaveBack: () => {
-        // При возврате назад - сбрасываем прогресс
+        // При возврате назад - сбрасываем только прогресс, не трогаем видимость
         gsap.set(progressLine, { scaleY: 0 })
 
         // Убираем активность у следующего элемента
