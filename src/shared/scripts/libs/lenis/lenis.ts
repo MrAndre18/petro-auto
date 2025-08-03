@@ -91,8 +91,41 @@ class ScrollManager implements IScrollManager {
     const target = document.getElementById(id)
     if (!target) return
 
-    e.preventDefault()
-    this.scrollToAnchor(target, link)
+    // Проверяем, находится ли ссылка в мобильном меню
+    const isInMobileMenu = link.closest('[data-modal="mobile-menu"]')
+
+    if (isInMobileMenu) {
+      // Если ссылка в мобильном меню, закрываем меню и переходим к якорю
+      e.preventDefault()
+      this.handleMobileMenuAnchorClick(link, target)
+    } else {
+      // Обычная обработка для ссылок вне мобильного меню
+      e.preventDefault()
+      this.scrollToAnchor(target, link)
+    }
+  }
+
+  /**
+   * Обработка кликов по якорным ссылкам в мобильном меню
+   */
+  private handleMobileMenuAnchorClick(link: HTMLAnchorElement, target: HTMLElement): void {
+    const mobileMenu = document.querySelector('[data-modal="mobile-menu"]')
+    if (!mobileMenu) return
+
+    const modal = (mobileMenu as any).modal
+    if (modal) {
+      modal.close()
+
+      // Ждем небольшое время для закрытия меню, затем переходим к якорю
+      setTimeout(() => {
+        this.scrollToAnchorMobileMenu(target, link)
+      }, 300) // Задержка для анимации закрытия
+    } else {
+      // Fallback если modal не найден
+      setTimeout(() => {
+        this.scrollToAnchorMobileMenu(target, link)
+      }, 300)
+    }
   }
 
   /**
@@ -122,6 +155,29 @@ class ScrollManager implements IScrollManager {
     } else {
       // fallback без lenis
       const y = target.getBoundingClientRect().top + window.scrollY + finalOffset
+      window.scrollTo({ top: y, behavior: 'smooth' })
+    }
+  }
+
+  /**
+   * Скроллим к якорю для мобильного меню без учета header
+   */
+  private scrollToAnchorMobileMenu(target: HTMLElement, link?: HTMLElement | null): void {
+    // Смещение с data-anchor-offset (может быть null)
+    let offset = 0
+    if (link) {
+      const attr = link.getAttribute('data-anchor-offset')
+      if (attr) offset = parseInt(attr, 10) || 0
+    }
+
+    if (this.lenis) {
+      this.lenis.scrollTo(target, {
+        offset: offset,
+        immediate: false,
+      })
+    } else {
+      // fallback без lenis
+      const y = target.getBoundingClientRect().top + window.scrollY + offset
       window.scrollTo({ top: y, behavior: 'smooth' })
     }
   }
