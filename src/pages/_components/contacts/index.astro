@@ -23,29 +23,29 @@ const { class: className, ...props } = Astro.props as Props
     <h2 class="font-title text-title-76 devices:text-title-32">Мы всегда на связи</h2>
 
     <div class="mt-20 flex w-3/5 flex-col gap-10 devices:mt-10 devices:w-full devices:gap-6">
-      <div class="flex flex-col gap-3">
+      <!-- <div class="flex flex-col gap-3">
         <span class="text-18 text-gray-dark devices:text-16">Адрес</span>
         <p class="text-24 devices:text-18">
           площадь Ленина 7, Ленинский район, городской округ Воронеж, 394018
         </p>
-      </div>
+      </div> -->
       <div class="flex flex-col gap-3">
         <span class="text-18 text-gray-dark devices:text-16">Контакты</span>
         <div class="flex flex-col gap-2">
           <a
-            href="tel:+78005553535"
+            href="tel:89202277757"
             class="w-fit text-24 transition-colors hover:text-accent devices:text-18"
-            >+7 (800) 555-35-35</a
+            >+7 (920) 227-77-57</a
           >
           <a
-            href="mailto:example@mail.ru"
+            href="mailto:secotov@yandex.ru"
             class="w-fit text-24 transition-colors hover:text-accent devices:text-18"
-            >example@mail.ru</a
+            >secotov@yandex.ru</a
           >
         </div>
       </div>
 
-      <div class="flex flex-wrap items-center gap-6">
+      <!-- <div class="flex flex-wrap items-center gap-6">
         <a
           href="#"
           target="_blank"
@@ -86,7 +86,7 @@ const { class: className, ...props } = Astro.props as Props
             class="size-5"
           />
         </a>
-      </div>
+      </div> -->
     </div>
   </div>
 
@@ -146,7 +146,8 @@ const { class: className, ...props } = Astro.props as Props
         required
         data-validate="checkbox"
         >Согласен на обработку данных в соответствии с <a
-          href="/policy"
+          href="/PrivacyPolicyStatement.pdf"
+          target="_blank"
           class="inline text-gray-dark transition-colors hover:text-accent"
           >Политикой конфиденциальности</a
         ></Checkbox
