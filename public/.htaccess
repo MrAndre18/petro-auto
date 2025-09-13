@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# Если запрос - это реальный файл или директория, то пропустить все правила ниже
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Убрать .html
+RewriteRule ^([^\.]+)$ $1.html [NC,L]

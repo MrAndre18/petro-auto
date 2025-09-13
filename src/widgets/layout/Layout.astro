@@ -3,6 +3,7 @@ import Cookies from '@widgets/cookies/Cookies.astro'
 import Footer from '@widgets/footer/Footer.astro'
 import Header from '@widgets/header/Header.astro'
 import MobileMenu from '@widgets/mobile-menu/MobileMenu.astro'
+import SuccessModal from '@widgets/success-modal/SuccessModal.astro'
 
 interface Props {
   pageName?: string
@@ -97,6 +98,7 @@ export { Layout }
     <div class="wrapper">
       <Cookies />
       <MobileMenu />
+      <SuccessModal />
       <Header />
       <main
         class="page-container"

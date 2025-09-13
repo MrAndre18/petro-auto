@@ -29,6 +29,7 @@ import { swiperApi } from './libs/swiper/swiper-manager'
 import { initHorizontalScroll } from './utils/horizontal-scroll'
 import { initOverlayScrollbars } from './utils/overlayScrollbars'
 import { cookies } from '@widgets/cookies/cookies'
+import { feedbackForm } from './components/feedback-form'
 
 // @ts-ignore
 import Aos from 'aos';
@@ -92,6 +93,7 @@ export const commonFunction = (): void => {
 
   initializeInputNumberManager()
   rating()
+  feedbackForm()
 
   progressBarManager.initAll()
   inputUploadManager.initAll()

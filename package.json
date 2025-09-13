@@ -23,6 +23,7 @@
     "accordion-js": "^3.4.0",
     "aos": "^3.0.0-beta.6",
     "astro": "5.7.2",
+    "axios": "^1.12.1",
     "gsap": "^3.12.7",
     "infinite-marquee": "^1.0.7",
     "inputmask": "^5.0.9",

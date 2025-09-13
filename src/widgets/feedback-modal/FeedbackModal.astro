@@ -20,6 +20,7 @@ export { FeedbackModal }
   {...props}
 >
   <form
+    data-form="feedback"
     slot="content"
     novalidate
     action=""
@@ -71,7 +72,7 @@ export { FeedbackModal }
     <div class="mt-5 flex flex-col gap-4 devices:mt-6 devices:gap-3">
       <button
         type="submit"
-        class="flex items-center justify-center gap-5 rounded-2xl bg-accent px-10 py-6 transition-colors hover:bg-accent-dark devices:rounded-xl devices:px-8 devices:py-4"
+        class="flex items-center justify-center gap-5 rounded-2xl bg-accent px-10 py-6 transition-all hover:bg-accent-dark devices:rounded-xl devices:px-8 devices:py-4"
       >
         <span class="text-18 text-white devices:text-16">Подобрать автомобиль</span>
       </button>

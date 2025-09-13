@@ -1,0 +1,44 @@
+---
+import Modal from '@shared/ui/modal/Modal.astro'
+import Icon from '@shared/ui/icon/Icon.astro'
+
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+export { SuccessModal }
+---
+
+<Modal
+  id="success-modal"
+  class:list={['success-modal', className]}
+  {...props}
+>
+  <div
+    class="success-modal__body"
+    slot="content"
+  >
+    <Icon
+      name="success"
+      class="success-modal__icon"
+    />
+    <div class="success-modal__content">
+      <p class="success-modal__text">Спасибо! Получили ваши данные и скоро свяжемся с вами.</p>
+
+      <button
+        type="button"
+        data-modal-close="success-modal"
+        class="flex items-center justify-center gap-5 rounded-2xl bg-accent px-10 py-6 transition-all hover:bg-accent-dark devices:rounded-xl devices:px-8 devices:py-4"
+      >
+        <span class="text-18 text-white devices:text-16">Понятно</span>
+      </button>
+    </div>
+  </div>
+</Modal>
+---
+
+<style>
+  @import './success-modal.scss';
+</style>

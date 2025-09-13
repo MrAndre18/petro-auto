@@ -92,6 +92,7 @@ const { class: className, ...props } = Astro.props as Props
 
   <form
     novalidate
+    data-form="feedback"
     action=""
     class="contacts__form devices:rounded-24 col-span-5 -col-end-2 rounded-3xl bg-pastel-green p-10 devices:-mx-4 devices:p-4 devices:py-8"
   >
@@ -137,7 +138,7 @@ const { class: className, ...props } = Astro.props as Props
     <div class="mt-5 flex flex-col gap-4 devices:gap-3">
       <button
         type="submit"
-        class="devices:rounded-16 flex items-center justify-center gap-5 rounded-2xl bg-accent px-10 py-6 transition-colors hover:bg-accent-dark devices:rounded-xl devices:px-8 devices:py-4"
+        class="devices:rounded-16 flex items-center justify-center gap-5 rounded-2xl bg-accent px-10 py-6 transition-all hover:bg-accent-dark devices:rounded-xl devices:px-8 devices:py-4"
       >
         <span class="text-18 text-white devices:text-16">Подобрать автомобиль</span>
       </button>
