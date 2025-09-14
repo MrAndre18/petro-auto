@@ -46,8 +46,9 @@ const submitHandler = (e: Event, form: HTMLFormElement) => {
   }
 
   axios
-    .post("send-message.php", data)
+    .post("/send-message.php", data)
     .then(response => {
+      console.log("🚀 ~ submitHandler ~ response:", response)
       openModal(successModal)
       autoCloseModal(successModal)
 
