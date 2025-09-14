@@ -1,4 +1,4 @@
-.success-modal {
+.error-modal {
   :global(.modal__container) {
     width: rem(500px);
     border-radius: rem(20px);
@@ -26,7 +26,7 @@
   &__icon {
     width: rem(180px);
     height: rem(180px);
-    color: #1EBD75;
+    color: #EB5757;
 
     @media #{media('<',d)} {
       width: rem(100px);

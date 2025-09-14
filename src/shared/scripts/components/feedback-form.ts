@@ -23,7 +23,7 @@ const submitHandler = (e: Event, form: HTMLFormElement) => {
   if (!valid) return
 
   const successModal = document.querySelector(`[data-modal="success-modal"]`) as HTMLElement
-  // const errorModal = document.querySelector(`[data-modal-wrapper=${form.dataset.formError}]`)
+  const errorModal = document.querySelector(`[data-modal="error-modal"]`) as HTMLElement
   const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement
 
   const submitButtonTextElement = submitButton.querySelector('span') as HTMLSpanElement
@@ -46,20 +46,28 @@ const submitHandler = (e: Event, form: HTMLFormElement) => {
   }
 
   axios
-    .post("/send-message.php", data)
+    .post("send-message.php", data, {
+      headers: { 'Content-Type': 'application/json' },
+    })
     .then(response => {
-      console.log("🚀 ~ submitHandler ~ response:", response)
       openModal(successModal)
       autoCloseModal(successModal)
 
       form.reset()
+    })
+    .catch(error => {
+      openModal(errorModal)
+      autoCloseModal(errorModal)
+    })
+    .finally(() => {
+      const parentModal = form.closest('[data-modal]') as HTMLElement
+      if (parentModal) {
+        closeModal(parentModal)
+      }
+
       submitButton.disabled = false
       submitButtonTextElement.innerHTML = submitButtonText
       submitButton.style.opacity = '1'
-    })
-    .catch(error => {
-      // openModal(errorModal)
-      // autoCloseModal(errorModal)
     })
 }
 

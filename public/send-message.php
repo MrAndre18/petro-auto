@@ -9,7 +9,7 @@ if (!empty($data)) {
   $comment = $data['comment'];
 
   $token = '8346108842:AAGLtS_U0hmMNUQsizINGnvqfOliQHIfajs';
-  $chat_id = '-4800329256';
+  $chat_id = '-1003074047853';
   $api_url = "https://api.telegram.org/bot$token/sendMessage";
 
   $message = "<b>📩 Новая заявка с сайта</b>\n\n";
